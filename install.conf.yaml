@@ -1,0 +1,31 @@
+- defaults:
+    link:
+      relink: true
+
+- clean:
+    - '~'
+    - '~/.config'
+    - '~/.config/fish'
+    - '~/.config/fish/completions'
+    - '~/.config/fish/functions'
+
+- create:
+    - '~/.config/fish/'
+
+- link:
+    ~/.config/fish/config.fish: fish/config.fish
+    ~/.config/fish/fishfile: fish/fishfile
+    ~/.config/fish/fish_variables: fish/fish_variables
+    ~/.config/fish/functions:
+      path: fish/functions/*.fish
+      glob: true
+    ~/.config/fish/completions:
+      path: fish/completions/*.fish
+      glob: true
+
+    ~/.config/alacritty:
+      create: true
+      path: alacritty
+
+- shell:
+  - [git submodule update --init --recursive, Installing submodules]
