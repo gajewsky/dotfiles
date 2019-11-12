@@ -1,6 +1,8 @@
 - defaults:
     link:
+      create: true
       relink: true
+      force: true
 
 - clean:
     - '~'
@@ -27,5 +29,3 @@
       create: true
       path: alacritty
 
-- shell:
-  - [git submodule update --init --recursive, Installing submodules]
