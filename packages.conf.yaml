@@ -1,0 +1,11 @@
+- yay:
+  - alacritty
+  - neovim
+  - fish
+  - exa
+  - bat
+  - fzf
+  - httpie
+  - jq
+  - ripgrep
+  - fd

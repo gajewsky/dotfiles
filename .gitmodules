@@ -7,3 +7,6 @@
 [submodule ".dotbot/tpm"]
 	path = .dotbot/tpm
 	url = https://github.com/tmux-plugins/tpm
+[submodule ".dotbot/dotbot-yay"]
+	path = .dotbot/dotbot-yay
+	url = https://github.com/oxson/dotbot-yay
