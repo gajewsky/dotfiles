@@ -4,9 +4,7 @@ if not functions -q fisher
     fish -c fisher
 end
 
-stty intr ^e
-
-alias ls="exa"
+alias ls="exa -a"
 alias cat="bat"
 alias vim="nvim"
 alias reload!="source ~/.config/fish/config.fish"

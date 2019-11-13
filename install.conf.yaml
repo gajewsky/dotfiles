@@ -29,3 +29,5 @@
       create: true
       path: alacritty
 
+    ~/.tmux.conf:
+      path: tmux/.tmux.conf
