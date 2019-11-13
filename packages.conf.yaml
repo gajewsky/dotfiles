@@ -1,11 +1,16 @@
 - yay:
   - alacritty
-  - neovim
-  - fish
-  - exa
   - bat
+  - docker
+  - docker-compose
+  - exa
+  - fd
+  - fish
   - fzf
   - httpie
   - jq
+  - neovim
   - ripgrep
-  - fd
+  - slack-desktop
+  - tealdeer
+
