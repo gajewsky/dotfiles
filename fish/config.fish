@@ -9,3 +9,5 @@ alias cat="bat"
 alias vim="nvim"
 alias reload!="source ~/.config/fish/config.fish"
 
+export VIMRC=$HOME/.vimrc
+

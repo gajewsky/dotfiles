@@ -25,9 +25,10 @@
       path: fish/completions/*.fish
       glob: true
 
-    ~/.config/alacritty:
-      create: true
-      path: alacritty
+    ~/.config/alacritty: alacritty
 
-    ~/.tmux.conf:
-      path: tmux/.tmux.conf
+    ~/.tmux.conf: tmux/.tmux.conf
+
+    ~/.config/nvim/init.vim: vim/.vimrc
+    ~/.config/nvim/fzf.vim: vim/fzf.vim
+    ~/.local/share/nvim/site/autoload/plug.vim : .dotbot/vim-plug/plug.vim
