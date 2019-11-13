@@ -4,3 +4,6 @@
 [submodule ".dotbot/vim-plug"]
 	path = .dotbot/vim-plug
 	url = https://github.com/junegunn/vim-plug
+[submodule ".dotbot/tpm"]
+	path = .dotbot/tpm
+	url = https://github.com/tmux-plugins/tpm
