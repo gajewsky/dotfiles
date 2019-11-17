@@ -1,0 +1,5 @@
+- link:
+    ~/.config/nvim/init.vim: vim/.vimrc
+    ~/.config/nvim/fzf.vim: vim/fzf.vim
+    ~/.local/share/nvim/site/autoload/plug.vim : .dotbot/plugins/vim-plug/plug.vim
+

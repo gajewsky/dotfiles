@@ -1,0 +1,4 @@
+- link:
+    ~/.tmux.conf: tmux/.tmux.conf
+    ~/.tmux/plugins/tpm: .dotbot/plugins/tpm
+
