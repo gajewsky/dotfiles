@@ -1,0 +1,19 @@
+[color]
+  ui = true
+[core]
+  autocrlf = false
+  editor = nvim
+  eol = lf
+  excludesfile = ~/.gitignore
+  filemode = false
+[diff]
+  algorithm = patience
+  colorMoved = zebra
+[github]
+  user = gajewsky
+[pager]
+  diff = diff-so-fancy | less --tabs=1,5 -RFX
+  show = diff-so-fancy | less --tabs=1,5 -RFX
+[user]
+  email = code@gajewsky.it
+  name = Marcin Gajewski
