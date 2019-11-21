@@ -1,14 +1,25 @@
 - yay:
   - alacritty
   - bat
+  - cmake
+  - coreutils
+  - diff-so-fancy
   - docker
   - docker-compose
   - exa
   - fd
   - fish
   - fzf
+  - htop
   - httpie
   - jq
+  - matcha-gtk-theme
   - neovim
+  - noto-fonts-emoji
+  - pv
   - ripgrep
+  - rsync
+  - spotify
+  - yay
+  - youtube-dl
 
