@@ -64,7 +64,8 @@ call plug#begin('~/.vim/plugged')
 call plug#end()
 
 " ================ General Config ====================
-
+"
+set shell=/usr/bin/bash
 set nocompatible
 set gdefault
 set timeout timeoutlen=1000

@@ -1,13 +1,16 @@
 - yay:
   - alacritty
   - bat
+  - binutils
   - cmake
   - coreutils
   - diff-so-fancy
   - docker
   - docker-compose
   - exa
+  - fakeroot
   - fd
+  - firefox-developer-edition
   - fish
   - fzf
   - htop
@@ -19,7 +22,10 @@
   - pv
   - ripgrep
   - rsync
+  - slack-desktop
   - spotify
+  - synology-drive
+  - tmux
   - yay
   - youtube-dl
 

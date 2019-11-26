@@ -10,3 +10,4 @@ set -U FZF_LEGACY_KEYBINDINGS 0
 set -x DOTFILES ~/.dotfiles
 set -x VIMRC $HOME/.vimrc
 
+source ~/.asdf/asdf.fish
