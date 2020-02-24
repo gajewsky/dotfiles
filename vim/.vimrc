@@ -19,12 +19,12 @@ call plug#begin('~/.vim/plugged')
 
   " Syntax highlighting
   Plug 'Chiel92/vim-autoformat'
-  " Plug 'Valloric/MatchTagAlways'
   Plug 'sheerun/vim-polyglot'                                       " Add syntax highlighting for a large range of filetypes
+  Plug 'alcesleo/vim-uppercase-sql'
 
   " Visual
-  Plug 'wincent/vcs-jump'
-  Plug 'mhinz/vim-startify'
+  Plug 'brooth/far.vim'
+  Plug 'mhinz/vim-grepper'
   Plug 'elzr/vim-json', {'for': 'json'}                             " Better syntax highlighting for JSON files
   Plug 'morhetz/gruvbox'                                            " Gruvbox colorscheme
   Plug 'edkolev/tmuxline.vim'
@@ -60,6 +60,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'junegunn/vim-easy-align'
   Plug 'rstacruz/vim-closer'
   Plug 'mileszs/ack.vim'
+  Plug 'justinmk/vim-sneak'
+  Plug 'Shougo/neomru.vim'
 
 call plug#end()
 
@@ -141,14 +143,14 @@ noremap <down>  <C-W>-
 noremap <left>  3<C-W><
 noremap <right> 3<C-W>>
 
-nmap <Leader>d <Plug>(VcsJump)
-
 set splitbelow        " new hoz splits go below
 set splitright        " new vert splits go right
 
 " prefer vertical orientation when using :diffsplit
 set diffopt+=vertical
 
+" quick-scope - trigger a highlight in the appropriate direction when pressing these keys:
+let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 
 " ================ Git ===============================
 " Update sign column every quarter second
@@ -180,9 +182,6 @@ vnoremap <Leader>gb :Gbrowse<CR>
 
 nmap ga <Plug>(EasyAlign)
 
-imap jk <esc>
-imap kj <esc>
-
 noremap <C-S> :update<CR>
 vnoremap <C-S> <C-C>:update<CR>
 inoremap <C-S> <ESC>:update<CR>l
@@ -208,6 +207,8 @@ nmap <Leader><Space> :nohl<cr>
 
 " " go substitute because the default map for sleeping is silly
 nnoremap gs :%s//<Left>
+
+nnoremap <leader>: "xyiw:%s/<C-R>x/gc
 
 nnoremap <NL> i<CR><ESC>
 

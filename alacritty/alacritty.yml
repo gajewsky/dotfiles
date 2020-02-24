@@ -13,22 +13,21 @@ window:
 scrolling:
   history: 100000
   multiplier: 3
-  faux_multiplier: 3
   auto_scroll: false
 
 tabspaces: 2
 
 font:
   normal:
-    family: Monaco Nerd Font
+    family: Ligamonacop
     style: Regular
 
   bold:
-    family: Monaco Nerd Font
+    family: Ligamonacop
     style: Bold
 
   italic:
-    family: Monaco Nerd Font
+    family: Ligamonacop
     style: Italic
 
   size: 12.0
@@ -103,8 +102,8 @@ cursor:
 live_config_reload: true
 
 key_bindings:
-  - { key: V,        mods: Control, action: Paste                  }
-  - { key: C,        mods: Control, action: Copy                   }
+  - { key: V,        mods: Control|Shift, action: Paste                  }
+  - { key: C,        mods: Control|Shift, action: Copy                   }
   - { key: Paste,                   action: Paste                        }
   - { key: Copy,                    action: Copy                         }
   - { key: Q,        mods: Command, action: Quit                         }

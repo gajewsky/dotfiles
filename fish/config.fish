@@ -9,5 +9,10 @@ end
 set -U FZF_LEGACY_KEYBINDINGS 0
 set -x DOTFILES ~/.dotfiles
 set -x VIMRC $HOME/.vimrc
+set -x EDITOR /usr/bin/nvim
+set -x UID (id -u $USER)
+set -x GID (id -g $USER)
+
+# xset r rate 250 100
 
 source ~/.asdf/asdf.fish
