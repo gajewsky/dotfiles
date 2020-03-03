@@ -16,3 +16,5 @@ set -x GID (id -g $USER)
 # xset r rate 250 100
 
 source ~/.asdf/asdf.fish
+
+set PATH ~/bin $PATH

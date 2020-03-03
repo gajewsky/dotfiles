@@ -14,7 +14,7 @@ nmap <Leader>r :GrepperRg<Space>
 nmap <Leader>H :Helptags!<CR>
 nmap <Leader>C :Commands<CR>
 nmap <Leader>: :History:<CR>
-nmap <Leader>/ :History/<CR>
+nmap <Leader>` :History/<CR>
 nmap <Leader>M :Maps<CR>
 nmap <Leader>s :Filetypes<CR>
 

@@ -16,6 +16,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'airblade/vim-gitgutter'                                     " Show a diff using Vim its sign column
   Plug 'junegunn/gv.vim'                                            " A git commit browser
   Plug 'danishprakash/vim-githubinator'                             " Show selected text in Vim on Github
+  Plug 'rhysd/git-messenger.vim'
 
   " Syntax highlighting
   Plug 'Chiel92/vim-autoformat'
@@ -43,13 +44,14 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-unimpaired'
   Plug 'tpope/vim-speeddating'
   Plug 'AaronLasseigne/yank-code'
+  Plug 'junegunn/vim-peekaboo'
 
   " File Navigation
   Plug 'cskeeters/vim-smooth-scroll'                                " Smooth scroll animation instead of jump
   Plug 'christoomey/vim-tmux-navigator'                             " Navigate between tmux and vim with <C>+jkhl
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " Fuzzy file++ searching
   Plug 'junegunn/fzf.vim'                                           " Asynchronous file/tags searcher
-  Plug 'yuki-ycino/fzf-preview.vim'
+  " Plug 'yuki-ycino/fzf-preview.vim'
   Plug 'justinmk/vim-dirvish'                                       " Directory viewer for Vim
   Plug 'kristijanhusak/vim-dirvish-git'
   Plug 'bogado/file-line'                                           " Open a file in a given line
@@ -206,9 +208,8 @@ nnoremap N Nzz
 nmap <Leader><Space> :nohl<cr>
 
 " " go substitute because the default map for sleeping is silly
-nnoremap gs :%s//<Left>
+nnoremap gs :%s/<c-r><c-w>//gc<Left><Left><Left>
 
-nnoremap <leader>: "xyiw:%s/<C-R>x/gc
 
 nnoremap <NL> i<CR><ESC>
 
