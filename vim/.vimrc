@@ -33,6 +33,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'shinchu/lightline-gruvbox.vim'
   Plug 'ryanoasis/vim-devicons'                                     " For file icons in lots of plugins
   Plug 'ap/vim-css-color'
+  Plug 'junegunn/rainbow_parentheses.vim'
 
   " Behaviour/tools
   Plug 'romainl/vim-qf'                                             " Automatically close quickfix windows that become orphaned
@@ -43,6 +44,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-eunuch'
   Plug 'tpope/vim-unimpaired'
   Plug 'tpope/vim-speeddating'
+  Plug 'tpope/vim-fireplace'
   Plug 'AaronLasseigne/yank-code'
   Plug 'junegunn/vim-peekaboo'
 
@@ -225,6 +227,14 @@ if executable('rg')
   let g:ackprg = 'rg --vimgrep'
 endif
 
+nnoremap cv :e $MYVIMRC<CR>
+
+" Easier way to go to normal mode. Also, alternative to <ESC>.
+noremap! <silent> <C-l> <ESC>
+vnoremap <silent> <C-l> <ESC>
+onoremap <silent> <C-l> <ESC>
+
+noremap <Space> :
 " ================ Neovim ============================
 
 set inccommand=split
@@ -234,6 +244,9 @@ if has('nvim')
 endif
 
 " ================ Functions =========================
+
+" Command to copy the current file's full absolute path.
+command CopyFilePath let @+ = expand(has('win32') ? '%:p:gs?/?\\?' : '%:p')
 
 " Automatically strip whitespaces
 fun! <SID>StripTrailingWhitespaces()
@@ -245,6 +258,12 @@ fun! <SID>StripTrailingWhitespaces()
   let @/=_s
 endfun
 autocmd BufWritePre *.* :call <SID>StripTrailingWhitespaces()
+
+" Activation based on file type
+augroup rainbow_lisp
+  autocmd!
+  autocmd FileType lisp,clojure,scheme RainbowParentheses
+augroup END
 
 " ================ Neovim ============================
 

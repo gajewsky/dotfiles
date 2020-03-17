@@ -12,6 +12,7 @@ set -x VIMRC $HOME/.vimrc
 set -x EDITOR /usr/bin/nvim
 set -x UID (id -u $USER)
 set -x GID (id -g $USER)
+set -x MYVIMRC ~/.dotfiles/vim/.vimrc
 
 # xset r rate 250 100
 
