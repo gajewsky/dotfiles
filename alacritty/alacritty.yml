@@ -19,15 +19,15 @@ tabspaces: 2
 
 font:
   normal:
-    family: Ligamonacop
+    family: Monaco Nerd Font
     style: Regular
 
   bold:
-    family: Ligamonacop
+    family: Monaco Nerd Font
     style: Bold
 
   italic:
-    family: Ligamonacop
+    family: Monaco Nerd Font
     style: Italic
 
   size: 12.0
