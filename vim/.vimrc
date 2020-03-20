@@ -9,6 +9,15 @@ call plug#begin('~/.vim/plugged')
   " JavaScript
   Plug 'pangloss/vim-javascript'
 
+  " Clojure
+  Plug 'guns/vim-clojure-static'
+  Plug 'guns/vim-clojure-highlight'
+  Plug 'guns/vim-sexp',    {'for': 'clojure'}
+  Plug 'tpope/vim-sexp-mappings-for-regular-people'
+  Plug 'junegunn/rainbow_parentheses.vim'
+  Plug 'jiangmiao/auto-pairs', { 'tag': 'v2.0.0' }
+  Plug 'venantius/vim-cljfmt'
+
   " Git
   Plug 'tpope/vim-git'
   Plug 'tpope/vim-fugitive'
@@ -33,7 +42,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'shinchu/lightline-gruvbox.vim'
   Plug 'ryanoasis/vim-devicons'                                     " For file icons in lots of plugins
   Plug 'ap/vim-css-color'
-  Plug 'junegunn/rainbow_parentheses.vim'
 
   " Behaviour/tools
   Plug 'romainl/vim-qf'                                             " Automatically close quickfix windows that become orphaned
@@ -45,15 +53,18 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-unimpaired'
   Plug 'tpope/vim-speeddating'
   Plug 'tpope/vim-fireplace'
+  Plug 'tpope/vim-classpath'
   Plug 'AaronLasseigne/yank-code'
   Plug 'junegunn/vim-peekaboo'
+  Plug 'easymotion/vim-easymotion'
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'ncm2/float-preview.nvim'
 
   " File Navigation
   Plug 'cskeeters/vim-smooth-scroll'                                " Smooth scroll animation instead of jump
   Plug 'christoomey/vim-tmux-navigator'                             " Navigate between tmux and vim with <C>+jkhl
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " Fuzzy file++ searching
   Plug 'junegunn/fzf.vim'                                           " Asynchronous file/tags searcher
-  " Plug 'yuki-ycino/fzf-preview.vim'
   Plug 'justinmk/vim-dirvish'                                       " Directory viewer for Vim
   Plug 'kristijanhusak/vim-dirvish-git'
   Plug 'bogado/file-line'                                           " Open a file in a given line
@@ -76,6 +87,7 @@ set nocompatible
 set gdefault
 set timeout timeoutlen=1000
 let mapleader=","
+let maplocalleader = "\\"
 syntax on
 runtime macros/matchit.vim
 set mouse=a
@@ -156,7 +168,7 @@ set diffopt+=vertical
 " quick-scope - trigger a highlight in the appropriate direction when pressing these keys:
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 
-" ================ Git ===============================
+" ================ Plugins settings ==================
 " Update sign column every quarter second
 " set updatetime=250
 
@@ -166,6 +178,14 @@ let g:gitgutter_sign_modified = ''
 let g:gitgutter_sign_removed = ''
 let g:gitgutter_sign_removed_first_line = ''
 let g:gitgutter_sign_modified_removed = ''
+
+let g:deoplete#enable_at_startup = 1
+call deoplete#custom#option('keyword_patterns', {'clojure': '[\w!$%&*+/:<=>?@\^_~\-\.#]*'})
+set completeopt-=preview
+
+let g:float_preview#docked = 0
+let g:float_preview#max_width = 80
+let g:float_preview#max_height = 40
 
 " Jump between hunks
 nmap <Leader>gn <Plug>GitGutterNextHunk
@@ -180,7 +200,20 @@ nnoremap <Leader>gb :.Gbrowse<CR>
 
 " Open visual selection in the browser
 vnoremap <Leader>gb :Gbrowse<CR>
+" <Leader>f{char} to move to {char}
+map  <Leader>m <Plug>(easymotion-bd-f)
+nmap <Leader>m <Plug>(easymotion-overwin-f)
 
+" s{char}{char} to move to {char}{char}
+nmap s <Plug>(easymotion-overwin-f2)
+
+" Move to line
+map <Leader>L <Plug>(easymotion-bd-jk)
+nmap <Leader>L <Plug>(easymotion-overwin-line)
+
+" Move to word
+map  <Leader>w <Plug>(easymotion-bd-w)
+nmap <Leader>w <Plug>(easymotion-overwin-w)
 
 " ================ Navigation ========================
 
@@ -194,7 +227,7 @@ map <C-t> <esc>:tabnew<CR>
 
 " Move visual block
 vnoremap J :m '>+1<CR>gv=gv
-vnoremap K :m '<-2<CR>gv=gv
+" vnoremap K :m '<-2<CR>gv=gv
 
 noremap H ^
 noremap L $
@@ -235,6 +268,15 @@ vnoremap <silent> <C-l> <ESC>
 onoremap <silent> <C-l> <ESC>
 
 noremap <Space> :
+
+" Enable vim-iced's default key mapping
+let g:iced_enable_default_key_mappings = v:true
+
+let g:ale_linters = {'clojure': ['clj-kondo', 'joker']}
+
+let g:ale_sign_error = "◉"
+let g:ale_sign_warning = "◉"
+
 " ================ Neovim ============================
 
 set inccommand=split
@@ -264,25 +306,4 @@ augroup rainbow_lisp
   autocmd!
   autocmd FileType lisp,clojure,scheme RainbowParentheses
 augroup END
-
-" ================ Neovim ============================
-
-set inccommand=split
-
-if has('nvim')
-  tnoremap <Esc> <C-\><C-n>
-endif
-
-" ================ Functions =========================
-
-" Automatically strip whitespaces
-fun! <SID>StripTrailingWhitespaces()
-  let l = line(".")
-  let c = col(".")
-  %s/\s\+$//e
-  let _s=@/
-  call cursor(l, c)
-  let @/=_s
-endfun
-autocmd BufWritePre *.* :call <SID>StripTrailingWhitespaces()
 

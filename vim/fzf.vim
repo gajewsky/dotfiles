@@ -18,8 +18,6 @@ nmap <Leader>` :History/<CR>
 nmap <Leader>M :Maps<CR>
 nmap <Leader>s :Filetypes<CR>
 
-nmap <Leader>m :<C-u>FzfPreviewFromResources project_mru git<CR>
-nmap <Leader>gs :<C-u>FzfPreviewGitStatus<CR>
 let g:fzf_preview_if_binary_command = '[[ "$(file --mime {})" =~ binary ]]'
 let g:fzf_preview_command = 'bat --color=always --style=grid {-1}'
 let g:fzf_preview_filelist_command = 'rg --files --hidden --follow --no-messages -g \!"* *"'
