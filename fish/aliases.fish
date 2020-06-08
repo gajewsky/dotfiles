@@ -14,3 +14,6 @@ alias dco 'docker-compose'
 alias dce 'docker-compose exec'
 alias dl 'docker ps -l -q'
 alias dbe 'docker-compose run rails env bundle exec'
+alias pbcopy 'xclip -selection clipboard'
+alias pbpaste 'xclip -selection clipboard -o'
+

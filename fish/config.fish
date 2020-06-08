@@ -7,6 +7,8 @@ if not functions -q fisher
 end
 
 set -U FZF_LEGACY_KEYBINDINGS 0
+set -U  FZF_COMPLETE 3
+
 set -x DOTFILES ~/.dotfiles
 set -x VIMRC $HOME/.vimrc
 set -x EDITOR /usr/bin/nvim
@@ -19,3 +21,7 @@ set -x MYVIMRC ~/.dotfiles/vim/.vimrc
 source ~/.asdf/asdf.fish
 
 set PATH ~/bin $PATH
+set PATH (yarn global bin) ~/bin $PATH
+
+set PATH ~/.local/bin $PATH
+set PATH ~/.cargo/bin $PATH

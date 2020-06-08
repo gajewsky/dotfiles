@@ -12,11 +12,11 @@ call plug#begin('~/.vim/plugged')
   " Clojure
   Plug 'guns/vim-clojure-static'
   Plug 'guns/vim-clojure-highlight'
-  Plug 'guns/vim-sexp',    {'for': 'clojure'}
+  Plug 'guns/vim-sexp'
   Plug 'tpope/vim-sexp-mappings-for-regular-people'
-  Plug 'junegunn/rainbow_parentheses.vim'
   Plug 'jiangmiao/auto-pairs', { 'tag': 'v2.0.0' }
   Plug 'venantius/vim-cljfmt'
+  Plug 'luochen1990/rainbow'
 
   " Git
   Plug 'tpope/vim-git'
@@ -42,6 +42,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'shinchu/lightline-gruvbox.vim'
   Plug 'ryanoasis/vim-devicons'                                     " For file icons in lots of plugins
   Plug 'ap/vim-css-color'
+  Plug 'caenrique/nvim-maximize-window-toggle'
 
   " Behaviour/tools
   Plug 'romainl/vim-qf'                                             " Automatically close quickfix windows that become orphaned
@@ -103,7 +104,6 @@ set nowb
 set scrolloff=8         "Start scrolling when we're 8 lines away from margins
 set sidescrolloff=15
 set sidescroll=1
-
 " ================ Search ===========================
 
 set incsearch       " Find the next match as we type the search
@@ -129,6 +129,7 @@ set list listchars=tab:\ \ ,trail:· "Display tabs and trailing spaces visually
 set linebreak "Wrap lines at convenient points
 
 " ================ FZF ===============================
+"
 source $HOME/.config/nvim/fzf.vim
 
 " ================ Theme =============================
@@ -141,9 +142,9 @@ let g:gruvbox_terminal_colors = 1
 colo gruvbox
 
 let g:powerline_loaded = 1
-let g:lightline = {
-      \ 'colorscheme': 'gruvbox',
-      \ }
+let g:lightline = { 'colorscheme': 'gruvbox' }
+
+colorscheme gruvbox
 
 let &colorcolumn="99".join(range(99,999),",") "Ruller
 set list listchars=tab:»·,trail:· " Display extra whitespace
@@ -187,6 +188,10 @@ let g:float_preview#docked = 0
 let g:float_preview#max_width = 80
 let g:float_preview#max_height = 40
 
+let g:rainbow_active = 1
+
+let g:sexp_enable_insert_mode_mappings = 0
+
 " Jump between hunks
 nmap <Leader>gn <Plug>GitGutterNextHunk
 nmap <Leader>gp <Plug>GitGutterPrevHunk
@@ -214,6 +219,8 @@ nmap <Leader>L <Plug>(easymotion-overwin-line)
 " Move to word
 map  <Leader>w <Plug>(easymotion-bd-w)
 nmap <Leader>w <Plug>(easymotion-overwin-w)
+
+nnoremap <Leader>o :ToggleOnly<Enter>
 
 " ================ Navigation ========================
 
@@ -300,10 +307,3 @@ fun! <SID>StripTrailingWhitespaces()
   let @/=_s
 endfun
 autocmd BufWritePre *.* :call <SID>StripTrailingWhitespaces()
-
-" Activation based on file type
-augroup rainbow_lisp
-  autocmd!
-  autocmd FileType lisp,clojure,scheme RainbowParentheses
-augroup END
-
