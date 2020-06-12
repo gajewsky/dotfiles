@@ -6,14 +6,14 @@
   eol = lf
   excludesfile = ~/.gitignore
   filemode = false
+  pager = delta --plus-color="#012800" --minus-color="#340001" --theme='base16'
 [diff]
   algorithm = patience
   colorMoved = zebra
 [github]
   user = gajewsky
-[pager]
-  diff = diff-so-fancy | less --tabs=1,5 -RFX
-  show = diff-so-fancy | less --tabs=1,5 -RFX
+[interactive]
+  diffFilter = delta --color-only
 [user]
   email = code@gajewsky.it
   name = Marcin Gajewski

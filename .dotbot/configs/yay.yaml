@@ -4,7 +4,6 @@
   - binutils
   - cmake
   - coreutils
-  - diff-so-fancy
   - docker
   - docker-compose
   - exa
@@ -13,8 +12,10 @@
   - firefox-developer-edition
   - fish
   - fzf
+  - git-delta
   - htop
   - httpie
+  - hub
   - jq
   - matcha-gtk-theme
   - neovim
