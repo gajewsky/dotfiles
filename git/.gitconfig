@@ -7,9 +7,6 @@
   excludesfile = ~/.gitignore
   filemode = false
   pager = delta --plus-color="#012800" --minus-color="#340001" --theme='base16'
-[diff]
-  algorithm = patience
-  colorMoved = zebra
 [github]
   user = gajewsky
 [interactive]

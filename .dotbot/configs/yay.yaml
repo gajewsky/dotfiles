@@ -1,5 +1,6 @@
 - yay:
   - alacritty
+  - autojump
   - bat
   - binutils
   - cmake
