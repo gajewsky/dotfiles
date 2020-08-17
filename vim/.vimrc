@@ -149,7 +149,7 @@ colorscheme gruvbox
 let &colorcolumn="99".join(range(99,999),",") "Ruller
 set list listchars=tab:»·,trail:· " Display extra whitespace
 let g:eighties_enabled = 1
-let g:eighties_minimum_width = 99
+let g:eighties_minimum_width = 100
 
 " let terminal resize scale the internal windows
 autocmd VimResized * :wincmd =
@@ -278,8 +278,6 @@ noremap <Space> :
 
 " Enable vim-iced's default key mapping
 let g:iced_enable_default_key_mappings = v:true
-
-let g:ale_linters = {'clojure': ['clj-kondo', 'joker']}
 
 let g:ale_sign_error = "◉"
 let g:ale_sign_warning = "◉"

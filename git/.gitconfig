@@ -14,3 +14,5 @@
 [user]
   email = code@gajewsky.it
   name = Marcin Gajewski
+[pull]
+	ff = only
