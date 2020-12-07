@@ -1,4 +1,5 @@
-. ~/.config/fish/aliases.fish
+source ~/.config/fish/aliases.fish
+source ~/.asdf/asdf.fish
 
 if not functions -q fisher
     set -q XDG_CONFIG_HOME; or set XDG_CONFIG_HOME ~/.config
@@ -14,10 +15,9 @@ set -x EDITOR /usr/bin/nvim
 set -x UID (id -u $USER)
 set -x GID (id -g $USER)
 set -x MYVIMRC ~/.dotfiles/vim/.vimrc
+set -x KUBECONFIG $HOME/.kube/kubeconfig
 
 # xset r rate 250 100
-
-source ~/.asdf/asdf.fish
 
 set PATH ~/bin $PATH
 set PATH (yarn global bin) ~/bin $PATH

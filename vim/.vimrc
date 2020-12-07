@@ -31,8 +31,10 @@ call plug#begin('~/.vim/plugged')
   Plug 'Chiel92/vim-autoformat'
   Plug 'sheerun/vim-polyglot'                                       " Add syntax highlighting for a large range of filetypes
   Plug 'alcesleo/vim-uppercase-sql'
+  Plug 'mechatroner/rainbow_csv'
 
   " Visual
+  Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': ':UpdateRemotePlugins'}
   Plug 'brooth/far.vim'
   Plug 'mhinz/vim-grepper'
   Plug 'elzr/vim-json', {'for': 'json'}                             " Better syntax highlighting for JSON files
@@ -70,7 +72,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'kristijanhusak/vim-dirvish-git'
   Plug 'bogado/file-line'                                           " Open a file in a given line
   Plug 'unblevable/quick-scope'                                     " Lightning fast left-right movement in Vim
-  Plug 'w0rp/ale'
+  Plug 'dense-analysis/ale'
   Plug 'pbrisbin/vim-mkdir'
   Plug 'justincampbell/vim-eighties'                                " Automatically resizes your windows
   Plug 'junegunn/vim-easy-align'
@@ -131,6 +133,11 @@ set linebreak "Wrap lines at convenient points
 " ================ FZF ===============================
 "
 source $HOME/.config/nvim/fzf.vim
+
+" ================ CHADTree ==========================
+nnoremap <leader>v <cmd>CHADopen<cr>
+nnoremap <leader>l <cmd>call setqflist([])<cr>
+
 
 " ================ Theme =============================
 
@@ -223,7 +230,11 @@ nmap <Leader>w <Plug>(easymotion-overwin-w)
 nnoremap <Leader>o :ToggleOnly<Enter>
 
 " ================ Navigation ========================
-
+"
+"
+" visual mode:
+xnoremap <c-j> 10j
+xnoremap <c-k> 10k
 nmap ga <Plug>(EasyAlign)
 
 noremap <C-S> :update<CR>
