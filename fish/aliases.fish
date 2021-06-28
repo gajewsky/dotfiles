@@ -9,7 +9,7 @@ alias gcmsg 'git commit -m'
 alias gundo='git reset HEAD~'
 alias gundo='git reset HEAD~'
 alias t='trans'
-
+alias :q='exit'
 alias dco 'docker-compose'
 alias dce 'docker-compose exec'
 alias dl 'docker ps -l -q'
@@ -19,16 +19,14 @@ alias pbpaste 'xclip -selection clipboard -o'
 alias speedtest-bytes 'wget -O /dev/null http://speedtest.tele2.net/10GB.zip'
 alias speedtest-bits 'wget -O /dev/null http://speedtest.tele2.net/10GB.zip --report-speed=bits'
 
+alias docker_rails "docker-compose exec rails bin/rails"
+
 # PACT
 # run application/stop application
-alias lhu "docker-compose -f docker-compose.yml -f docker-compose.app.yml up"
+alias lhu "docker-compose -f docker-compose.yml -f docker-compose.app.yml up --abort-on-container-exit"
 alias lhd "docker-compose -f docker-compose.yml -f docker-compose.app.yml down --remove-orphans"
 alias lhb "docker-compose -f docker-compose.yml -f docker-compose.app.yml build"
 alias lhr "docker-compose -f docker-compose.yml -f docker-compose.app.yml down --rmi local"
-
-# same as above, but also run all services this service depends on
-alias lhus "docker-compose -f docker-compose.yml -f docker-compose.app.yml -f docker-compose.services.yml up --abort-on-container-exit"
-alias lhds "docker-compose -f docker-compose.yml -f docker-compose.app.yml -f docker-compose.services.yml down --remove-orphans"
 
 alias remove_all_docker_containers="docker rm -vf (docker ps -a -q)"
 alias remove_all_docker_images="docker rmi -f (docker images -a -q)"
@@ -40,18 +38,18 @@ function lh-kibana
   open http://localhost:5601
 end
 
-function lhe
-  docker exec -it (docker ps | grep -m 1 start_docker | awk '{print $1}') /bin/bash
-end
-
-function etvrepo
-  cd (find ~/code/pact/* -type d -maxdepth 0 -print 2> /dev/null | fzf +m)
-end
-
-function lhservice
-  set -l dir
-  set dir (find ~/code/pact/lh-be-connected-factories/services/* -type d -maxdepth 0 -print 2> /dev/null | fzf +m) &&
-  cd "$dir"
+function lhdc
+  set config_flags
+  if test -f docker-compose.yml
+    set config_flags -f docker-compose.yml
+  end
+  if test -f docker-compose.app.yml
+    set config_flags $config_flags -f docker-compose.app.yml
+  end
+  if test -f docker-compose.services.yml
+    set config_flags $config_flags -f docker-compose.services.yml
+  end
+  docker-compose $config_flags $argv
 end
 
 # Example usage:

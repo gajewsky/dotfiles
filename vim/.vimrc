@@ -2,6 +2,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'takac/vim-hardtime'
   " Ruby
   Plug 'vim-ruby/vim-ruby'
+  Plug 'ecomba/vim-ruby-refactoring', {'tag': 'main'}
   Plug 'tpope/vim-rails'
   Plug 'tpope/vim-endwise'
   Plug 'AndrewRadev/splitjoin.vim'
@@ -34,8 +35,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'mechatroner/rainbow_csv'
 
   " Visual
-  Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': ':UpdateRemotePlugins'}
-  Plug 'brooth/far.vim'
   Plug 'mhinz/vim-grepper'
   Plug 'elzr/vim-json', {'for': 'json'}                             " Better syntax highlighting for JSON files
   Plug 'morhetz/gruvbox'                                            " Gruvbox colorscheme
@@ -64,6 +63,9 @@ call plug#begin('~/.vim/plugged')
   Plug 'ncm2/float-preview.nvim'
 
   " File Navigation
+  "
+  Plug 'lambdalisue/fern.vim'
+  Plug 'lambdalisue/fern-git-status.vim'
   Plug 'cskeeters/vim-smooth-scroll'                                " Smooth scroll animation instead of jump
   Plug 'christoomey/vim-tmux-navigator'                             " Navigate between tmux and vim with <C>+jkhl
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " Fuzzy file++ searching
@@ -84,7 +86,18 @@ call plug#begin('~/.vim/plugged')
 call plug#end()
 
 " ================ General Config ====================
-"
+
+
+"" Encoding
+set encoding=utf-8
+set fileencoding=utf-8
+set fileencodings=utf-8
+
+"" Fix backspace indent
+set backspace=indent,eol,start
+
+"" Enable hidden buffers
+set hidden
 set shell=/usr/bin/bash
 set nocompatible
 set gdefault
@@ -134,9 +147,14 @@ set linebreak "Wrap lines at convenient points
 "
 source $HOME/.config/nvim/fzf.vim
 
-" ================ CHADTree ==========================
-nnoremap <leader>v <cmd>CHADopen<cr>
-nnoremap <leader>l <cmd>call setqflist([])<cr>
+" ================ Fern ==============================
+let g:fern#disable_default_mappings   = 1
+let g:fern#disable_drawer_auto_quit   = 1
+let g:fern#disable_viewer_hide_cursor = 1
+let g:fern_git_status#disable_ignored    = 1
+let g:fern_git_status#disable_untracked  = 1
+let g:fern_git_status#disable_submodules = 1
+noremap <silent> <Leader>d :Fern . -drawer -width=35 -toggle<CR><C-w>=
 
 
 " ================ Theme =============================
@@ -209,6 +227,13 @@ nmap <Leader>gu <Plug>GitGutterUndoHunk   " git undo (chunk)
 
 " Open current line in the browser
 nnoremap <Leader>gb :.Gbrowse<CR>
+
+nnoremap <leader>p "0p
+nnoremap <leader>P "0P
+
+set wildcharm=<c-z>
+cnoremap <expr> <Tab>   getcmdtype() =~ '[?/]' ? "<c-g>": "<c-z>"
+cnoremap <expr> <S-Tab> getcmdtype() =~ '[?/]' ? "<c-t>" : "<S-Tab>"
 
 " Open visual selection in the browser
 vnoremap <Leader>gb :Gbrowse<CR>
@@ -292,6 +317,41 @@ let g:iced_enable_default_key_mappings = v:true
 
 let g:ale_sign_error = "◉"
 let g:ale_sign_warning = "◉"
+
+"*****************************************************************************
+""" Abbreviations
+""*****************************************************************************
+""" no one is really happy until you have this shortcuts
+"cnoreabbrev W! w!
+"cnoreabbrev Q! q!
+"cnoreabbrev Qall! qall!
+"cnoreabbrev Wq wq
+"cnoreabbrev Wa wa
+"cnoreabbrev wQ wq
+"cnoreabbrev WQ wq
+"cnoreabbrev W w
+"cnoreabbrev Q q
+"cnoreabbrev Qall qall
+
+
+""" Split
+"noremap <Leader>h :<C-u>split<CR>
+"noremap <Leader>v :<C-u>vsplit<CR>
+
+""" Git
+"noremap <Leader>ga :Gwrite<CR>
+"noremap <Leader>gc :Gcommit<CR>
+"noremap <Leader>gsh :Gpush<CR>
+"noremap <Leader>gll :Gpull<CR>
+"noremap <Leader>gs :Gstatus<CR>
+"noremap <Leader>gb :Gblame<CR>
+"noremap <Leader>gd :Gvdiff<CR>
+"noremap <Leader>gr :Gremove<CR>
+
+""" Tabs
+"nnoremap <Tab> gt
+"nnoremap <S-Tab> gT
+"nnoremap <silent> <S-t> :tabnew<CR>
 
 " ================ Neovim ============================
 

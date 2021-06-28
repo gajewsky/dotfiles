@@ -12,7 +12,10 @@
 [interactive]
   diffFilter = delta --color-only
 [user]
-  email = code@gajewsky.it
+  email = gajewski@pm.me
   name = Marcin Gajewski
 [pull]
-	ff = only
+ ff = only
+[url "git@github.com:"]
+	insteadOf = https://github.com/
+	insteadOf = https://github.com/

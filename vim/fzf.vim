@@ -1,7 +1,7 @@
 let $FZF_DEFAULT_COMMAND = 'rg --files --no-ignore-vcs --hidden'
 
-nmap <Leader>f :GFiles<CR>
-nmap <Leader>F :Files<CR>
+nmap <Leader>F :GFiles<CR>
+nmap <Leader>f :Files<CR>
 nmap <Leader>b :Buffers<CR>
 nmap <Leader>h :History<CR>
 nmap <Leader>t :BTags<CR>
