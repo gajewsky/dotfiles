@@ -17,3 +17,5 @@ alias dbe 'docker-compose run rails env bundle exec'
 alias speedtest-bytes 'wget -O /dev/null http://speedtest.tele2.net/10GB.zip'
 alias speedtest-bits 'wget -O /dev/null http://speedtest.tele2.net/10GB.zip --report-speed=bits'
 
+# MAC
+alias cpu_temp 'sudo powermetrics --samplers smc |grep -i "CPU die temperature"'
