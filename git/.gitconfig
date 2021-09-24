@@ -7,15 +7,12 @@
   excludesfile = ~/.gitignore
   filemode = false
   pager = delta --plus-color="#012800" --minus-color="#340001" --theme='base16'
+	commitGraph = true
 [github]
   user = gajewsky
 [interactive]
   diffFilter = delta --color-only
-[user]
-  email = gajewski@pm.me
-  name = Marcin Gajewski
 [pull]
- ff = only
-[url "git@github.com:"]
-	insteadOf = https://github.com/
-	insteadOf = https://github.com/
+  ff = only
+[link]
+  path= $HOME/.gitconfig-fragile

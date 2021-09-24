@@ -1,87 +1,16 @@
 call plug#begin('~/.vim/plugged')
-  Plug 'takac/vim-hardtime'
-  " Ruby
-  Plug 'vim-ruby/vim-ruby'
-  Plug 'ecomba/vim-ruby-refactoring', {'tag': 'main'}
-  Plug 'tpope/vim-rails'
-  Plug 'tpope/vim-endwise'
-  Plug 'AndrewRadev/splitjoin.vim'
+  Plug 'morhetz/gruvbox'      " Gruvbox colorscheme
 
-  " JavaScript
-  Plug 'pangloss/vim-javascript'
+  " telescope
+  Plug 'nvim-telescope/telescope.nvim'
+  Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+  Plug 'nvim-lua/plenary.nvim'
+  Plug 'nvim-lua/popup.nvim'
+  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
-  " Clojure
-  Plug 'guns/vim-clojure-static'
-  Plug 'guns/vim-clojure-highlight'
-  Plug 'guns/vim-sexp'
-  Plug 'tpope/vim-sexp-mappings-for-regular-people'
-  Plug 'jiangmiao/auto-pairs', { 'tag': 'v2.0.0' }
-  Plug 'venantius/vim-cljfmt'
-  Plug 'luochen1990/rainbow'
+  Plug 'kyazdani42/nvim-tree.lua' "File navigation
 
-  " Git
-  Plug 'tpope/vim-git'
-  Plug 'tpope/vim-fugitive'
-  Plug 'tpope/vim-rhubarb'                                          " Open GitHub source with :Gbrowse
-  Plug 'airblade/vim-gitgutter'                                     " Show a diff using Vim its sign column
-  Plug 'junegunn/gv.vim'                                            " A git commit browser
-  Plug 'danishprakash/vim-githubinator'                             " Show selected text in Vim on Github
-  Plug 'rhysd/git-messenger.vim'
 
-  " Syntax highlighting
-  Plug 'Chiel92/vim-autoformat'
-  Plug 'sheerun/vim-polyglot'                                       " Add syntax highlighting for a large range of filetypes
-  Plug 'alcesleo/vim-uppercase-sql'
-  Plug 'mechatroner/rainbow_csv'
-
-  " Visual
-  Plug 'mhinz/vim-grepper'
-  Plug 'elzr/vim-json', {'for': 'json'}                             " Better syntax highlighting for JSON files
-  Plug 'morhetz/gruvbox'                                            " Gruvbox colorscheme
-  Plug 'edkolev/tmuxline.vim'
-  Plug 'itchyny/lightline.vim'                                      " Lightweight statusline without slow plugin integrations
-  Plug 'shinchu/lightline-gruvbox.vim'
-  Plug 'ryanoasis/vim-devicons'                                     " For file icons in lots of plugins
-  Plug 'ap/vim-css-color'
-  Plug 'caenrique/nvim-maximize-window-toggle'
-
-  " Behaviour/tools
-  Plug 'romainl/vim-qf'                                             " Automatically close quickfix windows that become orphaned
-  Plug 'tpope/vim-repeat'                                           " Add repeat support with '.' for lots of plugins
-  Plug 'tpope/vim-surround'
-  Plug 'tpope/vim-rsi'
-  Plug 'tpope/vim-commentary'
-  Plug 'tpope/vim-eunuch'
-  Plug 'tpope/vim-unimpaired'
-  Plug 'tpope/vim-speeddating'
-  Plug 'tpope/vim-fireplace'
-  Plug 'tpope/vim-classpath'
-  Plug 'AaronLasseigne/yank-code'
-  Plug 'junegunn/vim-peekaboo'
-  Plug 'easymotion/vim-easymotion'
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'ncm2/float-preview.nvim'
-
-  " File Navigation
-  "
-  Plug 'lambdalisue/fern.vim'
-  Plug 'lambdalisue/fern-git-status.vim'
-  Plug 'cskeeters/vim-smooth-scroll'                                " Smooth scroll animation instead of jump
-  Plug 'christoomey/vim-tmux-navigator'                             " Navigate between tmux and vim with <C>+jkhl
-  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " Fuzzy file++ searching
-  Plug 'junegunn/fzf.vim'                                           " Asynchronous file/tags searcher
-  Plug 'justinmk/vim-dirvish'                                       " Directory viewer for Vim
-  Plug 'kristijanhusak/vim-dirvish-git'
-  Plug 'bogado/file-line'                                           " Open a file in a given line
-  Plug 'unblevable/quick-scope'                                     " Lightning fast left-right movement in Vim
-  Plug 'dense-analysis/ale'
-  Plug 'pbrisbin/vim-mkdir'
-  Plug 'justincampbell/vim-eighties'                                " Automatically resizes your windows
-  Plug 'junegunn/vim-easy-align'
-  Plug 'rstacruz/vim-closer'
-  Plug 'mileszs/ack.vim'
-  Plug 'justinmk/vim-sneak'
-  Plug 'Shougo/neomru.vim'
 
 call plug#end()
 
@@ -143,19 +72,17 @@ filetype indent on
 set list listchars=tab:\ \ ,trail:· "Display tabs and trailing spaces visually
 set linebreak "Wrap lines at convenient points
 
-" ================ FZF ===============================
-"
-source $HOME/.config/nvim/fzf.vim
+" ================ telescope =========================
 
-" ================ Fern ==============================
-let g:fern#disable_default_mappings   = 1
-let g:fern#disable_drawer_auto_quit   = 1
-let g:fern#disable_viewer_hide_cursor = 1
-let g:fern_git_status#disable_ignored    = 1
-let g:fern_git_status#disable_untracked  = 1
-let g:fern_git_status#disable_submodules = 1
-noremap <silent> <Leader>d :Fern . -drawer -width=35 -toggle<CR><C-w>=
+nnoremap <leader>f <cmd>lua require('telescope.builtin').find_files({ find_command = {'rg', '--files', '--hidden', '-g', '!.git' }})<cr>
+nnoremap <leader>F <cmd>lua require('telescope.builtin').git_files({ find_command = {'rg', '--files', '--hidden', '-g', '!.git' }})<cr>
+nnoremap <leader>l <cmd>lua require('telescope.builtin').live_grep()<cr>
+nnoremap <leader>b <cmd>lua require('telescope.builtin').buffers()<cr>
+nnoremap <leader>h <cmd>lua require('telescope.builtin').help_tags()<cr>
 
+" ================ nvim-tree =========================
+
+nnoremap \ :NvimTreeToggle<CR>
 
 " ================ Theme =============================
 
@@ -337,16 +264,6 @@ let g:ale_sign_warning = "◉"
 """ Split
 "noremap <Leader>h :<C-u>split<CR>
 "noremap <Leader>v :<C-u>vsplit<CR>
-
-""" Git
-"noremap <Leader>ga :Gwrite<CR>
-"noremap <Leader>gc :Gcommit<CR>
-"noremap <Leader>gsh :Gpush<CR>
-"noremap <Leader>gll :Gpull<CR>
-"noremap <Leader>gs :Gstatus<CR>
-"noremap <Leader>gb :Gblame<CR>
-"noremap <Leader>gd :Gvdiff<CR>
-"noremap <Leader>gr :Gremove<CR>
 
 """ Tabs
 "nnoremap <Tab> gt
