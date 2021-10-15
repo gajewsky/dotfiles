@@ -10,6 +10,7 @@ SETUVAR FZF_TMUX_HEIGHT:40\x25
 SETUVAR LANG:en_GB\x2eUTF\x2d8
 SETUVAR LC_ALL:en_GB\x2eUTF\x2d8
 SETUVAR LC_CTYPE:en_GB\x2eUTF\x2d8
+SETUVAR Z_DATA_DIR:/Users/gajewsky/\x2elocal/share/z
 SETUVAR __fish_init_2_3_0:\x1d
 SETUVAR __fish_initialized:3100
 SETUVAR _fish_abbr_g:git

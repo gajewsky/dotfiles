@@ -10,9 +10,20 @@
 	commitGraph = true
 [github]
   user = gajewsky
+[user]
+  name = Marcin Gajewski
 [interactive]
   diffFilter = delta --color-only
 [pull]
   ff = only
 [link]
   path= $HOME/.gitconfig-fragile
+[diff]
+	algorithm = patience
+[gc]
+	writeCommitGraph = true
+[protocol]
+	version = 2
+[credential]
+	helper =
+	helper = store --file /opt/dev/var/private/git_credential_store
