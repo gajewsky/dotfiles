@@ -1,5 +1,6 @@
 call plug#begin('~/.vim/plugged')
   Plug 'morhetz/gruvbox'      " Gruvbox colorscheme
+  Plug 'kyazdani42/nvim-web-devicons'
 
   " telescope
   Plug 'nvim-telescope/telescope.nvim'
@@ -10,8 +11,14 @@ call plug#begin('~/.vim/plugged')
 
   Plug 'kyazdani42/nvim-tree.lua' "File navigation
 
+  " ruby
+  Plug 'vim-ruby/vim-ruby'
+  Plug 'tpope/vim-rails'
+  Plug 'tpope/vim-endwise'
+  Plug 'AndrewRadev/splitjoin.vim'
 
-
+  Plug 'christoomey/vim-tmux-navigator'                             " Navigate between tmux and vim with <C>+jkhl
+  Plug 'justincampbell/vim-eighties'                                " Automatically resizes your windows
 call plug#end()
 
 " ================ General Config ====================
@@ -74,8 +81,8 @@ set linebreak "Wrap lines at convenient points
 
 " ================ telescope =========================
 
-nnoremap <leader>f <cmd>lua require('telescope.builtin').find_files({ find_command = {'rg', '--files', '--hidden', '-g', '!.git' }})<cr>
-nnoremap <leader>F <cmd>lua require('telescope.builtin').git_files({ find_command = {'rg', '--files', '--hidden', '-g', '!.git' }})<cr>
+nnoremap <leader>f <cmd>lua require('telescope.builtin').find_files({ find_command = {'rg', '--files', '--hidden', '-g', '!{.git,sorbet}'}})<cr>
+nnoremap <leader>F <cmd>lua require('telescope.builtin').git_files({ find_command = {'rg', '--files', '--hidden', '-g', '!{.git,sorbet}' }})<cr>
 nnoremap <leader>l <cmd>lua require('telescope.builtin').live_grep()<cr>
 nnoremap <leader>b <cmd>lua require('telescope.builtin').buffers()<cr>
 nnoremap <leader>h <cmd>lua require('telescope.builtin').help_tags()<cr>
@@ -132,8 +139,7 @@ let g:gitgutter_sign_removed = ''
 let g:gitgutter_sign_removed_first_line = ''
 let g:gitgutter_sign_modified_removed = ''
 
-let g:deoplete#enable_at_startup = 1
-call deoplete#custom#option('keyword_patterns', {'clojure': '[\w!$%&*+/:<=>?@\^_~\-\.#]*'})
+" let g:deoplete#enable_at_startup = 1
 set completeopt-=preview
 
 let g:float_preview#docked = 0
