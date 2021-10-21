@@ -10,12 +10,17 @@ alias gundo='git reset HEAD~'
 alias gundo='git reset HEAD~'
 alias t='trans'
 alias :q='exit'
+alias speedtest-bytes 'wget -O /dev/null http://speedtest.tele2.net/10GB.zip'
+alias speedtest-bits 'wget -O /dev/null http://speedtest.tele2.net/10GB.zip --report-speed=bits'
+
+
+# Docker
+alias remove_all_docker_containers="docker rm -vf (docker ps -a -q)"
+alias remove_all_docker_images="docker rmi -f (docker images -a -q)"
 alias dco 'docker-compose'
 alias dce 'docker-compose exec'
 alias dl 'docker ps -l -q'
 alias dbe 'docker-compose run rails env bundle exec'
-alias speedtest-bytes 'wget -O /dev/null http://speedtest.tele2.net/10GB.zip'
-alias speedtest-bits 'wget -O /dev/null http://speedtest.tele2.net/10GB.zip --report-speed=bits'
 
 # MAC
 alias cpu_temp 'sudo powermetrics --samplers smc |grep -i "CPU die temperature"'
