@@ -31,6 +31,7 @@ return packer.startup(function(use)
   use 'nvim-treesitter/nvim-treesitter'
   use 'morhetz/gruvbox'
   use 'neovim/nvim-lspconfig'
+
   use { 'hrsh7th/nvim-cmp',
     requires = {
       'L3MON4D3/LuaSnip',
@@ -40,16 +41,25 @@ return packer.startup(function(use)
       'saadparwaiz1/cmp_luasnip',
     },
   }
+
   use { 'famiu/feline.nvim',
     requires = { 'kyazdani42/nvim-web-devicons' },
   }
+
   use { 'lewis6991/gitsigns.nvim',
     requires = { 'nvim-lua/plenary.nvim' },
-    config = function()
-      require('gitsigns').setup()
-    end,
   }
 
+  use { 'justincampbell/vim-eighties' }
+
+  -- FZF
   use { 'junegunn/fzf', run = './install --bin' }
   use { 'junegunn/fzf.vim' }
+
+  -- Ruby
+  use { 'vim-ruby/vim-ruby' }
+  use { 'tpope/vim-rails' }
+  use { 'tpope/vim-endwise' }
+  use { 'AndrewRadev/splitjoin.vim' }
+  use { 'unblevable/quick-scope' }
 end)

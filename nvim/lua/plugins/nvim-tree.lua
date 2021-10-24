@@ -28,7 +28,7 @@ g.nvim_tree_icons = {
 }
 
 require('nvim-tree').setup{
-  -- open the tree when running this setup function
-  open_on_setup = true,
+  open_on_startup = false,
+  disable_netrw = false,
   view = { auto_resize = true },
 }

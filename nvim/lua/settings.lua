@@ -32,6 +32,7 @@ opt.splitbelow = true         -- orizontal split to the bottom
 opt.ignorecase = true         -- ignore case letters when search
 opt.smartcase = true          -- ignore lowercase for the whole pattern
 opt.linebreak = true          -- wrap on word boundary
+opt.incsearch = true          -- find the next match as we type the search
 
 -- remove whitespace on save
 cmd [[au BufWritePre * :%s/\s\+$//e]]
@@ -60,12 +61,16 @@ opt.termguicolors = true      -- enable 24-bit RGB colors
 cmd [[colorscheme gruvbox]]
 
 -----------------------------------------------------------
--- Tabs, indent
+-- Tabs, indent, scrolling
 -----------------------------------------------------------
-opt.expandtab = true      -- use spaces instead of tabs
-opt.shiftwidth = 2        -- shift 2 spaces when tab
-opt.tabstop = 2          -- 1 tab == 2 spaces
-opt.smartindent = true    -- autoindent new lines
+opt.expandtab = true       -- use spaces instead of tabs
+opt.shiftwidth = 2         -- shift 2 spaces when tab
+opt.tabstop = 2            -- 1 tab == 2 spaces
+opt.smartindent = true     -- autoindent new lines
+opt.softtabstop = 2
+opt.scrolloff = 8          -- start scrolling when we're 8 lines away from margins
+opt.sidescrolloff = 16
+opt.sidescroll = 1
 
 -- don't auto commenting new lines
 cmd [[au BufEnter * set fo-=c fo-=r fo-=o]]

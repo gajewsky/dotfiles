@@ -6,33 +6,42 @@
 -- https://github.com/famiu/feline.nvim
 
 local colors = {
-  bg = '#1d1f22',
-  fg = '#f8f8f0',
-  yellow = '#e6db74',
-  cyan = '#78dce8',
-  blue = '#27406b',
-  green = '#a6e22e',
-  orange = '#fa8419',
-  violet = '#9c64fe',
-  pink = '#f92672',
-  red = '#e95678',
+  bg1 = '#3c3836',
+  bg2 = '#504945',
+  fg = '#ebdbb2',
+  red1 = '#cc241d',
+  red2 = '#fb4934',
+  green1 = '#98971a',
+  green2 = '#b8bb26',
+  yellow1 = '#d79921',
+  yellow2 = '#fabd2f',
+  blue1 = '#458588',
+  blue2 = '#83a598',
+  purple1 = '#b16286',
+  purple2 = '#d3869b',
+  aqua1 = '#689d6a',
+  aqua2 = '#8ec07c',
+  orange1 = '#d65d0e',
+  orange2 = '#fe8019',
+  gray = '#a89984',
 }
 
 local vi_mode_colors = {
-  NORMAL = colors.pink,
-  INSERT = colors.green,
-  VISUAL = colors.yellow,
-  OP = colors.cyan,
-  BLOCK = colors.cyan,
-  REPLACE = colors.red,
-  ['V-REPLACE'] = colors.red,
-  ENTER = colors.orange,
-  MORE = colors.orange,
-  SELECT = colors.pink,
-  COMMAND = colors.cyan,
-  SHELL = colors.cyan,
-  TERM = colors.green,
-  NONE = colors.blue
+  NORMAL = colors.gray,
+  INSERT = colors.aqua2,
+  VISUAL = colors.yellow1,
+  OP = colors.green2,
+  BLOCK = colors.green2,
+  REPLACE = colors.red1,
+  ['V-REPLACE'] = colors.red1,
+  ENTER = colors.orange1,
+  MORE = colors.orange1,
+  SELECT = colors.gray,
+  COMMAND = colors.green2,
+  SHELL = colors.green2,
+  TERM = colors.green1,
+  NONE = colors.orange2,
+  LINES = colors.orange2
 }
 
 local lsp = require('feline.providers.lsp')
@@ -54,7 +63,7 @@ local comps = {
       hl = function()
         local set_color = {
           name = vi_mode_utils.get_mode_highlight_name(),
-          fg = colors.bg,
+          fg = colors.bg1,
           bg = vi_mode_utils.get_mode_color(),
           style = 'bold'
         }
@@ -73,7 +82,7 @@ local comps = {
           file_modified_icon = ''
         }
       },
-      hl = { fg = colors.cyan },
+      hl = { fg = colors.green2 },
       icon = '',
     },
   type = {
@@ -82,14 +91,7 @@ local comps = {
     os = {
       provider = function()
         local os = vim.bo.fileformat:lower()
-        local icon
-        if os == 'unix' then
-          icon = '  '
-        elseif os == 'mac' then
-          icon = '  '
-        else
-          icon = '  '
-        end
+        local icon = ' ◬  '
         return icon .. os
       end,
       hl = { fg = colors.fg },
@@ -99,7 +101,7 @@ local comps = {
     line_percentage = {
       provider = { name = 'line_percentage' },
       hl = {
-        fg = colors.pink
+        fg = colors.purple1
       },
       left_sep = ' ',
       right_sep = ' '
@@ -107,14 +109,14 @@ local comps = {
     position = {
       provider = {name = 'position'},
       hl = {
-        fg = colors.cyan,
+        fg = colors.green2,
         style = 'bold'
       },
       right_sep = ' ',
     },
     scroll_bar = {
       provider = { name = 'scroll_bar' },
-      hl = { fg = colors.green },
+      hl = { fg = colors.green1 },
       left_sep = ' ',
       right_sep = ' '
     },
@@ -124,25 +126,25 @@ local comps = {
     err = {
       provider = 'diagnostic_errors',
       icon = '⚠ ',
-      hl = { fg = colors.red },
+      hl = { fg = colors.red1 },
       left_sep = ' ',
     },
     warn = {
       provider = 'diagnostic_warnings',
       icon = ' ',
-      hl = { fg = colors.yellow },
+      hl = { fg = colors.yellow1 },
       left_sep = ' ',
     },
     info = {
       provider = 'diagnostic_info',
       icon = ' ',
-      hl = { fg = colors.green },
+      hl = { fg = colors.green1 },
       left_sep = ' ',
     },
     hint = {
       provider = 'diagnostic_hints',
       icon = ' ',
-      hl = { fg = colors.cyan },
+      hl = { fg = colors.green2 },
       left_sep = ' ',
     },
   },
@@ -150,7 +152,7 @@ local comps = {
     name = {
       provider = 'lsp_client_names',
       icon = '  ',
-      hl = { fg = colors.pink },
+      hl = { fg = colors.purple1 },
       left_sep = '  ',
     }
   },
@@ -159,26 +161,26 @@ local comps = {
     branch = {
       provider = 'git_branch',
       icon = ' ',
-      hl = { fg = colors.pink },
+      hl = { fg = colors.yellow2 },
       left_sep = '  ',
     },
     add = {
       provider = 'git_diff_added',
       icon = '  ',
-      hl = { fg = colors.green },
+      hl = { fg = colors.aqua2 },
       left_sep = ' ',
 
     },
     change = {
       provider = 'git_diff_changed',
       icon = '  ',
-      hl = { fg = colors.orange },
+      hl = { fg = colors.orange2 },
       left_sep = ' ',
     },
     remove = {
       provider = 'git_diff_removed',
       icon = '  ',
-      hl = { fg = colors.red },
+      hl = { fg = colors.red1 },
       left_sep = ' ',
     }
   }
@@ -215,7 +217,7 @@ table.insert(components.active[2], comps.file.position)
 
 require('feline').setup {
   colors = {
-    bg = colors.bg,
+    bg = colors.bg1,
     fg = colors.fg
   },
   components = components,

@@ -33,6 +33,25 @@ map('n', '<C-l>', '<C-w>l', default_opts)
 -- close all windows and exit from neovim
 map('n', '<leader>q', ':quitall<CR>', default_opts)
 
+-- New tab
+map('n', '<C-t>', '<esc>:tabnew<CR>', default_opts)
+
+-- Move visual block
+map('', 'J', ':m \'>+1<CR>gv=gv', {noremap = true})
+map('', 'K', ':m \'<-2<CR>gv=gv', {noremap = true})
+
+-- Re-select visual block after indenting
+map('', '<', '<gv', {noremap = true})
+map('', '>', '>gv', {noremap = true})
+
+-- BOL & EOL
+map('n', 'H', '^', default_opts)
+map('n', 'L', '$', default_opts)
+
+-- Go substitute because the default map for sleeping is silly
+map('', 'gs', ':%s/<c-r><c-w>//gc<Left><Left><Left>', {noremap = true})
+
+
 -----------------------------------------------------------
 -- Applications & Plugins shortcuts:
 -----------------------------------------------------------
