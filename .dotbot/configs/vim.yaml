@@ -1,5 +1,0 @@
-- link:
-    ~/.config/nvim/init.vim: vim/.vimrc
-    ~/.config/nvim/after/syntax/ruby.vim: vim/sql_ruby_syntax.vim
-    ~/.local/share/nvim/site/autoload/plug.vim : .dotbot/plugins/vim-plug/plug.vim
-
