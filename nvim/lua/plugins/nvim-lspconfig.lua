@@ -4,6 +4,7 @@
 
 -- Plugin: nvim-lspconfig
 -- for language server setup see: https://github.com/neovim/nvim-lspconfig
+require('lspconfig').solargraph.setup{}
 
 local nvim_lsp = require('lspconfig')
 
@@ -55,38 +56,11 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
   buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
   buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
-
 end
-
---[[
-
-Language servers:
-
-Add your language server to `servers`
-
-For language servers list see:
-https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md
-
-Bash --> bashls
-https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#bashls
-
-Python --> pyright
-https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#pyright
-
-C-C++ -->  clangd
-https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#clangd
-
-HTML/CSS/JSON --> vscode-html-languageserver
-https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#html
-
-JavaScript/TypeScript --> tsserver
-https://github.com/typescript-language-server/typescript-language-server
-
---]]
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { 'bashls', 'pyright', 'clangd', 'html', 'tsserver' }
+local servers = { 'solargraph', 'html', }
 
 -- Set settings for language servers below
 --
