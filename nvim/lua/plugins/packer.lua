@@ -38,7 +38,7 @@ return packer.startup(function(use)
   }
 
   -- UI
-  use 'morhetz/gruvbox'
+  use {"ellisonleao/gruvbox.nvim", requires = {"rktjmp/lush.nvim"}}
   use 'kyazdani42/nvim-web-devicons'
   use 'kyazdani42/nvim-tree.lua'
   use 'Yggdroot/indentLine'
