@@ -13,25 +13,20 @@ if fn.empty(fn.glob(install_path)) > 0 then
   packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
 end
 
-
 local cmd = vim.cmd
 cmd [[packadd packer.nvim]]
 
 local packer = require 'packer'
 
--- Add packages
--- for packages info see: init.lua (Lua modules)
 return packer.startup(function(use)
   use 'wbthomason/packer.nvim' -- packer can manage itself
-
-  use 'kyazdani42/nvim-tree.lua'
-  use 'Yggdroot/indentLine'
   use 'windwp/nvim-autopairs'
-  use 'kyazdani42/nvim-web-devicons'
   use 'nvim-treesitter/nvim-treesitter'
-  use 'morhetz/gruvbox'
   use 'neovim/nvim-lspconfig'
+  use 'unblevable/quick-scope'
+  use 'AaronLasseigne/yank-code'
 
+  -- Completion
   use { 'hrsh7th/nvim-cmp',
     requires = {
       'L3MON4D3/LuaSnip',
@@ -42,24 +37,48 @@ return packer.startup(function(use)
     },
   }
 
-  use { 'famiu/feline.nvim',
-    requires = { 'kyazdani42/nvim-web-devicons' },
-  }
+  -- UI
+  use 'morhetz/gruvbox'
+  use 'kyazdani42/nvim-web-devicons'
+  use 'kyazdani42/nvim-tree.lua'
+  use 'Yggdroot/indentLine'
+  use 'justincampbell/vim-eighties'
+  use 'caenrique/nvim-maximize-window-toggle'
+  use 'junegunn/vim-peekaboo'
+  use 'psliwka/vim-smoothie'
+  use 'folke/lsp-colors.nvim'
+
 
   use { 'lewis6991/gitsigns.nvim',
     requires = { 'nvim-lua/plenary.nvim' },
   }
 
-  use { 'justincampbell/vim-eighties' }
-
-  -- FZF
+  -- File navigation
   use { 'junegunn/fzf', run = './install --bin' }
-  use { 'junegunn/fzf.vim' }
+  use 'junegunn/fzf.vim'
+  use 'christoomey/vim-tmux-navigator'
+  use 'bogado/file-line'
 
   -- Ruby
-  use { 'vim-ruby/vim-ruby' }
-  use { 'tpope/vim-rails' }
-  use { 'tpope/vim-endwise' }
-  use { 'AndrewRadev/splitjoin.vim' }
-  use { 'unblevable/quick-scope' }
+  use 'vim-ruby/vim-ruby'
+  use 'tpope/vim-rails'
+  use 'tpope/vim-endwise'
+  use  'AndrewRadev/splitjoin.vim'
+
+  -- Tpope
+  use 'tpope/vim-commentary'
+  use 'tpope/vim-repeat'
+  use 'tpope/vim-surround'
+  use 'tpope/vim-rsi'
+  use 'tpope/vim-eunuch'
+
+  -- Plugins in testing faze
+  use 'glepnir/lspsaga.nvim'
+  use {
+    requires = "kyazdani42/nvim-web-devicons",
+  }
+  use { 'famiu/feline.nvim',
+    requires = { 'kyazdani42/nvim-web-devicons' },
+    "folke/trouble.nvim",
+  }
 end)

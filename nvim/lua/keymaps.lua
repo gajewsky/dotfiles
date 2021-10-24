@@ -14,7 +14,7 @@ local cmd = vim.cmd
 -- clear search highlighting
 map('n', '<leader>c', ':nohl<CR>', default_opts)
 
--- don't use arrow keys
+-- Don't use arrow keys
 map('', '<up>', '<C-W>+', {noremap = true})
 map('', '<down>', '<C-W>-', {noremap = true})
 map('', '<left>', '3<C-W><', {noremap = true})
@@ -24,33 +24,35 @@ map('', '<right>', '3<C-W>>', {noremap = true})
 map('n', '<C-s>', ':update<CR>', default_opts)
 map('i', '<C-s>', '<ESC>:update<CR>', default_opts)
 
--- move around splits using Ctrl + {h,j,k,l}
+-- Move around splits using Ctrl + {h,j,k,l}
 map('n', '<C-h>', '<C-w>h', default_opts)
 map('n', '<C-j>', '<C-w>j', default_opts)
 map('n', '<C-k>', '<C-w>k', default_opts)
 map('n', '<C-l>', '<C-w>l', default_opts)
 
--- close all windows and exit from neovim
+-- Close all windows and exit from neovim
 map('n', '<leader>q', ':quitall<CR>', default_opts)
 
 -- New tab
 map('n', '<C-t>', '<esc>:tabnew<CR>', default_opts)
 
 -- Move visual block
-map('', 'J', ':m \'>+1<CR>gv=gv', {noremap = true})
-map('', 'K', ':m \'<-2<CR>gv=gv', {noremap = true})
+map('v', 'J', ':m \'>+1<CR>gv=gv', {noremap = true})
+map('v', 'K', ':m \'<-2<CR>gv=gv', {noremap = true})
 
 -- Re-select visual block after indenting
-map('', '<', '<gv', {noremap = true})
-map('', '>', '>gv', {noremap = true})
+map('v', '<', '<gv', {noremap = true})
+map('v', '>', '>gv', {noremap = true})
 
 -- BOL & EOL
 map('n', 'H', '^', default_opts)
 map('n', 'L', '$', default_opts)
 
 -- Go substitute because the default map for sleeping is silly
-map('', 'gs', ':%s/<c-r><c-w>//gc<Left><Left><Left>', {noremap = true})
+map('', 'gs', ':%s/<c-r><c-w>//gc<Left><Left><Left>', default_opts)
 
+-- Keep the cursor in place while joining lines
+map('', 'J', 'mzJ`z', {noremap = true})
 
 -----------------------------------------------------------
 -- Applications & Plugins shortcuts:
@@ -66,3 +68,9 @@ map('n', '<leader>f', ':Files<CR>', default_opts)
 map('n', '<leader>F', ':GFiles<CR>', default_opts)
 map('n', '<leader>a', ':Rg<Space>', default_opts)
 
+-- nvim-maximize-window-toggle
+map('', '<leader>o', ':ToggleOnly<Enter>', {noremap = true})
+
+-- lspsaga
+map('', 'gh', ':Lspsaga lsp_finder<CR>', default_opts)
+map('', 'gn', ':Lspsaga rename<CR>', default_opts)

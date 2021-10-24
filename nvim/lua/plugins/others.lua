@@ -6,3 +6,10 @@ g.eighties_minimum_width = 100
 
 -- 'unblevable/quick-scope'
 g.qs_highlight_on_keys = { 'f', 'F', 't', 'T' }
+g.qs_lazy_highlight = 1
+
+-- lspsaga
+require('lspsaga').init_lsp_saga()
+
+-- nvim-autopairs
+require('nvim-autopairs').setup()
