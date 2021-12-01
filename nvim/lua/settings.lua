@@ -37,15 +37,6 @@ opt.incsearch = true          -- find the next match as we type the search
 -- remove whitespace on save
 cmd [[au BufWritePre * :%s/\s\+$//e]]
 
-
--- highlight on yank
-exec([[
-  augroup YankHighlight
-    autocmd!
-    autocmd TextYankPost * silent! lua vim.highlight.on_yank{higroup="IncSearch", timeout=700}
-  augroup end
-]], false)
-
 -----------------------------------------------------------
 -- Memory, CPU
 -----------------------------------------------------------

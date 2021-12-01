@@ -22,9 +22,12 @@ return packer.startup(function(use)
   use 'wbthomason/packer.nvim' -- packer can manage itself
   use 'windwp/nvim-autopairs'
   use 'nvim-treesitter/nvim-treesitter'
-  use 'neovim/nvim-lspconfig'
-  use 'unblevable/quick-scope'
   use 'AaronLasseigne/yank-code'
+
+  -- LSP
+  use 'neovim/nvim-lspconfig'
+  use 'williamboman/nvim-lsp-installer'
+  use 'folke/lsp-colors.nvim'
 
   -- Completion
   use { 'hrsh7th/nvim-cmp',
@@ -46,9 +49,12 @@ return packer.startup(function(use)
   use 'caenrique/nvim-maximize-window-toggle'
   use 'junegunn/vim-peekaboo'
   use 'psliwka/vim-smoothie'
-  use 'folke/lsp-colors.nvim'
+  use { 'famiu/feline.nvim',
+    requires = { 'kyazdani42/nvim-web-devicons' },
+    "folke/trouble.nvim",
+  }
 
-
+  -- Git support
   use { 'lewis6991/gitsigns.nvim',
     requires = { 'nvim-lua/plenary.nvim' },
   }
@@ -57,7 +63,16 @@ return packer.startup(function(use)
   use { 'junegunn/fzf', run = './install --bin' }
   use 'junegunn/fzf.vim'
   use 'christoomey/vim-tmux-navigator'
+  use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
   use 'bogado/file-line'
+  use {
+    'nvim-telescope/telescope.nvim',
+    requires = { {'nvim-lua/plenary.nvim'} }
+  }
+
+  -- Navigation
+  use 'ggandor/lightspeed.nvim'
+  use 'unblevable/quick-scope'
 
   -- Ruby
   use 'vim-ruby/vim-ruby'
@@ -71,14 +86,14 @@ return packer.startup(function(use)
   use 'tpope/vim-surround'
   use 'tpope/vim-rsi'
   use 'tpope/vim-eunuch'
+  use 'tpope/vim-fugitive'
+
+  -- Javascript
+  use 'pangloss/vim-javascript'
+  use 'leafgarland/typescript-vim'
+  use 'peitalin/vim-jsx-typescript'
+  use 'styled-components/vim-styled-components'
+  use 'jparise/vim-graphql'
 
   -- Plugins in testing faze
-  use 'glepnir/lspsaga.nvim'
-  use {
-    requires = "kyazdani42/nvim-web-devicons",
-  }
-  use { 'famiu/feline.nvim',
-    requires = { 'kyazdani42/nvim-web-devicons' },
-    "folke/trouble.nvim",
-  }
 end)

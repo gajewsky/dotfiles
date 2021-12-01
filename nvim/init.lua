@@ -2,6 +2,7 @@
 -- Import Lua modules
 -----------------------------------------------------------
 require('plugins/packer')           -- plugin manager
+require('envs')                     -- env variables
 require('settings')                 -- settings
 require('keymaps')                  -- keymaps
 require('plugins/nvim-tree')	      -- file manager

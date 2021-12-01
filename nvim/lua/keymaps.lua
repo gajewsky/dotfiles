@@ -48,6 +48,10 @@ map('v', '>', '>gv', {noremap = true})
 map('n', 'H', '^', default_opts)
 map('n', 'L', '$', default_opts)
 
+-- Move cursor by display lines when wrapping
+map('n', 'k', 'gk', default_opts)
+map('n', 'j', 'gj', default_opts)
+
 -- Go substitute because the default map for sleeping is silly
 map('', 'gs', ':%s/<c-r><c-w>//gc<Left><Left><Left>', default_opts)
 
@@ -65,8 +69,12 @@ map('n', '<leader>n', ':NvimTreeFindFile<CR>', default_opts) -- search file
 
 -- fzf
 map('n', '<leader>f', ':Files<CR>', default_opts)
-map('n', '<leader>F', ':GFiles<CR>', default_opts)
-map('n', '<leader>a', ':Rg<Space>', default_opts)
+map('n', '<leader>F', ':GFiles --cached --others --exclude-standard<CR>', default_opts)
+map('n', '<leader>b', ':Buffers<CR>', default_opts)
+map('', '<leader>a', ':Rg<Space>', {noremap = true})
+
+-- telescope
+map('n', '<leader>t', '<cmd>Telescope<cr>', default_opts)
 
 -- nvim-maximize-window-toggle
 map('', '<leader>o', ':ToggleOnly<Enter>', {noremap = true})
