@@ -50,6 +50,7 @@ opt.synmaxcol = 240       -- max column for syntax highlight
 -----------------------------------------------------------
 opt.termguicolors = true      -- enable 24-bit RGB colors
 vim.o.background = 'dark'
+vim.g.gruvbox_contrast_dark = 'hard'
 cmd [[colorscheme gruvbox]]
 
 -----------------------------------------------------------

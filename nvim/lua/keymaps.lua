@@ -78,7 +78,3 @@ map('n', '<leader>t', '<cmd>Telescope<cr>', default_opts)
 
 -- nvim-maximize-window-toggle
 map('', '<leader>o', ':ToggleOnly<Enter>', {noremap = true})
-
--- lspsaga
-map('', 'gh', ':Lspsaga lsp_finder<CR>', default_opts)
-map('', 'gn', ':Lspsaga rename<CR>', default_opts)

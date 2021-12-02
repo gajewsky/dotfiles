@@ -5,61 +5,52 @@
 -- Plugin: nvim-tree
 -- https://github.com/kyazdani42/nvim-tree.lua
 
-require('nvim-tree').setup{
-  disable_netrw       = true,
-  hijack_netrw        = true,
-  open_on_setup       = false,
-  ignore_ft_on_setup  = {},
-  auto_close          = false,
-  open_on_tab         = false,
-  hijack_cursor       = false,
-  update_cwd          = false,
-  update_to_buf_dir   = {
-    enable = true,
-    auto_open = true,
-  },
-  diagnostics = {
-    enable = false,
-    icons = {
-      hint = "",
-      info = "",
-      warning = "",
-      error = "",
-    }
-  },
-  update_focused_file = {
-    enable      = false,
-    update_cwd  = false,
-    ignore_list = {}
-  },
-  system_open = {
-    cmd  = nil,
-    args = {}
-  },
-  filters = {
-    dotfiles = false,
-    custom = {}
-  },
+local api = vim.api
+local g = vim.g
+
+-- Set whether or not to show certain icons.
+g.nvim_tree_show_icons = {
+  git = 0,
+  folders = 1,
+  files = 1,
+}
+
+-- Customize icons.
+g.nvim_tree_icons = {
+  default = '',
+  symlink = '',
   git = {
-    enable = true,
-    ignore = true,
-    timeout = 500,
+    unstaged = '',
+    staged = '',
+    unmerged = '',
+    renamed = '',
+    deleted = '',
+    untracked = '',
+    ignored = '',
+  },
+  folder = {
+    default = '',
+    open = '',
+    symlink = '',
+  },
+}
+
+-- Only show the current folder as the root instead of full path.
+g.nvim_tree_root_folder_modifier = ':t'
+
+-- Highlight nodes according to current git status.
+g.nvim_tree_git_hl = 1
+
+-- Enable indent markers.
+g.nvim_tree_indent_markers = 1
+
+require('nvim-tree').setup{
+  update_cwd = true,
+  hijack_cursor = true,
+  git = {
+    ignore = false,
   },
   view = {
-    width = 30,
-    height = 30,
-    hide_root_folder = false,
-    side = 'left',
-    auto_resize = false,
-    mappings = {
-      custom_only = false,
-      list = {}
-    },
-    number = false,
-    relativenumber = false
+    auto_resize = true
   },
-  trash = {
-    cmd = "trash",
-    require_confirm = true
-  }
 }
