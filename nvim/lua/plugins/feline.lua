@@ -90,9 +90,8 @@ local comps = {
     },
     os = {
       provider = function()
-        local os = vim.bo.fileformat:lower()
         local icon = ' ◬  '
-        return icon .. os
+        return icon
       end,
       hl = { fg = colors.fg },
       left_sep = ' ',

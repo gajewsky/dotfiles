@@ -11,7 +11,7 @@ local cmd = vim.cmd
 -- Vim shortcuts:
 -----------------------------------------------------------
 
--- clear search highlighting
+-- Clear search highlighting
 map('n', '<leader>c', ':nohl<CR>', default_opts)
 
 -- Don't use arrow keys
@@ -20,7 +20,7 @@ map('', '<down>', '<C-W>-', {noremap = true})
 map('', '<left>', '3<C-W><', {noremap = true})
 map('', '<right>', '3<C-W>>', {noremap = true})
 
--- fast saving with c-s
+-- Fast saving with c-s
 map('n', '<C-s>', ':update<CR>', default_opts)
 map('i', '<C-s>', '<ESC>:update<CR>', default_opts)
 
@@ -29,6 +29,10 @@ map('n', '<C-h>', '<C-w>h', default_opts)
 map('n', '<C-j>', '<C-w>j', default_opts)
 map('n', '<C-k>', '<C-w>k', default_opts)
 map('n', '<C-l>', '<C-w>l', default_opts)
+
+-- Move around tabs
+map('n', '<C-n>', ':tabnext<CR>', default_opts)
+map('n', '<C-p>', ':tabprevious<CR>', default_opts)
 
 -- Close all windows and exit from neovim
 map('n', '<leader>q', ':quitall<CR>', default_opts)
