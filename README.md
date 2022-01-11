@@ -5,5 +5,5 @@
 ```
 git clone --recurse-submodules https://github.com/gajewsky/dotfiles.git ~/.dotfiles
 
-~/.dotfiles/.dotbot/install
+~/.dotfiles/install
 ```

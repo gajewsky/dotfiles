@@ -16,6 +16,12 @@ DOTBOT_BIN="bin/dotbot"
 
 cd "${BASE_DIR}"
 
+git -C "${PLUGIN_DIR}/tpm" submodule sync --quiet --recursive
+git submodule update --init --recursive "${PLUGIN_DIR}/tpm"
+
+git -C "${DOTBOT_DIR}" submodule sync --quiet --recursive
+git submodule update --init --recursive "${DOTBOT_DIR}"
+
 for config in ${CONFIG_DIR}/*.yaml; do
     echo -e "\nConfigure $config"
     configFile="$(mktemp)" ; echo -e "$(<"${META_DIR}/${BASE_CONFIG}${CONFIG_SUFFIX}")\n$(<"${config%.*}${CONFIG_SUFFIX}")" > "$configFile"

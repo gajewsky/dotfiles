@@ -1,0 +1,13 @@
+echo 'ubuntu'
+
+git -C .dotbot/plugins/tpm/ submodule sync --quiet --recursive
+git submodule update --init --recursive .dotbot/plugins/tpm/
+
+sudo add-apt-repository ppa:neovim-ppa/unstable
+sudo apt-add-repository ppa:fish-shell/release-3
+
+sudo apt-get install -y ripgrep fzf neovim fish exa fd-find
+
+./.dotbot/dotbot-bootstrap
+
+

@@ -1,12 +1,9 @@
-[submodule ".dotbot/plugins/dotbot-yay"]
-	path = .dotbot/plugins/dotbot-yay
-	url = https://github.com/oxson/dotbot-yay
-[submodule ".dotbot/plugins/tpm"]
-	path = .dotbot/plugins/tpm
-	url = https://github.com/tmux-plugins/tpm
-[submodule ".dotbot/plugins/vim-plug"]
-	path = .dotbot/plugins/vim-plug
-	url = https://github.com/junegunn/vim-plug
+
 [submodule ".dotbot/dotbot"]
 	path = .dotbot/dotbot
 	url = https://github.com/anishathalye/dotbot
+	ignore = dirty
+[submodule ".dotbot/plugins/tpm"]
+	path = .dotbot/plugins/tpm
+	url = https://github.com/tmux-plugins/tpm
+	ignore = dirty

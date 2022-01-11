@@ -7,7 +7,6 @@ alias git-branch-fzf "git branch -vv --color=always | fzf-tmux -d 15 --ansi | cu
 alias gcob 'git checkout (git-branch-fzf)'
 alias gcmsg 'git commit -m'
 alias gundo='git reset HEAD~'
-alias gundo='git reset HEAD~'
 alias t='trans'
 alias :q='exit'
 alias speedtest-bytes 'wget -O /dev/null http://speedtest.tele2.net/10GB.zip'
