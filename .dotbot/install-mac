@@ -1,3 +1,18 @@
-echo "mac"
+
+brew install \
+asdf \
+bat \
+dotbot \
+exa \
+
+brew install \
+alt-tab \
+kitty \
+fd \
+fish \
+fzf \
+neovim \
+tmux \
+-- cask
 
 ./.dotbot/dotbot-bootstrap
