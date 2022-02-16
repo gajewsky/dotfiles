@@ -6,20 +6,18 @@
   eol = lf
   excludesfile = ~/.gitignore
   filemode = false
-  pager = delta --plus-color="#012800" --minus-color="#340001" --theme='base16'
 	commitGraph = true
 [github]
   user = gajewsky
 [user]
-  name = Marcin Gajewski
-[interactive]
-  diffFilter = delta --color-only
+	name = Marcin Gajewski
+	email = gajewski@pm.me
 [pull]
   ff = only
 [link]
   path= $HOME/.gitconfig-fragile
 [diff]
-	algorithm = patience
+  algorithm = patience
 [gc]
 	writeCommitGraph = true
 [protocol]
@@ -27,3 +25,14 @@
 [credential]
 	helper =
 	helper = store --file /opt/dev/var/private/git_credential_store
+[pager]
+	diff = delta
+  show = delta
+  log = delta
+  blame = delta
+  reflog = delta
+[interactive]
+  diffFilter = delta --color-only
+[delta]
+  navigate = tree
+  syntax-theme = gruvbox-dark
