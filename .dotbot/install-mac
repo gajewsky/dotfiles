@@ -3,16 +3,19 @@ brew install \
 asdf \
 bat \
 dotbot \
+git-delta \
 exa \
+ripgrep \
 
 brew install \
 alt-tab \
 kitty \
 fd \
-fish \
 fzf \
 neovim \
 tmux \
+rectangle \
+karabiner-elements \
 -- cask
 
 ./.dotbot/dotbot-bootstrap

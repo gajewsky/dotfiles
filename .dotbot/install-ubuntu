@@ -1,12 +1,21 @@
-echo 'ubuntu'
+echo "Setup tmux"
 
 git -C .dotbot/plugins/tpm/ submodule sync --quiet --recursive
 git submodule update --init --recursive .dotbot/plugins/tpm/
 
+echo "Install packages"
+
+wget https://github.com/dandavison/delta/releases/download/0.12.0/git-delta_0.12.0_amd64.deb ~/
+sudo dpkg -i ~/git-delta_0.12.0_amd64.deb
+rm ~/git-delta_0.12.0_amd64.deb
+
+sudo apt purge neovim
 sudo add-apt-repository ppa:neovim-ppa/unstable
 sudo apt-add-repository ppa:fish-shell/release-3
+sudo apt update
+sudo apt-get install -y ripgrep fzf neovim fish exa fd-find delta bat
 
-sudo apt-get install -y ripgrep fzf neovim fish exa fd-find
+echo "Bootstrap dotfiles"
 
 ./.dotbot/dotbot-bootstrap
 

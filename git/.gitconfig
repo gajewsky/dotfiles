@@ -21,10 +21,12 @@
   log = delta
   blame = delta
   reflog = delta
-[interactive]
-  diffFilter = delta --color-only
 [delta]
-  navigate = tree
+  navigate = true
   syntax-theme = gruvbox-dark
 [include]
-	path = /Users/gajewsky/.config/dev/gitconfig
+  path = /Users/gajewsky/.config/dev/gitconfig
+[merge]
+  conflictstyle = diff3
+[diff]
+  colorMoved = default
