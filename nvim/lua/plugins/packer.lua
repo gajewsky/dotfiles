@@ -18,6 +18,13 @@ cmd [[packadd packer.nvim]]
 
 local packer = require 'packer'
 
+cmd([[
+  augroup packer_user_config
+    autocmd!
+    autocmd BufWritePost plugins.lua source <afile> | PackerCompile
+  augroup end
+]])
+
 return packer.startup(function(use)
   use 'wbthomason/packer.nvim' -- packer can manage itself
   use 'windwp/nvim-autopairs'
