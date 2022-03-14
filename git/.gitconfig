@@ -15,15 +15,6 @@
   ff = only
 [link]
   path= $HOME/.gitconfig-fragile
-[pager]
-	diff = delta
-  show = delta
-  log = delta
-  blame = delta
-  reflog = delta
-[delta]
-  navigate = true
-  syntax-theme = gruvbox-dark
 [include]
   path = /Users/gajewsky/.config/dev/gitconfig
 [merge]
