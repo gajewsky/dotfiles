@@ -3,8 +3,6 @@
     ~/.config/fish/aliases.fish: fish/aliases.fish
     ~/.config/fish/fishfile: fish/fishfile
     ~/.config/fish/fish_variables: fish/fish_variables
-    ~/.config/fish/functions:
-      path: fish/functions/*.fish
-      glob: true
+    ~/.config/fish/functions/fisher.fish: fish/functions/fisher.fish
 
 
