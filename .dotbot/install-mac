@@ -19,3 +19,5 @@ karabiner-elements \
 -- cask
 
 ./.dotbot/dotbot-bootstrap
+
+nvim +PackerInstall +qall!
