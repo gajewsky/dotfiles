@@ -9,7 +9,7 @@ case "$(uname -s)" in
   Linux)
     if [ "$SPIN" ]
     then
-      # ./.dotbot/install-ubuntu
+      ./.dotbot/install-ubuntu
     else
       ./.dotbot/install-arch
     fi
