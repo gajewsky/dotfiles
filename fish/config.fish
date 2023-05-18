@@ -20,5 +20,3 @@ set PATH ~/git-fuzzy/bin $PATH
 if test -f /opt/dev/dev.fish
   source /opt/dev/dev.fish
 end
-
-source ~/.asdf/asdf.fish
