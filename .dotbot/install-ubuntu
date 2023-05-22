@@ -22,6 +22,14 @@ echo "Bootstrap dotfiles"
 
 ./.dotbot/dotbot-bootstrap
 
+sudo chsh -s $(which fish)
+
+fish
+
+curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
+
+fisher update
+
 nvim +PackerInstall +qall!
 
 git config --global user.email "marcin.gajewski@shopify.com"
