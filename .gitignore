@@ -1,0 +1,3 @@
+fish/functions/*
+!fish/functions/fisher.fish
+!fish/functions/fisher_update.fish

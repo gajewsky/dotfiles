@@ -22,13 +22,9 @@ echo "Bootstrap dotfiles"
 
 ./.dotbot/dotbot-bootstrap
 
-sudo chsh -s $(which fish)
+sudo echo /usr/bin/fish | sudo tee -a /etc/shells
 
-fish
-
-curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
-
-fisher update
+sudo chsh -s /usr/bin/fish
 
 nvim +PackerInstall +qall!
 
