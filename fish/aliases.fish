@@ -1,10 +1,11 @@
 alias ls 'exa -a'
-alias cat 'bat'
+
 alias vim 'nvim'
 alias reload! 'source ~/.config/fish/config.fish'
 alias gapan 'git add --intent-to-add . && git add --patch'
 alias git-branch-fzf "git branch -vv --color=always | fzf-tmux -d 15 --ansi | cut -c3- | cut -d' ' -f1"
 alias gcob 'git checkout (git-branch-fzf)'
+alias gautours "git log --format='%aN' --since='3 months ago' -- . |sort | uniq -c | sort -nr"
 alias gcmsg 'git commit -m'
 alias gundo='git reset HEAD~'
 alias t='trans'
