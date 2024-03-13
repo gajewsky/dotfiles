@@ -4,7 +4,7 @@ asdf \
 bat \
 dotbot \
 git-delta \
-exa \
+eza \
 ripgrep \
 
 brew install \

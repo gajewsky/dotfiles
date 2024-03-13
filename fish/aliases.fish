@@ -1,4 +1,4 @@
-alias ls 'exa -a'
+alias ls 'eza -a'
 
 alias vim 'nvim'
 alias reload! 'source ~/.config/fish/config.fish'
