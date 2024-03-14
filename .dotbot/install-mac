@@ -4,7 +4,6 @@ asdf \
 bat \
 dotbot \
 git-delta \
-eza \
 ripgrep \
 
 brew install \
@@ -15,6 +14,7 @@ fzf \
 neovim \
 tmux \
 rectangle \
+raycast \
 karabiner-elements \
 -- cask
 

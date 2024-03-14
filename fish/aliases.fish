@@ -1,5 +1,3 @@
-alias ls 'eza -a'
-
 alias vim 'nvim'
 alias reload! 'source ~/.config/fish/config.fish'
 alias gapan 'git add --intent-to-add . && git add --patch'
