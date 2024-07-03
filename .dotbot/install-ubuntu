@@ -5,11 +5,16 @@ git submodule update --init --recursive .dotbot/plugins/tpm/
 
 echo "Install packages"
 
-sudo apt purge neovim
-sudo add-apt-repository ppa:neovim-ppa/unstable
-sudo apt-add-repository ppa:fish-shell/release-3
-sudo apt update
-sudo apt-get install -y ripgrep fzf neovim fish eza fd-find delta bat translate-shell
+sudo apt-add-repository ppa:neovim-ppa/stable -y
+sudo apt-add-repository ppa:fish-shell/release-3 -y
+sudo apt-get update && sudo apt-get upgrade -y
+
+sudo mkdir -p /etc/apt/keyrings
+wget -qO- https://raw.githubusercontent.com/eza-community/eza/main/deb.asc | sudo gpg --dearmor -o /etc/apt/keyrings/gierens.gpg
+echo "deb [signed-by=/etc/apt/keyrings/gierens.gpg] http://deb.gierens.de stable main" | sudo tee /etc/apt/sources.list.d/gierens.list
+sudo chmod 644 /etc/apt/keyrings/gierens.gpg /etc/apt/sources.list.d/gierens.list
+
+sudo apt-get install -y ripgrep fzf neovim fish eza fd-find delta bat
 
 # Install dev
 sudo mkdir /opt; and sudo chown "$USER:staff" /opt
