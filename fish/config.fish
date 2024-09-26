@@ -19,3 +19,4 @@ set plugins ~/.config/fish/plugins/
 for file in $plugins/*.fish
     source $file
 end
+
