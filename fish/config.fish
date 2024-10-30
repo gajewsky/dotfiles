@@ -14,6 +14,12 @@ if test -f /opt/dev/dev.fish
   source /opt/dev/dev.fish
 end
 
+if status is-interactive
+    eval (zellij setup --generate-auto-start fish | string collect)
+end
+
+zoxide init fish | source
+
 set plugins ~/.config/fish/plugins/
 
 for file in $plugins/*.fish

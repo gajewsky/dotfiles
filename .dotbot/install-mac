@@ -12,10 +12,10 @@ kitty \
 fd \
 fzf \
 neovim \
-tmux \
 rectangle \
 raycast \
 karabiner-elements \
+zellij \
 -- cask
 
 ./.dotbot/dotbot-bootstrap

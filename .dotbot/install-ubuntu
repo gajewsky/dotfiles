@@ -24,7 +24,7 @@ echo "Installing the latest Fish shell"
 sudo apt-get install -y fish
 
 # Install other utilities
-sudo apt-get install -y ripgrep fzf eza fd-find delta bat
+sudo apt-get install -y ripgrep fzf eza fd-find delta bat zellij
 
 # Install dev
 sudo mkdir -p /opt && sudo chown "$USER:$USER" /opt
