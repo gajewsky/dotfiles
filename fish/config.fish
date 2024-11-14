@@ -11,14 +11,20 @@ set PATH ~/.cargo/bin $PATH
 set PATH ~/git-fuzzy/bin $PATH
 
 if test -f /opt/dev/dev.fish
-  source /opt/dev/dev.fish
+    source /opt/dev/dev.fish
 end
 
 if status is-interactive
-    eval (zellij setup --generate-auto-start fish | string collect)
+    # Check for zellij
+    if command -v zellij >/dev/null
+        eval (zellij setup --generate-auto-start fish | string collect)
+    end
 end
 
-zoxide init fish | source
+# Check for zoxide
+if command -v zoxide >/dev/null
+    zoxide init fish | source
+end
 
 set plugins ~/.config/fish/plugins/
 
