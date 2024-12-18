@@ -3,6 +3,7 @@ alias reload! 'source ~/.config/fish/config.fish'
 alias gapan 'git add --intent-to-add . && git add --patch'
 alias git-branch-fzf "git branch -vv --color=always | fzf-tmux -d 15 --ansi | cut -c3- | cut -d' ' -f1"
 alias gcob 'git checkout (git-branch-fzf)'
+alias ghprl="GH_FORCE_TTY=100% gh pr list --author \"@me\" | fzf --ansi --preview 'GH_FORCE_TTY=100% gh pr view {1}' --header-lines 4 | awk '{print $1}' | xargs gh pr checkout"
 alias gautours "git log --format='%aN' --since='3 months ago' -- . |sort | uniq -c | sort -nr"
 alias gcmsg 'git commit -m'
 alias gundo='git reset HEAD~'
