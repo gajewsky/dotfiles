@@ -1,8 +1,12 @@
-// If you'd like to override the default keybindings completely, be sure to change "keybinds" to "keybinds clear-defaults=true"
+default_shell "fish"
 keybinds {
     normal {
-        // uncomment this and adjust key if using copy_on_select=false
-        // bind "Alt c" { Copy; }
+        bind "Super c" { Copy; }
+        bind "Super Alt Left" { GoToPreviousTab; }
+        bind "Super Alt Right" { GoToNextTab; }
+        bind "Super w" { CloseTab; }
+        bind "Super n" { NewTab; }
+        bind "Super t" { NewTab; }
     }
     locked {
         bind "Ctrl g" { SwitchToMode "Normal"; }

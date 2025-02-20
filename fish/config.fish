@@ -1,5 +1,6 @@
 source ~/.config/fish/aliases.fish
 
+set fish_greeting
 set -x DOTFILES ~/.dotfiles
 set -x VIMRC $HOME/.vimrc
 set -x EDITOR /usr/bin/nvim
@@ -15,10 +16,11 @@ if test -f /opt/dev/dev.fish
 end
 
 if status is-interactive
-    # Check for zellij
-    if command -v zellij >/dev/null
-        eval (zellij setup --generate-auto-start fish | string collect)
-    end
+  export ZELLIJ_CONFIG_DIR=$HOME/.config/zellij
+
+  if [ "$TERM" = "xterm-ghostty" ]
+    eval (zellij setup --generate-auto-start fish | string collect)
+  end
 end
 
 # Check for zoxide
@@ -32,3 +34,4 @@ for file in $plugins/*.fish
     source $file
 end
 
+source ~/.asdf/asdf.fish

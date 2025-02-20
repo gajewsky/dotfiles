@@ -1,1 +1,15 @@
+shell-integration = fish
+
 theme = GruvboxDarkHard
+mouse-scroll-multiplier = 0.5
+
+window-decoration = true
+
+macos-titlebar-style = transparent
+
+keybind = cmd+t=unbind
+keybind = cmd+n=unbind
+keybind = cmd+c=unbind
+keybind = cmd+w=unbind
+keybind = cmd+opt+left=unbind
+keybind = cmd+opt+right=unbind
