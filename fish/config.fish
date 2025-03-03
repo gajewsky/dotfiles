@@ -23,7 +23,6 @@ if status is-interactive
   end
 end
 
-# Check for zoxide
 if command -v zoxide >/dev/null
     zoxide init fish | source
 end
@@ -34,4 +33,6 @@ for file in $plugins/*.fish
     source $file
 end
 
-source ~/.asdf/asdf.fish
+if test -d ~/.asdf
+    source ~/.asdf/asdf.fish
+end
