@@ -1,6 +1,7 @@
 PatrickF1/fzf.fish
 jhillyerd/plugin-git
 gazorby/fish-abbreviation-tips
-pure-fish/pure
 acomagu/fish-async-prompt
 kpbaks/zellij.fish
+jorgebucaran/fisher
+pure-fish/pure

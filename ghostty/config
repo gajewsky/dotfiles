@@ -1,6 +1,7 @@
 shell-integration = fish
 
 theme = GruvboxDarkHard
+font-family = "MonacoLigaturized Nerd Font"
 mouse-scroll-multiplier = 0.5
 
 window-decoration = true
