@@ -23,3 +23,7 @@
   colorMoved = default
 [rerere]
 	enabled = true
+[maintenance]
+	repo = /Users/gajewsky/world/trees/root/src
+[fetch]
+	prune = true
