@@ -1,5 +1,0 @@
-echo 'arch'
-
-./.dotbot/dotbot-bootstrap
-
-echo "source ~/.asdf/asdf.fish" >> ~/.config/fish/config.fish

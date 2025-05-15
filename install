@@ -1,21 +1,15 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
-case "$(uname -s)" in
-  Darwin)
+set -e
 
-    ./.dotbot/install-mac
-    ;;
+CONFIG="install.conf.yaml"
+DOTBOT_DIR="dotbot"
 
-  Linux)
-    if [ "$SPIN" ]
-    then
-      ./.dotbot/install-ubuntu
-    else
-      ./.dotbot/install-arch
-    fi
-    ;;
+DOTBOT_BIN="bin/dotbot"
+BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-  *)
-    echo 'Not supported OS'
-    ;;
-esac
+cd "${BASEDIR}"
+git -C "${DOTBOT_DIR}" submodule sync --quiet --recursive
+git submodule update --init --recursive "${DOTBOT_DIR}"
+
+"${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "${CONFIG}" "${@}"
