@@ -22,9 +22,30 @@ end
 
 set -gx ZELLIJ_CONFIG_DIR $HOME/.config/zellij
 
-# Fix for prompt breaking in zellij
 if set -q ZELLIJ
-    set -gx pure_enable_single_line_prompt true
+    # Force proper terminal size reporting
+    stty rows $LINES cols $COLUMNS 2>/dev/null
+
+    # Clear any existing postexec handlers
+    functions -e fish_postexec
+
+    # Reset terminal state before each prompt
+    function __zellij_preexec --on-event fish_preexec
+        printf "\033[?7h"  # Enable line wrap
+    end
+
+    function __zellij_prompt_reset --on-event fish_prompt
+        # Ensure clean state before prompt
+        printf "\033[0m\033[K\r"  # Reset attributes, clear line, return to start
+    end
+
+    function zt
+        set current_dir (basename $PWD)
+        if test "$current_dir" = (basename $HOME)
+            set current_dir "~"
+        end
+        command zellij action rename-tab "$current_dir"
+    end
 end
 
 if command -v zoxide >/dev/null
@@ -37,9 +58,11 @@ for file in $plugins/*.fish
     source $file
 end
 
-# Auto-launch zellij when opening ghostty
+
 if status is-interactive
-    and not set -q ZELLIJ
-    and command -v zellij >/dev/null
-    eval (zellij setup --generate-auto-start fish | string collect)
+    starship init fish | source
+    export ZELLIJ_CONFIG_DIR=$HOME/.config/zellij
+    if [ "$TERM" = "xterm-ghostty" ]
+        eval (zellij setup --generate-auto-start fish | string collect)
+    end
 end

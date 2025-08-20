@@ -2,6 +2,18 @@ default_shell "fish"
 
 // UI settings to help with prompt rendering
 pane_frames false
+scrollback_editor "/opt/homebrew/bin/nvim"
+mouse_mode true
+scroll_buffer_size 10000
+
+// Terminal compatibility settings for ghostty
+env {
+    TERM "xterm-256color"
+}
+
+// Force proper terminal dimensions
+on_force_close "detach"
+simplified_ui false
 
 keybinds {
     normal {
