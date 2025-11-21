@@ -1,7 +1,7 @@
 shell-integration = fish
 shell-integration-features = no-cursor,sudo,title
 
-theme = GruvboxDarkHard
+theme = Gruvbox Dark
 font-family = "MonacoLigaturized Nerd Font"
 mouse-scroll-multiplier = 0.5
 
