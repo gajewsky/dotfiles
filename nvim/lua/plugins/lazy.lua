@@ -7,7 +7,7 @@
 
 -- Bootstrap lazy.nvim if not installed
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
+if not vim.uv.fs_stat(lazypath) then
   vim.fn.system({
     "git",
     "clone",
@@ -20,38 +20,37 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 local plugins = {
-  'windwp/nvim-autopairs',
-  'nvim-treesitter/nvim-treesitter',
+  { 'windwp/nvim-autopairs', event = 'InsertEnter', config = true },
+  { 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate' },
   'AaronLasseigne/yank-code',
 
   -- LSP
   'neovim/nvim-lspconfig',
-  'williamboman/nvim-lsp-installer',
-  'folke/lsp-colors.nvim',
+  { 'williamboman/mason.nvim', config = true },
+  { 'williamboman/mason-lspconfig.nvim' },
 
   -- Completion
   {
     'hrsh7th/nvim-cmp',
+    event = 'InsertEnter',
     dependencies = {
       'L3MON4D3/LuaSnip',
+      'saadparwaiz1/cmp_luasnip',
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-path',
       'hrsh7th/cmp-buffer',
-      'saadparwaiz1/cmp_luasnip',
     },
   },
 
   -- UI
-  { "ellisonleao/gruvbox.nvim", dependencies = { "rktjmp/lush.nvim" } },
+  { 'ellisonleao/gruvbox.nvim', priority = 1000 },
   'nvim-tree/nvim-web-devicons',
-  'nvim-tree/nvim-tree.lua',
-  'Yggdroot/indentLine',
-  'justincampbell/vim-eighties',
+  { 'nvim-tree/nvim-tree.lua', cmd = { 'NvimTreeToggle', 'NvimTreeFindFile' } },
+  { 'lukas-reineke/indent-blankline.nvim', main = 'ibl', opts = {} },
   'caenrique/nvim-maximize-window-toggle',
   'junegunn/vim-peekaboo',
-  'psliwka/vim-smoothie',
   {
-    'famiu/feline.nvim',
+    'nvim-lualine/lualine.nvim',
     dependencies = { 'nvim-tree/nvim-web-devicons' },
   },
   'folke/trouble.nvim',
@@ -59,22 +58,31 @@ local plugins = {
   -- Git support
   {
     'lewis6991/gitsigns.nvim',
-    dependencies = { 'nvim-lua/plenary.nvim' },
+    event = { 'BufReadPre', 'BufNewFile' },
   },
 
   -- File navigation
-  { 'junegunn/fzf', build = './install --bin' },
-  'junegunn/fzf.vim',
   'christoomey/vim-tmux-navigator',
   { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
   'bogado/file-line',
   {
     'nvim-telescope/telescope.nvim',
-    dependencies = { 'nvim-lua/plenary.nvim' },
+    branch = '0.1.x',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'nvim-telescope/telescope-fzf-native.nvim',
+    },
   },
 
   -- Navigation
-  'ggandor/lightspeed.nvim',
+  {
+    'ggandor/leap.nvim',
+    config = function()
+      vim.keymap.set({'n', 'x', 'o'}, 's', '<Plug>(leap-forward)')
+      vim.keymap.set({'n', 'x', 'o'}, 'S', '<Plug>(leap-backward)')
+      vim.keymap.set({'n', 'x', 'o'}, 'gs', '<Plug>(leap-from-window)')
+    end,
+  },
   'unblevable/quick-scope',
 
   -- Ruby
@@ -91,25 +99,19 @@ local plugins = {
   'tpope/vim-eunuch',
   'tpope/vim-fugitive',
 
-  -- Javascript
-  'pangloss/vim-javascript',
-  'leafgarland/typescript-vim',
-  'peitalin/vim-jsx-typescript',
-  'styled-components/vim-styled-components',
-  'jparise/vim-graphql',
-
-  -- Plugins in testing phase
+  -- Better escape
   {
-    "max397574/better-escape.nvim",
+    'max397574/better-escape.nvim',
+    event = 'InsertEnter',
     config = function()
-      require("better_escape").setup {
-        mapping = { "jk", "jj" },
+      require('better_escape').setup {
+        mapping = { 'jk', 'jj' },
         timeout = vim.o.timeoutlen,
         clear_empty_lines = false,
-        keys = "<Esc>",
+        keys = '<Esc>',
       }
     end,
   },
 }
 
-require("lazy").setup(plugins)
+require('lazy').setup(plugins)

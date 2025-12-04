@@ -42,7 +42,6 @@ cmd [[au BufWritePre * :%s/\s\+$//e]]
 -----------------------------------------------------------
 opt.hidden = true         -- enable background buffers
 opt.history = 100         -- remember n lines in history
-opt.lazyredraw = true     -- faster scrolling
 opt.synmaxcol = 240       -- max column for syntax highlight
 
 -----------------------------------------------------------
@@ -71,12 +70,6 @@ cmd [[au BufEnter * set fo-=c fo-=r fo-=o]]
 -- remove line lenght marker for selected filetypes
 cmd [[autocmd FileType text,markdown,html,xhtml,javascript setlocal cc=0]]
 
--- IndentLine
---g.indentLine_setColors = 0  -- set indentLine color
-g.indentLine_char = '|'       -- set indentLine character
-
--- disable IndentLine for markdown files (avoid concealing)
-cmd [[autocmd FileType markdown let g:indentLine_enabled=0]]
 
 -----------------------------------------------------------
 -- Autocompletion
