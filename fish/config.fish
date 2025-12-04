@@ -26,6 +26,9 @@ if set -q ZELLIJ
     # Force proper terminal size reporting
     stty rows $LINES cols $COLUMNS 2>/dev/null
 
+    # Disable flow control to allow ctrl+s in zellij
+    stty -ixon -ixoff 2>/dev/null
+
     # Clear any existing postexec handlers
     functions -e fish_postexec
 
@@ -46,6 +49,12 @@ if set -q ZELLIJ
         end
         command zellij action rename-tab "$current_dir"
     end
+
+    # Terminal Search Shortcuts:
+    # Ctrl+S: Enter zellij scroll mode
+    # Ctrl+F: Quick search in zellij
+    # Alt+S: FZF search in terminal buffer
+    # Ctrl+Alt+S: Smart context-aware search
 end
 
 if command -v zoxide >/dev/null
@@ -60,6 +69,9 @@ end
 
 
 if status is-interactive
+    # Disable flow control to allow ctrl+s and ctrl+q to work in terminal apps
+    stty -ixon -ixoff 2>/dev/null
+
     starship init fish | source
     export ZELLIJ_CONFIG_DIR=$HOME/.config/zellij
     if [ "$TERM" = "xterm-ghostty" ]

@@ -14,7 +14,7 @@ env {
 // Force proper terminal dimensions
 on_force_close "detach"
 simplified_ui false
-
+auto_layout true
 keybinds {
     normal {
         bind "Super c" { Copy; }
