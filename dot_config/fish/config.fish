@@ -69,6 +69,12 @@ if status is-interactive
 
     starship init fish | source
     export ZELLIJ_CONFIG_DIR=$HOME/.config/zellij
+
+    # Use different zellij theme for SSH sessions
+    if test -n "$SSH_CONNECTION"
+        set -gx ZELLIJ_CONFIG_OPTIONS "theme gruvbox-dark-ssh"
+    end
+
     if [ "$TERM" = "xterm-ghostty" ]
         eval (zellij setup --generate-auto-start fish | string collect)
     end

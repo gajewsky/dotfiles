@@ -1,0 +1,68 @@
+# Starship prompt configuration
+
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
+# Inserts a blank line between shell prompts
+add_newline = true
+
+# Format with hostname shown in SSH sessions
+format = """
+$hostname\
+$directory\
+$git_branch\
+$git_status\
+$python\
+$nodejs\
+$rust\
+$golang\
+$cmd_duration\
+$line_break\
+$character"""
+
+[hostname]
+# Show hostname ONLY when in SSH session with orange styling
+ssh_only = true
+format = "[🌐 $hostname](bold yellow) "
+disabled = false
+
+[directory]
+truncation_length = 3
+truncate_to_repo = true
+format = "[$path]($style)[$read_only]($read_only_style) "
+style = "bold cyan"
+
+[character]
+# Different prompt symbol when command fails
+success_symbol = "[❯](bold green)"
+error_symbol = "[❯](bold red)"
+
+[git_branch]
+format = "[$symbol$branch]($style) "
+symbol = " "
+style = "bold purple"
+
+[git_status]
+format = '([\[$all_status$ahead_behind\]]($style) )'
+style = "bold yellow"
+
+[cmd_duration]
+min_time = 500
+format = "took [$duration]($style) "
+style = "bold yellow"
+
+[python]
+format = '[${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
+symbol = " "
+
+[nodejs]
+format = "[$symbol($version )]($style)"
+symbol = " "
+
+[rust]
+format = "[$symbol($version )]($style)"
+symbol = " "
+
+[golang]
+format = "[$symbol($version )]($style)"
+symbol = " "

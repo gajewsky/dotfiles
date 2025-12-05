@@ -219,4 +219,21 @@ plugins {
     }
 }
 
+// Use different theme based on SSH connection
+// Note: You can manually switch by setting ZELLIJ_THEME env var
 theme "gruvbox-dark"
+themes {
+    gruvbox-dark-ssh {
+        fg 213 196 161      // Normal text
+        bg 40 40 40         // Background
+        black 60 56 54
+        red 251 73 52       // BRIGHT RED for SSH warning
+        green 184 187 38
+        yellow 250 189 47
+        blue 131 165 152
+        magenta 211 134 155
+        cyan 142 192 124
+        white 235 219 178
+        orange 254 128 25   // Bright orange for alerts
+    }
+}
