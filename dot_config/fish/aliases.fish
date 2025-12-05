@@ -1,3 +1,14 @@
+# Eza (modern ls replacement)
+alias ls 'eza'
+alias ll 'eza -l --icons --git'
+alias la 'eza -la --icons --git'
+alias lt 'eza --tree --icons --level=2'
+alias lta 'eza --tree --icons --level=2 -a'
+
+# Bat (modern cat replacement)
+alias cat 'bat'
+alias catp 'bat --plain'
+
 alias vim 'nvim'
 alias reload! 'source ~/.config/fish/config.fish'
 alias gapan 'git add --intent-to-add . && git add --patch'

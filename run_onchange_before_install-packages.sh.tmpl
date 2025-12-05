@@ -3,7 +3,7 @@
 
 set -e
 
-packages="zoxide fzf starship zellij neovim wget"
+packages="fish fzf zoxide starship zellij neovim wget eza bat"
 
 {{ if eq .chezmoi.os "darwin" -}}
 # macOS - Homebrew
@@ -35,5 +35,11 @@ else
     echo "  $packages"
 fi
 {{- end }}
+
+# Install Oh My Fish if not already installed
+if ! fish -c "type -q omf" &> /dev/null 2>&1; then
+    echo "Installing Oh My Fish..."
+    curl -sL https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | fish -c "source - --noninteractive"
+fi
 
 echo "All packages installed!"
