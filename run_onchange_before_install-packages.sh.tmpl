@@ -1,0 +1,39 @@
+#!/bin/bash
+# Packages hash: {{ include "dot_config/fish/config.fish" | sha256sum }}
+
+set -e
+
+packages="zoxide fzf starship zellij neovim wget"
+
+{{ if eq .chezmoi.os "darwin" -}}
+# macOS - Homebrew
+if ! command -v brew &> /dev/null; then
+    echo "Installing Homebrew..."
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+fi
+
+echo "Checking and installing packages..."
+for package in $packages; do
+    if ! brew list "$package" &> /dev/null; then
+        echo "Installing $package..."
+        brew install "$package"
+    fi
+done
+
+{{ else if eq .chezmoi.os "linux" -}}
+# Arch/Manjaro - pacman
+if command -v pacman &> /dev/null; then
+    echo "Checking and installing packages (pacman)..."
+    for package in $packages; do
+        if ! pacman -Qi "$package" &> /dev/null 2>&1; then
+            echo "Installing $package..."
+            sudo pacman -S --noconfirm "$package"
+        fi
+    done
+else
+    echo "Unsupported package manager. Please install packages manually:"
+    echo "  $packages"
+fi
+{{- end }}
+
+echo "All packages installed!"

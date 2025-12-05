@@ -58,7 +58,8 @@ if set -q ZELLIJ
 end
 
 if command -v zoxide >/dev/null
-    zoxide init fish | source
+    # Initialize zoxide with cd replacement
+    zoxide init fish --cmd cd | source
 end
 
 
