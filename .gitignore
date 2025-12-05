@@ -1,3 +1,7 @@
-fish/functions/*
-!fish/functions/fisher.fish
-!fish/functions/fisher_update.fish
+# Fish functions managed by fisher (generated)
+dot_config/fish/functions/*
+!dot_config/fish/functions/fisher.fish
+!dot_config/fish/functions/fisher_update.fish
+
+# Claude Code project-local settings
+.claude/

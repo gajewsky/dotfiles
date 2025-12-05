@@ -1,19 +1,26 @@
 ## Yet another dotfiles manifestation
 
+Managed with [chezmoi](https://www.chezmoi.io/).
+
 ### Prerequisites
 
-Make sure to have installed and added to path package manager
-
-* [brew](https://github.com/Homebrew/brew) for macos
-* [yay](https://github.com/Jguer/yay) for arch based linux
-* [apt](https://salsa.debian.org/apt-team/apt) for debian based linux
+* [chezmoi](https://www.chezmoi.io/install/)
 
 ### Installation
 
 ```
-git clone --recurse-submodules https://github.com/gajewsky/dotfiles.git ~/.dotfiles
+chezmoi init --apply gajewsky/dotfiles
+```
 
-cd ~/.dotfiles
+### Usage
 
-./install
+```
+# See what changes chezmoi would make
+chezmoi diff
+
+# Apply changes
+chezmoi apply
+
+# Pull latest and apply
+chezmoi update
 ```

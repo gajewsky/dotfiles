@@ -1,9 +1,0 @@
-
-[submodule ".dotbot/dotbot"]
-	path = .dotbot/dotbot
-	url = https://github.com/anishathalye/dotbot
-	ignore = dirty
-[submodule ".dotbot/plugins/tpm"]
-	path = .dotbot/plugins/tpm
-	url = https://github.com/tmux-plugins/tpm
-	ignore = dirty

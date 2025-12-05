@@ -10,7 +10,11 @@
   user = gajewsky
 [user]
 	name = Marcin Gajewski
+{{- if eq .chezmoi.os "darwin" }}
+	email = marcin.gajewski@shopify.com
+{{- else }}
 	email = gajewski@pm.me
+{{- end }}
 [pull]
   ff = only
 [link]

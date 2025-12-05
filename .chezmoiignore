@@ -1,0 +1,17 @@
+# Ignore README files
+README.md
+README_SEARCH.md
+
+# Ignore private/runtime files in .claude
+.claude/__store.db
+.claude/debug
+.claude/file-history
+.claude/history.jsonl
+.claude/plans
+.claude/plugins
+.claude/projects
+.claude/session-env
+.claude/settings.json
+.claude/shell-snapshots
+.claude/statsig
+.claude/todos
