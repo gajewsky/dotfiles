@@ -61,11 +61,6 @@ if command -v zoxide >/dev/null
     zoxide init fish | source
 end
 
-set plugins ~/.config/fish/plugins/
-
-for file in $plugins/*.fish
-    source $file
-end
 
 
 if status is-interactive
