@@ -31,6 +31,9 @@ alias dbe 'docker-compose run rails env bundle exec'
 # MAC
 alias cpu_temp 'sudo powermetrics --samplers smc |grep -i "CPU die temperature"'
 
+# Chezmoi
+alias dotfiles 'cd (chezmoi source-path)'
+
 # Zoxide
 alias zq 'zoxide query'           # Query the database
 alias zqi 'zoxide query -i'       # Interactive query
