@@ -1,0 +1,21 @@
+{{ if eq .chezmoi.os "linux" -}}
+#!/bin/bash
+set -e
+
+# Add opencode to PATH for this script execution
+export PATH="$HOME/.opencode/bin:$PATH"
+
+# Install opencode if not present
+if ! command -v opencode &> /dev/null; then
+    echo "Installing opencode.ai..."
+    curl -fsSL https://opencode.ai/install | bash
+else
+    echo "opencode is already installed."
+fi
+
+# Verify installation
+if command -v opencode &> /dev/null; then
+    echo "opencode version:"
+    opencode --version
+fi
+{{ end -}}

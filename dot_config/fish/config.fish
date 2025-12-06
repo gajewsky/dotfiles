@@ -13,6 +13,7 @@ end
 
 set -gx PATH ~/bin $PATH
 set -gx PATH ~/.local/bin $PATH
+set -gx PATH ~/.opencode/bin $PATH
 set -gx PATH ~/.cargo/bin $PATH
 set -gx PATH ~/git-fuzzy/bin $PATH
 
@@ -67,7 +68,7 @@ if command -v zoxide >/dev/null
 end
 
 if command -v try >/dev/null
-    try init ~/src/tries | source
+    env SHELL=(command -v fish) try init ~/src/tries | source
 end
 
 
