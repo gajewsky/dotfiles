@@ -3,3 +3,10 @@
     type = "git-repo"
     url = "https://github.com/tmux-plugins/tpm.git"
     refreshPeriod = "168h"
+
+# Try tool
+[".local/bin/try"]
+    type = "file"
+    url = "https://raw.githubusercontent.com/tobi/try/master/try.rb"
+    executable = true
+    refreshPeriod = "168h"

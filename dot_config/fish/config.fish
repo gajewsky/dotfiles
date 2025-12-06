@@ -66,6 +66,10 @@ if command -v zoxide >/dev/null
     zoxide init fish --cmd cd | source
 end
 
+if command -v try >/dev/null
+    try init ~/src/tries | source
+end
+
 
 
 if status is-interactive
