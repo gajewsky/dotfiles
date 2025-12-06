@@ -57,6 +57,10 @@ if set -q ZELLIJ
     # Ctrl+Alt+S: Smart context-aware search
 end
 
+if command -v mise >/dev/null
+    mise activate fish | source
+end
+
 if command -v zoxide >/dev/null
     # Initialize zoxide with cd replacement
     zoxide init fish --cmd cd | source

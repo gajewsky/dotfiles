@@ -1,0 +1,8 @@
+[settings]
+experimental = true
+legacy_version_file = true
+
+[tools]
+python = "3.13"
+node = "lts"
+ruby = "latest"
