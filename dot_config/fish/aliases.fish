@@ -1,11 +1,10 @@
-# Abbreviations (expand inline, more efficient than aliases)
-# Simple commands - use abbreviations
-abbr -a ls 'eza'
-abbr -a ll 'eza -l --icons --git'
-abbr -a lt 'eza --tree --icons --level=2'
-abbr -a cat 'bat'
-abbr -a catp 'bat --plain'
-abbr -a vim 'nvim'
+# Command replacements (transparent - use alias)
+alias ls='eza'
+alias ll='eza -l --icons --git'
+alias lt='eza --tree --icons --level=2'
+alias cat='bat'
+alias catp='bat --plain'
+alias vim='nvim'
 
 # Git extras (plugin-git provides: gst, gco, gcm, gp, gl, grbi, gsta, etc.)
 abbr -a gundo 'git reset HEAD~'
@@ -36,12 +35,12 @@ abbr -a fdir 'fd --type d'
 abbr -a rg 'rg --smart-case'
 
 # procs (ps replacement)
-abbr -a ps 'procs'
-abbr -a pst 'procs --tree'
+alias ps='procs'
+alias pst='procs --tree'
 
 # bottom (htop replacement)
-abbr -a top 'btm'
-abbr -a htop 'btm'
+alias top='btm'
+alias htop='btm'
 
 # Functions (for complex commands with pipes/subshells)
 function reload! --description "Reload fish config"
