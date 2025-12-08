@@ -1,10 +1,7 @@
 source ~/.config/fish/aliases.fish
 
 set fish_greeting
-set -x DOTFILES ~/.dotfiles
-set -x VIMRC $HOME/.vimrc
-set -x EDITOR /usr/bin/nvim
-set -x MYVIMRC ~/.dotfiles/vim/.vimrc
+set -gx EDITOR nvim
 
 # Add homebrew to PATH for Apple Silicon Macs
 if test -d /opt/homebrew/bin
@@ -78,7 +75,6 @@ if status is-interactive
     stty -ixon -ixoff 2>/dev/null
 
     starship init fish | source
-    export ZELLIJ_CONFIG_DIR=$HOME/.config/zellij
 
     # Use different zellij theme for SSH sessions
     if test -n "$SSH_CONNECTION"
