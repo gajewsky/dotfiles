@@ -6,6 +6,14 @@
   eol = lf
   excludesfile = ~/.gitignore
   filemode = false
+  pager = delta
+[interactive]
+  diffFilter = delta --color-only
+[delta]
+  navigate = true
+  side-by-side = true
+  line-numbers = true
+  syntax-theme = gruvbox-dark
 [github]
   user = gajewsky
 [user]
@@ -22,7 +30,7 @@
 [include]
   path = /Users/gajewsky/.config/dev/gitconfig
 [merge]
-  conflictstyle = diff3
+  conflictstyle = zdiff3
 [diff]
   colorMoved = default
 [rerere]
@@ -31,3 +39,19 @@
 	repo = /Users/gajewsky/world/trees/root/src
 [fetch]
 	prune = true
+[init]
+	defaultBranch = main
+[push]
+	autoSetupRemote = true
+	default = current
+[rebase]
+	autoSquash = true
+	autoStash = true
+[branch]
+	sort = -committerdate
+[alias]
+	# Unique aliases not in Fish plugin-git
+	undo = reset HEAD~1 --mixed
+	recent = branch --sort=-committerdate --format='%(committerdate:relative)\t%(refname:short)'
+	cleanup = "!git branch --merged | grep -v '\\*\\|main\\|master' | xargs -n 1 git branch -d"
+	absorb = !git-absorb

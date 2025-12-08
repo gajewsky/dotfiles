@@ -1,49 +1,46 @@
-# Eza (modern ls replacement)
-alias ls 'eza'
-alias ll 'eza -l --icons --git'
-alias la 'eza -la --icons --git'
-alias lt 'eza --tree --icons --level=2'
-alias lta 'eza --tree --icons --level=2 -a'
+# Abbreviations (expand inline, more efficient than aliases)
+# Simple commands - use abbreviations
+abbr -a ls 'eza'
+abbr -a ll 'eza -l --icons --git'
+abbr -a lt 'eza --tree --icons --level=2'
+abbr -a cat 'bat'
+abbr -a catp 'bat --plain'
+abbr -a vim 'nvim'
 
-# Bat (modern cat replacement)
-alias cat 'bat'
-alias catp 'bat --plain'
+# Git extras (plugin-git provides: gst, gco, gcm, gp, gl, grbi, gsta, etc.)
+abbr -a gundo 'git reset HEAD~'
+abbr -a lg 'lazygit'
+abbr -a grecent 'git recent'
+abbr -a gcleanup 'git cleanup'
+abbr -a gabsorb 'git absorb'
 
-alias vim 'nvim'
-alias reload! 'source ~/.config/fish/config.fish'
-alias gapan 'git add --intent-to-add . && git add --patch'
-alias git-branch-fzf "git branch -vv --color=always | fzf-tmux -d 15 --ansi | cut -c3- | cut -d' ' -f1"
-alias gcob 'git checkout (git branch -a --color=always | grep -v "/HEAD\s" | fzf --ansi | sed "s/.*\///" | sed "s/^[* ]*//")'
-alias gautours "git log --format='%aN' --since='3 months ago' -- . |sort | uniq -c | sort -nr"
-alias gcmsg 'git commit -m'
-alias gundo='git reset HEAD~'
-alias speedtest-bytes 'wget -O /dev/null http://speedtest.tele2.net/10GB.zip'
-alias speedtest-bits 'wget -O /dev/null http://speedtest.tele2.net/10GB.zip --report-speed=bits'
-
-# Docker
-alias remove_all_docker_containers="docker rm -vf (docker ps -a -q)"
-alias remove_all_docker_images="docker rmi -f (docker images -a -q)"
-alias dco 'docker-compose'
-alias dce 'docker-compose exec'
-alias dl 'docker ps -l -q'
-alias dbe 'docker-compose run rails env bundle exec'
-
-# MAC
-alias cpu_temp 'sudo powermetrics --samplers smc |grep -i "CPU die temperature"'
-
-# Chezmoi
-alias dotfiles 'cd (chezmoi source-path)'
+# Docker (V2 syntax)
+abbr -a dco 'docker compose'
+abbr -a dce 'docker compose exec'
+abbr -a dl 'docker ps -l -q'
 
 # Zoxide
-alias zq 'zoxide query'           # Query the database
-alias zqi 'zoxide query -i'       # Interactive query
-alias zr 'zoxide remove'          # Remove a path from database
-alias za 'zoxide add'             # Manually add a path
+abbr -a zq 'zoxide query'
+abbr -a zqi 'zoxide query -i'
+abbr -a zr 'zoxide remove'
+abbr -a za 'zoxide add'
 
-# Interactive directory jump with fzf preview
-function zf --description "Fuzzy find and jump to directory using zoxide + fzf"
-    set -l result (zoxide query -l | fzf --height 40% --reverse --preview 'ls -la {}' --preview-window=right:40%)
-    if test -n "$result"
-        cd "$result"
+# Chezmoi
+abbr -a dotfiles 'cd (chezmoi source-path)'
+
+# Functions (for complex commands with pipes/subshells)
+function reload! --description "Reload fish config"
+    source ~/.config/fish/config.fish
+end
+
+function gapan --description "Git add intent-to-add + patch"
+    git add --intent-to-add . && git add --patch
+end
+
+function gcob --description "Git checkout branch with fzf"
+    set -l branch (git branch -a --color=always | grep -v "/HEAD\s" | fzf --ansi | sed "s/.*\///" | sed "s/^[* ]*//")
+    if test -n "$branch"
+        git checkout $branch
     end
 end
+
