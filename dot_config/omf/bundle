@@ -1,3 +1,5 @@
-package fzf
 package https://github.com/jhillyerd/plugin-git
+package https://github.com/PatrickF1/fzf.fish
+package https://github.com/meaningful-ooo/sponge
+package https://github.com/gazorby/fish-abbreviation-tips
 theme default

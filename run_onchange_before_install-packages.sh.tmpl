@@ -42,4 +42,8 @@ if ! fish -c "type -q omf" &> /dev/null 2>&1; then
     curl -sL https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | fish -c "source - --noninteractive"
 fi
 
+# Install OMF plugins from bundle file
+echo "Installing Oh My Fish plugins from bundle..."
+fish -c "omf install"
+
 echo "All packages installed!"

@@ -3,6 +3,11 @@ source ~/.config/fish/aliases.fish
 set fish_greeting
 set -gx EDITOR nvim
 
+# fzf.fish configuration
+set -gx fzf_diff_highlighter delta --paging=never --width=20
+set -gx fzf_preview_file_cmd bat --style=numbers --color=always
+set -gx fzf_preview_dir_cmd eza --all --color=always
+
 # Add homebrew to PATH for Apple Silicon Macs
 if test -d /opt/homebrew/bin
     set -gx PATH /opt/homebrew/bin $PATH
