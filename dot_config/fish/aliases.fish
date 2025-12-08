@@ -28,6 +28,21 @@ abbr -a za 'zoxide add'
 # Chezmoi
 abbr -a dotfiles 'cd (chezmoi source-path)'
 
+# fd (find replacement)
+abbr -a ff 'fd --type f'
+abbr -a fdir 'fd --type d'
+
+# ripgrep
+abbr -a rg 'rg --smart-case'
+
+# procs (ps replacement)
+abbr -a ps 'procs'
+abbr -a pst 'procs --tree'
+
+# bottom (htop replacement)
+abbr -a top 'btm'
+abbr -a htop 'btm'
+
 # Functions (for complex commands with pipes/subshells)
 function reload! --description "Reload fish config"
     source ~/.config/fish/config.fish
