@@ -1,68 +1,58 @@
-# Starship prompt configuration
+# Starship prompt configuration - Gruvbox themed
 
 # Get editor completions based on the config schema
 "$schema" = 'https://starship.rs/config-schema.json'
 
-# Inserts a blank line between shell prompts
 add_newline = true
 
-# Format with hostname shown in SSH sessions
+# Format: left prompt with git, right prompt with duration
 format = """
 $hostname\
 $directory\
-$git_branch\
+${custom.git_branch_custom}\
 $git_status\
-$python\
-$nodejs\
-$rust\
-$golang\
-$cmd_duration\
 $line_break\
 $character"""
 
+right_format = "$cmd_duration"
+
 [hostname]
-# Show hostname ONLY when in SSH session with orange styling
 ssh_only = true
-format = "[🌐 $hostname](bold yellow) "
+format = "[🌐 $hostname](bold #fe8019) "  # Gruvbox orange
 disabled = false
 
 [directory]
-truncation_length = 3
-truncate_to_repo = true
-format = "[$path]($style)[$read_only]($read_only_style) "
-style = "bold cyan"
+format = "[$path]($style)[$read_only]($read_only_style)"
+truncation_length = 1
+style = "bold #fabd2f"  # Gruvbox yellow
 
 [character]
-# Different prompt symbol when command fails
-success_symbol = "[❯](bold green)"
-error_symbol = "[❯](bold red)"
+success_symbol = "[❯](bold #b8bb26)"  # Gruvbox green
+error_symbol = "[❯](bold #fb4934)"    # Gruvbox red
 
+# Disabled due to reftable backend incompatibility with libgit2
+# See: https://github.com/starship/starship/issues/6086
 [git_branch]
-format = "[$symbol$branch]($style) "
+disabled = true
+
+[custom.git_branch_custom]
+command = "git symbolic-ref --short HEAD"
+when = "git rev-parse --is-inside-work-tree >/dev/null 2>&1"
+format = "[$symbol$output]($style) "
 symbol = " "
-style = "bold purple"
+style = "bold #b8bb26"  # Gruvbox green
 
 [git_status]
-format = '([\[$all_status$ahead_behind\]]($style) )'
-style = "bold yellow"
+style = "bold #fb4934"  # Gruvbox red
+ahead = "⇡${count}"
+behind = "⇣${count}"
+diverged = "⇕⇡${ahead_count}⇣${behind_count}"
+staged = "+${count}"
+modified = "!${count}"
+untracked = "?${count}"
+deleted = "✘${count}"
 
 [cmd_duration]
-min_time = 500
-format = "took [$duration]($style) "
-style = "bold yellow"
-
-[python]
-format = '[${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
-symbol = " "
-
-[nodejs]
-format = "[$symbol($version )]($style)"
-symbol = " "
-
-[rust]
-format = "[$symbol($version )]($style)"
-symbol = " "
-
-[golang]
-format = "[$symbol($version )]($style)"
-symbol = " "
+min_time = 2000
+format = "[$duration]($style)"
+style = "bold #928374"  # Gruvbox gray
