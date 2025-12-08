@@ -48,7 +48,6 @@ local plugins = {
   { 'nvim-tree/nvim-tree.lua', cmd = { 'NvimTreeToggle', 'NvimTreeFindFile' } },
   { 'lukas-reineke/indent-blankline.nvim', main = 'ibl', opts = {} },
   'caenrique/nvim-maximize-window-toggle',
-  'junegunn/vim-peekaboo',
   {
     'nvim-lualine/lualine.nvim',
     dependencies = { 'nvim-tree/nvim-web-devicons' },
@@ -62,7 +61,6 @@ local plugins = {
   },
 
   -- File navigation
-  'christoomey/vim-tmux-navigator',
   { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
   'bogado/file-line',
   {
@@ -83,7 +81,6 @@ local plugins = {
       vim.keymap.set({'n', 'x', 'o'}, 'gs', '<Plug>(leap-from-window)')
     end,
   },
-  'unblevable/quick-scope',
 
   -- Ruby
   'vim-ruby/vim-ruby',
@@ -95,7 +92,6 @@ local plugins = {
   'tpope/vim-commentary',
   'tpope/vim-repeat',
   'tpope/vim-surround',
-  'tpope/vim-rsi',
   'tpope/vim-eunuch',
   'tpope/vim-fugitive',
 
