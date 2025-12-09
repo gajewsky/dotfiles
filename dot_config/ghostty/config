@@ -3,14 +3,37 @@ shell-integration-features = no-cursor,sudo,title
 
 theme = Gruvbox Dark
 font-family = "MonacoLigaturized Nerd Font"
+font-size = 14
 mouse-scroll-multiplier = 0.5
 
+# Font rendering with ligatures
+font-feature = +calt
+font-feature = +liga
+font-thicken = true
+
+# Window settings
 window-decoration = true
 window-padding-x = 8
 window-padding-y = 8
+window-inherit-working-directory = true
+window-save-state = always
+window-step-resize = true
 
+# macOS specific
 macos-titlebar-style = transparent
 macos-option-as-alt = true
+
+# Clipboard
+clipboard-read = allow
+clipboard-write = allow
+copy-on-select = clipboard
+
+# Cursor (let Neovim/Zellij control cursor style)
+cursor-style = block
+cursor-style-blink = false
+
+# Clickable URLs
+link-url = true
 
 # Unbind CMD+... keys so they will be forwarded to Zellij
 keybind = cmd+t=unbind

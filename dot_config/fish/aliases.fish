@@ -7,6 +7,7 @@ alias catp='bat --plain'
 alias vim='nvim'
 
 # Git extras (plugin-git provides: gst, gco, gcm, gp, gl, grbi, gsta, etc.)
+abbr -a gcmsg 'git commit -m'
 abbr -a gundo 'git reset HEAD~'
 abbr -a lg 'lazygit'
 abbr -a grecent 'git recent'
