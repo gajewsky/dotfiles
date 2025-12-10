@@ -1,0 +1,16 @@
+{
+  "alwaysThinkingEnabled": true,
+  "permissions": {
+    "allow": [
+      "Bash(mkdir:*)",
+      "Read(/home/gajewsky/Obsidian/**)",
+      "Read(/Users/gajewsky/Obsidian/**)",
+      "Write(/home/gajewsky/Obsidian/**)",
+      "Write(/Users/gajewsky/Obsidian/**)",
+      "Edit(/home/gajewsky/Obsidian/**)",
+      "Edit(/Users/gajewsky/Obsidian/**)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
