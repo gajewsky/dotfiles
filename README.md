@@ -5,7 +5,6 @@ Managed with [chezmoi](https://www.chezmoi.io/).
 ### Prerequisites
 
 * [chezmoi](https://www.chezmoi.io/install/)
-* [Oh My Fish](https://github.com/oh-my-fish/oh-my-fish)
 
 ### Installation
 
@@ -13,16 +12,22 @@ Managed with [chezmoi](https://www.chezmoi.io/).
 chezmoi init --apply gajewsky/dotfiles
 ```
 
-#### Fish shell plugins
+### Configuration
 
-After applying chezmoi, install Oh My Fish and its plugins:
+After installation, create `~/.config/chezmoi/chezmoi.toml` with your personal data:
+
+```toml
+[data]
+  name = "Your Name"
+  email_work = "your.work@email.com"
+  email_personal = "your.personal@email.com"
+```
+
+Then re-apply:
 
 ```
-curl -L https://get.oh-my.fish | fish
-omf install
+chezmoi apply
 ```
-
-This will install plugins from `~/.config/omf/bundle`.
 
 ### Usage
 

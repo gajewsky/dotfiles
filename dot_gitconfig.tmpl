@@ -19,16 +19,14 @@
 [github]
   user = gajewsky
 [user]
-	name = Marcin Gajewski
+	name = {{ .name }}
 {{- if eq .chezmoi.os "darwin" }}
-	email = marcin.gajewski@shopify.com
+	email = {{ .email_work }}
 {{- else }}
-	email = gajewski@pm.me
+	email = {{ .email_personal }}
 {{- end }}
 [pull]
   ff = only
-[link]
-  path= $HOME/.gitconfig-fragile
 [include]
   path = /Users/gajewsky/.config/dev/gitconfig
 [merge]
