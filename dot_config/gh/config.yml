@@ -1,0 +1,17 @@
+# GitHub CLI configuration
+# See: https://cli.github.com/manual/gh_config
+
+# Prefer editor for interactive commands
+git_protocol: ssh
+editor: nvim
+
+# Preferred pager
+pager: less
+
+# Aliases for common commands
+aliases:
+    co: pr checkout
+    pv: pr view
+    pc: pr create
+    il: issue list
+    iv: issue view

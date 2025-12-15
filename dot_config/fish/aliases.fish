@@ -59,3 +59,16 @@ function gcob --description "Git checkout branch with fzf"
     end
 end
 
+function cb --description "Copy to clipboard (cross-platform)"
+    if command -q pbcopy
+        # macOS
+        pbcopy
+    else if command -q xclip
+        # Linux
+        xclip -selection clipboard
+    else
+        echo "Error: No clipboard command found (pbcopy or xclip)" >&2
+        return 1
+    end
+end
+
