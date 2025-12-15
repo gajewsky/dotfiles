@@ -35,6 +35,8 @@ keybinds {
         // Quick toggles
         bind "Alt f" { ToggleFloatingPanes; }
         bind "Alt z" { ToggleFocusFullscreen; }
+        // Search in scrollback
+        bind "Alt /" { SwitchToMode "EnterSearch"; SearchInput 0; }
         // Direct tab access
         bind "Alt 1" { GoToTab 1; }
         bind "Alt 2" { GoToTab 2; }
