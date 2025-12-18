@@ -45,13 +45,17 @@ if set -q ZELLIJ
         printf "\033[0m\033[K\r"  # Reset attributes, clear line, return to start
     end
 
-    function zt
+    # Auto-rename tab on directory change
+    function __zellij_auto_rename_tab --on-variable PWD
         set current_dir (basename $PWD)
         if test "$current_dir" = (basename $HOME)
             set current_dir "~"
         end
-        command zellij action rename-tab "$current_dir"
+        command zellij action rename-tab "$current_dir" 2>/dev/null
     end
+
+    # Also rename on shell startup
+    __zellij_auto_rename_tab
 
     # Terminal Search Shortcuts:
     # Ctrl+S: Enter zellij scroll mode
