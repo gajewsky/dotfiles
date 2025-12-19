@@ -1,5 +1,14 @@
 {
   "alwaysThinkingEnabled": true,
+  "statusLine": {
+    "type": "command",
+    "command": "~/.claude/statusline.sh",
+    "padding": 0
+  },
+  "fileSuggestion": {
+    "type": "command",
+    "command": "~/.claude/file-suggestion.sh"
+  },
   "permissions": {
     "allow": [
       "Bash(mkdir:*)",
