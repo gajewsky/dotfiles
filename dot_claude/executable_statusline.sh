@@ -142,6 +142,20 @@ if [ "$DURATION_MS" -gt 0 ]; then
   fi
 fi
 
+# Get session cost from cost object and format as USD
+COST_USD=$(echo "$input" | jq -r '.cost.total_cost_usd // 0')
+COST_INFO=""
+if [ "$COST_USD" != "0" ] && [ "$COST_USD" != "null" ] && [ -n "$COST_USD" ]; then
+  # Format cost: show 2 decimal places, or more precision for small amounts
+  COST_INFO=$(awk "BEGIN {
+    cost = $COST_USD
+    if (cost >= 1) printf \"\$%.2f\", cost
+    else if (cost >= 0.01) printf \"\$%.2f\", cost
+    else if (cost > 0) printf \"\$%.3f\", cost
+    else print \"\"
+  }")
+fi
+
 # Build output parts (prefix - everything before summary)
 # Model: first letter colored, rest muted
 MODEL_FIRST="${MODEL_DISPLAY:0:1}"
@@ -158,19 +172,24 @@ if [ -n "$LINES_INFO" ]; then
   OUTPUT="${OUTPUT} ${DIM}|${RESET} ${LINES_INFO}"
 fi
 
-# Add turns and duration (muted)
-if [ -n "$TURNS_INFO" ] || [ -n "$DURATION_INFO" ]; then
+# Add tokens and cost (muted)
+if [ -n "$TOKENS_DISPLAY" ] || [ -n "$COST_INFO" ]; then
   OUTPUT="${OUTPUT} ${DIM}|"
-  if [ -n "$TURNS_INFO" ]; then
-    OUTPUT="${OUTPUT} ${TURNS_INFO}"
+  if [ -n "$TOKENS_DISPLAY" ]; then
+    OUTPUT="${OUTPUT} ${TOKENS_DISPLAY}"
   fi
-  if [ -n "$DURATION_INFO" ]; then
-    if [ -n "$TURNS_INFO" ]; then
-      OUTPUT="${OUTPUT},"
+  if [ -n "$COST_INFO" ]; then
+    if [ -n "$TOKENS_DISPLAY" ]; then
+      OUTPUT="${OUTPUT} -"
     fi
-    OUTPUT="${OUTPUT} ${DURATION_INFO}"
+    OUTPUT="${OUTPUT} ${COST_INFO}"
   fi
   OUTPUT="${OUTPUT}${RESET}"
+fi
+
+# Add duration (muted)
+if [ -n "$DURATION_INFO" ]; then
+  OUTPUT="${OUTPUT} ${DIM}| ${DURATION_INFO}${RESET}"
 fi
 
 # Add summary (muted, truncated to 100 chars)
