@@ -54,6 +54,41 @@ if set -q ZELLIJ
         command zellij action rename-tab "$current_dir" 2>/dev/null
     end
 
+    # Rename tab based on running command (for SSH, etc.)
+    function __zellij_rename_on_command --on-event fish_preexec
+        set -l cmd (string split ' ' -- $argv[1])
+        set -l base_cmd $cmd[1]
+
+        # Handle SSH
+        if test "$base_cmd" = "ssh"
+            # Extract hostname from SSH command
+            set -l ssh_host
+            for arg in $cmd[2..-1]
+                # Skip flags
+                if not string match -q -- '-*' $arg
+                    set ssh_host $arg
+                    break
+                end
+            end
+            if test -n "$ssh_host"
+                # Remove user@ prefix if present
+                set ssh_host (string replace -r '^.*@' '' $ssh_host)
+                command zellij action rename-tab "ssh:$ssh_host" 2>/dev/null
+            end
+        end
+    end
+
+    # Restore directory name when command exits
+    function __zellij_restore_on_postexec --on-event fish_postexec
+        set -l cmd (string split ' ' -- $argv[1])
+        set -l base_cmd $cmd[1]
+
+        # Restore tab name after SSH exits
+        if test "$base_cmd" = "ssh"
+            __zellij_auto_rename_tab
+        end
+    end
+
     # Also rename on shell startup
     __zellij_auto_rename_tab
 
