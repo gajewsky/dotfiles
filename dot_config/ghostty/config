@@ -42,3 +42,4 @@ keybind = cmd+c=unbind
 keybind = cmd+w=unbind
 keybind = cmd+opt+left=unbind
 keybind = cmd+opt+right=unbind
+keybind = shift+enter=text:\x1b\r
