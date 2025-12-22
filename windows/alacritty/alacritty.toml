@@ -75,4 +75,5 @@ bindings = [
   { key = "Plus", mods = "Control", action = "IncreaseFontSize" },
   { key = "Minus", mods = "Control", action = "DecreaseFontSize" },
   { key = "Key0", mods = "Control", action = "ResetFontSize" },
+  { key = "Return", mods = "Shift", chars = "\u001b\r" },
 ]
