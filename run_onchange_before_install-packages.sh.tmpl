@@ -42,14 +42,37 @@ else
 fi
 {{- end }}
 
-# Install Oh My Fish if not already installed
-if ! fish -c "type -q omf" &> /dev/null 2>&1; then
-    echo "Installing Oh My Fish..."
-    curl -sL https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | fish -c "source - --noninteractive"
+# Install Reef plugin manager if not already installed
+if ! fish -c "type -q reef" &> /dev/null 2>&1; then
+    echo "Installing Reef plugin manager..."
+    fish -c 'curl -sL https://tinyurl.com/fish-reef | source && reef add danielb2/reef && reef init'
 fi
 
-# Install OMF plugins from bundle file
-echo "Installing Oh My Fish plugins from bundle..."
-fish -c "omf install"
+# Install Reef plugins (corals)
+echo "Installing Reef plugins..."
+reef_plugins="jorgebucaran/autopair.fish gazorby/fish-abbreviation-tips PatrickF1/fzf.fish jhillyerd/plugin-git jorgebucaran/replay.fish meaningful-ooo/sponge"
+
+for plugin in $reef_plugins; do
+    if ! fish -c "reef list" 2>/dev/null | grep -q "$plugin"; then
+        echo "Installing $plugin..."
+        fish -c "reef add $plugin"
+    fi
+done
+
+# Fix jhillyerd/plugin-git for Reef compatibility (has Fisher-specific init code)
+git_conf="$HOME/.config/fish/corals/jhillyerd/plugin/conf.d/git.fish"
+if [ -f "$git_conf" ] && grep -q "fisher_path" "$git_conf"; then
+    echo "Patching jhillyerd/plugin-git for Reef compatibility..."
+    cat > "$git_conf" << 'GITFISH'
+# Remove legacy hooks to prevent errors when upgrading.
+# This can be removed when we cleanup other universal abbr code.
+functions -e _git_install _git_update _git_uninstall
+
+# Initialize git abbreviations (works with Fisher, OMF, and Reef)
+if type -q __git.init
+  __git.init
+end
+GITFISH
+fi
 
 echo "All packages installed!"

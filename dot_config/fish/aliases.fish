@@ -55,7 +55,7 @@ if command -q gt
     # Viewing stack
     abbr -a gtl 'gt log short'
     abbr -a gtll 'gt log long'
-    abbr -a gtlog 'gt log'
+    abbr -a gtlo 'gt log'
     abbr -a gtls 'gt log short -s'
     abbr -a gtlc 'gt log --classic'
 end
