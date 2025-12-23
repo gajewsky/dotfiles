@@ -35,6 +35,31 @@ abbr -a fdir 'fd --type d'
 # ripgrep
 abbr -a rg 'rg --smart-case'
 
+# Graphite (only if installed)
+if command -q gt
+    # Navigation
+    abbr -a gtco 'gt checkout'
+    abbr -a gtg 'gt get'
+    abbr -a gtk 'gt checkout trunk'
+
+    # Creating/committing
+    abbr -a gtc 'gt create -am'
+    abbr -a gtcn 'gt create --no-verify'
+    abbr -a gtcm 'gt commit -m'
+    abbr -a gtmsg 'gt commit -m'
+
+    # Submitting PRs
+    abbr -a gts 'gt submit --stack --update-only'
+    abbr -a gtss 'gt submit --stack'
+
+    # Viewing stack
+    abbr -a gtl 'gt log short'
+    abbr -a gtll 'gt log long'
+    abbr -a gtlog 'gt log'
+    abbr -a gtls 'gt log short -s'
+    abbr -a gtlc 'gt log --classic'
+end
+
 # procs (ps replacement)
 alias ps='procs'
 alias pst='procs --tree'
