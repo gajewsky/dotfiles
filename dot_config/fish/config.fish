@@ -86,6 +86,13 @@ if set -q ZELLIJ
                 set ssh_host (string replace -r '^.*@' '' $ssh_host)
                 command zellij action rename-tab "ssh:$ssh_host" 2>/dev/null
             end
+        # Handle Claude Code (direct or via devx)
+        else if test "$base_cmd" = "claude"; or test "$base_cmd" = "devx" -a "$cmd[2]" = "claude"
+            set -l current_dir (basename $PWD)
+            if test "$current_dir" = (basename $HOME)
+                set current_dir "~"
+            end
+            command zellij action rename-tab "֎ $current_dir" 2>/dev/null
         end
     end
 
@@ -94,8 +101,10 @@ if set -q ZELLIJ
         set -l cmd (string split ' ' -- $argv[1])
         set -l base_cmd $cmd[1]
 
-        # Restore tab name after SSH exits
-        if test "$base_cmd" = "ssh"
+        # Restore tab name after SSH or Claude exits
+        if test "$base_cmd" = "ssh" -o "$base_cmd" = "claude"
+            __zellij_auto_rename_tab
+        else if test "$base_cmd" = "devx" -a "$cmd[2]" = "claude"
             __zellij_auto_rename_tab
         end
     end
