@@ -45,12 +45,23 @@ if set -q ZELLIJ
         printf "\033[0m\033[K\r"  # Reset attributes, clear line, return to start
     end
 
-    # Auto-rename tab on directory change
-    function __zellij_auto_rename_tab --on-variable PWD
-        set current_dir (basename $PWD)
+    # Auto-rename tab on prompt (not on PWD change)
+    # Using fish_prompt ensures rename only happens when actively at a prompt,
+    # preventing background tabs/scripts from renaming the wrong tab
+    set -g __zellij_last_tab_name ""
+
+    function __zellij_auto_rename_tab --on-event fish_prompt
+        set -l current_dir (basename $PWD)
         if test "$current_dir" = (basename $HOME)
             set current_dir "~"
         end
+
+        # Skip if name hasn't changed (prevents duplicates)
+        if test "$current_dir" = "$__zellij_last_tab_name"
+            return
+        end
+        set -g __zellij_last_tab_name "$current_dir"
+
         command zellij action rename-tab "$current_dir" 2>/dev/null
     end
 
