@@ -1,0 +1,19 @@
+# Try tool
+[".local/bin/try"]
+    type = "file"
+    url = "https://raw.githubusercontent.com/tobi/try/master/try.rb"
+    executable = true
+    refreshPeriod = "168h"
+
+{{ if eq .chezmoi.os "darwin" -}}
+# Work-specific Claude config (skills, commands, etc.)
+# Only deployed on macOS (work machine)
+# Source: https://github.com/gajewsky/dotfiles-work (private repo)
+# Uses gh CLI token for authentication
+[".claude"]
+    type = "archive"
+    url = "https://{{ output "gh" "auth" "token" | trim }}@github.com/gajewsky/dotfiles-work/archive/main.tar.gz"
+    exact = false
+    stripComponents = 2
+    include = ["dotfiles-work-main/claude/**"]
+{{ end -}}
