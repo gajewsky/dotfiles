@@ -22,3 +22,7 @@ README_SEARCH.md
 .claude/statsig
 .claude/telemetry
 .claude/todos
+
+# Ignore opencode artifacts
+dot_config/opencode/node_modules
+.dot_config/opencode/logs/
