@@ -117,14 +117,30 @@ if set -q ZELLIJ
                 command zellij action rename-tab "ssh:$ssh_host" 2>/dev/null
             end
         # Handle Codex (direct or via devx)
-        else if test "$base_cmd" = "codex"; or test "$base_cmd" = "devx" -a "$cmd[2]" = "codex"
+        else if begin
+            test "$base_cmd" = "codex"
+            or begin
+                test "$base_cmd" = "devx"
+                and test "$cmd[2]" = "codex"
+            end
+        end
             set -l current_dir (basename $PWD)
             if test "$current_dir" = (basename $HOME)
                 set current_dir "~"
             end
             command zellij action rename-tab "֎ $current_dir" 2>/dev/null
-        # Handle Claude (direct or via devx)
-        else if test "$base_cmd" = "claude"; or test "$base_cmd" = "devx" -a "$cmd[2]" = "claude"
+        # Handle Claude/OpenCode (direct or via devx)
+        else if begin
+            test "$base_cmd" = "claude"
+            or test "$base_cmd" = "opencode"
+            or begin
+                test "$base_cmd" = "devx"
+                and begin
+                    test "$cmd[2]" = "claude"
+                    or test "$cmd[2]" = "opencode"
+                end
+            end
+        end
             set -l current_dir (basename $PWD)
             if test "$current_dir" = (basename $HOME)
                 set current_dir "~"
@@ -138,13 +154,23 @@ if set -q ZELLIJ
         set -l cmd (string split ' ' -- $argv[1])
         set -l base_cmd $cmd[1]
 
-        # Restore tab name after SSH, Codex, or Claude exits
-        if test "$base_cmd" = "ssh" -o "$base_cmd" = "codex" -o "$base_cmd" = "claude"
+        # Restore tab name after SSH or AI assistant exits
+        if begin
+            test "$base_cmd" = "ssh"
+            or test "$base_cmd" = "codex"
+            or test "$base_cmd" = "claude"
+            or test "$base_cmd" = "opencode"
+        end
             __zellij_auto_rename_tab
-        else if test "$base_cmd" = "devx"
-            if test "$cmd[2]" = "codex" -o "$cmd[2]" = "claude"
-                __zellij_auto_rename_tab
+        else if begin
+            test "$base_cmd" = "devx"
+            and begin
+                test "$cmd[2]" = "codex"
+                or test "$cmd[2]" = "claude"
+                or test "$cmd[2]" = "opencode"
             end
+        end
+            __zellij_auto_rename_tab
         end
     end
 
