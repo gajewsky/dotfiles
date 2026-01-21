@@ -43,3 +43,16 @@ keybind = cmd+w=unbind
 keybind = cmd+opt+left=unbind
 keybind = cmd+opt+right=unbind
 keybind = shift+enter=text:\x1b\r
+
+# Unbind Super keys so they pass through to Zellij
+keybind = super+g=unbind
+keybind = super+y=unbind
+keybind = super+n=unbind
+keybind = super+h=unbind
+keybind = super+t=unbind
+keybind = super+s=unbind
+keybind = super+o=unbind
+keybind = super+b=unbind
+keybind = super+q=unbind
+keybind = super+;=unbind
+keybind = super+f=unbind
