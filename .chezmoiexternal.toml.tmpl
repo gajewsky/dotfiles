@@ -5,14 +5,17 @@
     executable = true
     refreshPeriod = "168h"
 
-{{ if eq .chezmoi.os "darwin" -}}
+{{- $dotClaudeSource := joinPath .chezmoi.sourceDir "dot_claude" -}}
+{{- $dotClaudeStat := stat $dotClaudeSource -}}
+{{- $hasLocalClaude := and $dotClaudeStat $dotClaudeStat.isDir -}}
+{{ if and (eq .chezmoi.os "darwin") (not $hasLocalClaude) -}}
 # Work-specific Claude config (skills, commands, etc.)
 # Only deployed on macOS (work machine)
 # Source: https://github.com/gajewsky/dotfiles-work (private repo)
-# Uses gh CLI token for authentication
+# Uses SSH auth to avoid persisting tokens locally
 [".claude"]
-    type = "archive"
-    url = "https://{{ output "gh" "auth" "token" | trim }}@github.com/gajewsky/dotfiles-work/archive/main.tar.gz"
+    type = "git-repo"
+    url = "git@github.com:gajewsky/dotfiles-work.git"
+    ref = "main"
     exact = false
-    stripComponents = 2
 {{ end -}}

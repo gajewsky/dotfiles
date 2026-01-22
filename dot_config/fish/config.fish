@@ -46,9 +46,9 @@ end
 # wish (macOS only)
 if test (uname) = "Darwin"
     set -gx __wishConfig "fish:/Users/gajewsky/.config/wish.fish.toml"
-    eval "$(wcd --init fish)"
+    command -q wcd; and eval (wcd --init fish)
     abbr --erase wj 2>/dev/null; abbr --erase wji 2>/dev/null; abbr --erase wjc 2>/dev/null
-    eval "$(worldjump init --fish)"
+    command -q worldjump; and eval (worldjump init --fish)
     abbr --erase cd 2>/dev/null; abbr -a cd wcd
     abbr --erase ls 2>/dev/null; abbr -a ls wls
     abbr --erase j 2>/dev/null; abbr --erase ji 2>/dev/null; abbr --erase jc 2>/dev/null

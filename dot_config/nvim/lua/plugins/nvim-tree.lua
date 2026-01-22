@@ -5,49 +5,49 @@
 -- Plugin: nvim-tree
 -- https://github.com/kyazdani42/nvim-tree.lua
 
-local api = vim.api
-local g = vim.g
+local nvim_tree = require('nvim-tree')
 
--- Set whether or not to show certain icons.
-g.nvim_tree_show_icons = {
-  git = 0,
-  folders = 1,
-  files = 1,
-}
+local function tail(path)
+  return vim.fn.fnamemodify(path, ':t')
+end
 
--- Customize icons.
-g.nvim_tree_icons = {
-  default = '',
-  symlink = '',
-  git = {
-    unstaged = '',
-    staged = '',
-    unmerged = '',
-    renamed = '',
-    deleted = '',
-    untracked = '',
-    ignored = '',
+nvim_tree.setup {
+  sync_root_with_cwd = true,
+  update_focused_file = {
+    enable = true,
+    update_root = true,
   },
-  folder = {
-    default = '',
-    open = '',
-    symlink = '',
-  },
-}
-
--- Only show the current folder as the root instead of full path.
-g.nvim_tree_root_folder_modifier = ':t'
-
--- Highlight nodes according to current git status.
-g.nvim_tree_git_hl = 1
-
--- Enable indent markers.
-g.nvim_tree_indent_markers = 1
-
-require('nvim-tree').setup{
-  update_cwd = true,
   hijack_cursor = true,
   git = {
+    enable = true,
     ignore = false,
+  },
+  diagnostics = {
+    enable = true,
+    show_on_dirs = true,
+  },
+  renderer = {
+    root_folder_label = tail,
+    highlight_git = true,
+    indent_markers = {
+      enable = true,
+    },
+    icons = {
+      show = {
+        file = true,
+        folder = true,
+        folder_arrow = true,
+        git = false, -- match previous config that hid git icons
+      },
+      glyphs = {
+        default = '',
+        symlink = '',
+        folder = {
+          default = '',
+          open = '',
+          symlink = '',
+        },
+      },
+    },
   },
 }

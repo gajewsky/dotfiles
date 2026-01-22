@@ -28,7 +28,7 @@
 [pull]
   ff = only
 [include]
-  path = /Users/gajewsky/.config/dev/gitconfig
+  path = {{ printf "%s/.config/dev/gitconfig" .chezmoi.homeDir | quote }}
 [merge]
   conflictstyle = zdiff3
 [diff]
@@ -44,8 +44,10 @@
   fsckObjects = true
 [rerere]
 	enabled = true
+{{- if eq .chezmoi.os "darwin" }}
 [maintenance]
-	repo = /Users/gajewsky/world/trees/root/src
+	repo = {{ printf "%s/world/trees/root/src" .chezmoi.homeDir | quote }}
+{{- end }}
 [fetch]
 	prune = true
 [init]
