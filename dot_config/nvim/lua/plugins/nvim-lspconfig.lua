@@ -2,13 +2,21 @@
 -- Neovim LSP configuration file
 -----------------------------------------------------------
 
--- Using vim.lsp.config (Neovim 0.11+)
--- see :help lspconfig-nvim-0.11
-
 local cmp_nvim_lsp = require('cmp_nvim_lsp')
+local lspconfig = require('lspconfig')
+local mason_lspconfig = require('mason-lspconfig')
 
 -- Add additional capabilities supported by nvim-cmp
 local capabilities = cmp_nvim_lsp.default_capabilities()
+
+-- Shared server definitions
+local servers = {
+  solargraph = {},
+  sorbet = {
+    cmd = { 'bundle', 'exec', 'srb', 'tc', '--lsp' },
+    filetypes = { 'ruby' },
+  },
+}
 
 -- LSP keymaps via LspAttach autocommand
 vim.api.nvim_create_autocmd('LspAttach', {
@@ -44,26 +52,38 @@ vim.api.nvim_create_autocmd('LspAttach', {
   end,
 })
 
--- Configure LSP servers using vim.lsp.config
-vim.lsp.config('*', {
-  capabilities = capabilities,
-})
+-- Configure LSP servers with compatibility for Neovim 0.10 and 0.11+
+local has_modern_lsp = vim.lsp and vim.lsp.config
 
-vim.lsp.config('solargraph', {
-  capabilities = capabilities,
-})
+if has_modern_lsp then
+  -- Neovim 0.11+ API
+  vim.lsp.config('*', { capabilities = capabilities })
+  for name, opts in pairs(servers) do
+    local server_opts = vim.tbl_deep_extend('force', {}, opts, { capabilities = capabilities })
+    vim.lsp.config(name, server_opts)
+  end
 
-vim.lsp.config('sorbet', {
-  cmd = { 'bundle', 'exec', 'srb', 'tc', '--lsp' },
-  filetypes = { 'ruby' },
-  capabilities = capabilities,
-})
+  mason_lspconfig.setup {
+    ensure_installed = { 'solargraph' },
+    automatic_installation = true,
+  }
 
--- Setup mason-lspconfig to auto-install LSP servers
-require('mason-lspconfig').setup {
-  ensure_installed = { 'solargraph' },
-  automatic_installation = true,
-}
+  vim.lsp.enable(vim.tbl_keys(servers))
+else
+  -- Neovim 0.10 fallback
+  mason_lspconfig.setup {
+    ensure_installed = { 'solargraph' },
+    automatic_installation = true,
+  }
 
--- Enable configured servers
-vim.lsp.enable({ 'solargraph', 'sorbet' })
+  mason_lspconfig.setup_handlers({
+    function(server_name)
+      local opts = vim.tbl_deep_extend('force', {}, servers[server_name] or {}, {
+        capabilities = capabilities,
+      })
+      if lspconfig[server_name] then
+        lspconfig[server_name].setup(opts)
+      end
+    end,
+  })
+end
