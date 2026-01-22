@@ -43,6 +43,21 @@ end
 
 
 
+# wish (macOS only)
+if test (uname) = "Darwin"
+    set -gx __wishConfig "fish:/Users/gajewsky/.config/wish.fish.toml"
+    eval "$(wcd --init fish)"
+    abbr --erase wj 2>/dev/null; abbr --erase wji 2>/dev/null; abbr --erase wjc 2>/dev/null
+    eval "$(worldjump init --fish)"
+    abbr --erase cd 2>/dev/null; abbr -a cd wcd
+    abbr --erase ls 2>/dev/null; abbr -a ls wls
+    abbr --erase j 2>/dev/null; abbr --erase ji 2>/dev/null; abbr --erase jc 2>/dev/null
+    abbr -a j wj; abbr -a ji wji; abbr -a jc wjc
+
+    # Added by tec agent
+    test -x /Users/gajewsky/.local/state/tec/profiles/base/current/global/init && /Users/gajewsky/.local/state/tec/profiles/base/current/global/init fish | source
+end
+
 if status is-interactive
     # Disable flow control to allow ctrl+s and ctrl+q to work in terminal apps
     stty -ixon -ixoff 2>/dev/null
