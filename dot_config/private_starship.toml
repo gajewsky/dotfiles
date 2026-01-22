@@ -4,14 +4,14 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
 add_newline = true
-command_timeout = 1000
+command_timeout = 3000
 
 # Format: left prompt with git, right prompt with duration
 format = """
 $hostname\
 $directory\
-${custom.worktree_indicator}\
-${custom.git_branch_custom}\
+${custom.git_branch_normal}\
+${custom.git_branch_worktree}\
 $git_status\
 $line_break\
 $character"""
@@ -37,19 +37,22 @@ error_symbol = "[❯](bold #fb4934)"    # Gruvbox red
 [git_branch]
 disabled = true
 
-[custom.git_branch_custom]
-command = "git symbolic-ref --short HEAD"
-when = "git rev-parse --is-inside-work-tree >/dev/null 2>&1"
+# Normal git repo (not a worktree) - green
+[custom.git_branch_normal]
+command = "git symbolic-ref --short HEAD 2>/dev/null"
+when = "git rev-parse --is-inside-work-tree 2>/dev/null && ! test -f $(git rev-parse --git-dir 2>/dev/null)/commondir"
 format = "[$symbol$output]($style) "
 symbol = " "
 style = "bold #b8bb26"  # Gruvbox green
 ignore_timeout = true
 
-[custom.worktree_indicator]
-command = "echo '🌲'"
+# Worktree - orange with tree icon
+[custom.git_branch_worktree]
+command = "git symbolic-ref --short HEAD 2>/dev/null"
 when = "test -f $(git rev-parse --git-dir 2>/dev/null)/commondir"
-format = " [$output]($style)"
-style = "bold #b8bb26"  # Gruvbox green (matches git branch)
+format = " [🌲 $output]($style) "
+style = "bold #fe8019"  # Gruvbox orange
+ignore_timeout = true
 
 [git_status]
 style = "bold #fb4934"  # Gruvbox red
