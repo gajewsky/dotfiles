@@ -109,3 +109,26 @@ function use-claude --description "Switch Claude Code to use Anthropic API"
     echo "Claude Code now using Anthropic API"
 end
 
+function wt --description "Switch to git worktree with fzf"
+    set -l worktrees (git worktree list --porcelain 2>/dev/null | grep "^worktree " | sed 's/^worktree //')
+
+    if test (count $worktrees) -eq 0
+        echo "No worktrees found"
+        return 1
+    end
+
+    if test (count $worktrees) -eq 1
+        echo "Only one worktree exists: $worktrees[1]"
+        return 0
+    end
+
+    set -l selected (printf '%s\n' $worktrees | fzf \
+        --header "Select worktree" \
+        --preview "git -C {} log --oneline -10 --color=always 2>/dev/null || echo 'No commits'" \
+        --preview-window "right:50%")
+
+    if test -n "$selected"
+        cd "$selected"
+    end
+end
+
