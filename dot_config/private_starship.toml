@@ -63,6 +63,7 @@ staged = "+${count}"
 modified = "!${count}"
 untracked = "?${count}"
 deleted = "✘${count}"
+stashed = "📦${count}"
 
 [cmd_duration]
 min_time = 2000
