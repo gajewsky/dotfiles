@@ -132,3 +132,41 @@ function wt --description "Switch to git worktree with fzf"
     end
 end
 
+function gstash --description "Browse and apply git stashes with fzf"
+    if test (git stash list | count) -eq 0
+        echo "No stashes found"
+        return 1
+    end
+
+    set -l stash (git stash list --color=always | fzf \
+        --ansi \
+        --header "Enter=apply, Ctrl-d=drop, Ctrl-p=pop" \
+        --preview "git stash show -p --color=always {1} 2>/dev/null" \
+        --preview-window "right:60%" \
+        --bind "ctrl-d:execute(git stash drop {1})+reload(git stash list --color=always)" \
+        --bind "ctrl-p:execute(git stash pop {1})+abort" \
+        | cut -d: -f1)
+
+    if test -n "$stash"
+        git stash apply "$stash"
+    end
+end
+
+function gdiff --description "Browse changed files with diff preview"
+    set -l files (git diff --name-only HEAD 2>/dev/null)
+
+    if test (count $files) -eq 0
+        echo "No changed files"
+        return 1
+    end
+
+    set -l file (printf '%s\n' $files | fzf \
+        --header "Changed files (Enter=open in nvim)" \
+        --preview "git diff --color=always HEAD -- {} 2>/dev/null" \
+        --preview-window "right:60%")
+
+    if test -n "$file"
+        nvim "$file"
+    end
+end
+
