@@ -46,12 +46,13 @@ symbol = " "
 style = "bold #b8bb26"  # Gruvbox green
 ignore_timeout = true
 
-# Worktree - orange with tree icon
+# Worktree - green with worktree name prefix
 [custom.git_branch_worktree]
-command = "git symbolic-ref --short HEAD 2>/dev/null"
+command = "echo \"$(basename $(git rev-parse --show-toplevel)):$(git symbolic-ref --short HEAD 2>/dev/null)\""
 when = "test -f $(git rev-parse --git-dir 2>/dev/null)/commondir"
-format = " [🌲 $output]($style) "
-style = "bold #fe8019"  # Gruvbox orange
+format = " [$symbol$output]($style) "
+symbol = " "
+style = "bold #b8bb26"  # Gruvbox green
 ignore_timeout = true
 
 [git_status]
