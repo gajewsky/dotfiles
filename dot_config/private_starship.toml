@@ -48,7 +48,7 @@ ignore_timeout = true
 
 # Worktree - green with worktree name prefix
 [custom.git_branch_worktree]
-command = "echo \"$(basename $(git rev-parse --show-toplevel)):$(git symbolic-ref --short HEAD 2>/dev/null)\""
+command = "echo \"$(basename $(dirname $(git rev-parse --show-toplevel))):$(git symbolic-ref --short HEAD 2>/dev/null)\""
 when = "test -f $(git rev-parse --git-dir 2>/dev/null)/commondir"
 format = " [$symbol$output]($style) "
 symbol = " "
