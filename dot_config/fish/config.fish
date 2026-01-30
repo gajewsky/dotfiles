@@ -37,11 +37,6 @@ if command -v zoxide >/dev/null
     zoxide init fish --cmd cd | source
 end
 
-if command -v try >/dev/null
-    env SHELL=(command -v fish) try init ~/src/tries | source
-end
-
-
 
 # wish (macOS only)
 if test (uname) = "Darwin"

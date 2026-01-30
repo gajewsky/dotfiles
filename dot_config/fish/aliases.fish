@@ -66,7 +66,6 @@ alias pst='procs --tree'
 
 # bottom (htop replacement)
 alias top='btm'
-alias htop='btm'
 
 # Functions (for complex commands with pipes/subshells)
 function reload! --description "Reload fish config"
@@ -97,40 +96,6 @@ function cb --description "Copy to clipboard (cross-platform)"
     end
 end
 
-function use-zai --description "Switch Claude Code to use z.ai API"
-    set -gx ANTHROPIC_BASE_URL "https://api.z.ai/api/anthropic"
-    set -gx API_TIMEOUT_MS "3000000"
-    echo "Claude Code now using z.ai API"
-end
-
-function use-claude --description "Switch Claude Code to use Anthropic API"
-    set -e ANTHROPIC_BASE_URL
-    set -e API_TIMEOUT_MS
-    echo "Claude Code now using Anthropic API"
-end
-
-function wt --description "Switch to git worktree with fzf"
-    set -l worktrees (git worktree list --porcelain 2>/dev/null | grep "^worktree " | sed 's/^worktree //')
-
-    if test (count $worktrees) -eq 0
-        echo "No worktrees found"
-        return 1
-    end
-
-    if test (count $worktrees) -eq 1
-        echo "Only one worktree exists: $worktrees[1]"
-        return 0
-    end
-
-    set -l selected (printf '%s\n' $worktrees | fzf \
-        --header "Select worktree" \
-        --preview "git -C {} log --oneline -10 --color=always 2>/dev/null || echo 'No commits'" \
-        --preview-window "right:50%")
-
-    if test -n "$selected"
-        cd "$selected"
-    end
-end
 
 function gstash --description "Browse and apply git stashes with fzf"
     if test (git stash list | count) -eq 0
