@@ -3,12 +3,12 @@
 
 set -e
 
-packages="fish fzf zoxide starship zellij neovim wget eza bat mise git-delta lazygit git-absorb fd ripgrep jq procs bottom glow xclip"
+packages="fish fzf zoxide starship zellij neovim wget eza bat mise git-delta lazygit git-absorb fd ripgrep jq procs bottom glow"
 
 {{ if eq .chezmoi.os "darwin" -}}
 packages="$packages gh mole"
 {{ else -}}
-packages="$packages github-cli"
+packages="$packages github-cli lazydocker xclip"
 {{ end -}}
 
 {{ if eq .chezmoi.os "darwin" -}}

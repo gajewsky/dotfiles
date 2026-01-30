@@ -1,6 +1,38 @@
 # Zellij terminal multiplexer integration
 # Auto-loaded when fish starts
 
+# Rename Zellij session to current git worktree/repo name
+# Available outside Zellij too (will just fail silently if not in Zellij)
+function zellij-rename-session-to-worktree --description "Rename Zellij session to current git worktree name"
+    # Check if we're in a git repo
+    if not git rev-parse --git-dir >/dev/null 2>&1
+        echo "Error: Not in a git repository"
+        return 1
+    end
+
+    set -l git_dir (git rev-parse --git-dir 2>/dev/null)
+    set -l toplevel (git rev-parse --show-toplevel 2>/dev/null)
+    set -l worktree_name
+
+    if test -f "$git_dir/commondir"
+        # We're in a worktree - get parent of toplevel (e.g., root from ~/world/trees/root/src)
+        set worktree_name (basename (dirname "$toplevel"))
+    else
+        # Regular repo - use repo name
+        set worktree_name (basename "$toplevel")
+    end
+
+    if test -z "$worktree_name"
+        echo "Error: Could not determine worktree name"
+        return 1
+    end
+
+    command zellij action rename-session "$worktree_name"
+    echo "✓ Session renamed to '$worktree_name'"
+end
+
+abbr -a zrs 'zellij-rename-session-to-worktree'
+
 if set -q ZELLIJ
     # Force proper terminal size reporting
     stty rows $LINES cols $COLUMNS 2>/dev/null
