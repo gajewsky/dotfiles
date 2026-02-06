@@ -3,7 +3,7 @@
 
 # Rename Zellij session to current git worktree/repo name
 # Available outside Zellij too (will just fail silently if not in Zellij)
-function zellij-rename-session-to-worktree --description "Rename Zellij session to current git worktree name"
+function zellij-rename-session-to-worktree --description "Rename Zellij session to current git worktree name, or attach if session exists"
     # Check if we're in a git repo
     if not git rev-parse --git-dir >/dev/null 2>&1
         echo "Error: Not in a git repository"
@@ -27,8 +27,17 @@ function zellij-rename-session-to-worktree --description "Rename Zellij session 
         return 1
     end
 
-    command zellij action rename-session "$worktree_name"
-    echo "✓ Session renamed to '$worktree_name'"
+    # Check if a session with this name already exists
+    if command zellij list-sessions 2>/dev/null | string match -q "$worktree_name *"
+        command zellij attach "$worktree_name"
+    else if set -q ZELLIJ
+        # Already inside Zellij - just rename current session
+        command zellij action rename-session "$worktree_name"
+        echo "✓ Session renamed to '$worktree_name'"
+    else
+        # Not inside Zellij - create a new session with that name
+        command zellij --session "$worktree_name"
+    end
 end
 
 abbr -a zrs 'zellij-rename-session-to-worktree'
