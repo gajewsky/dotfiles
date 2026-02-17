@@ -20,9 +20,11 @@ set -gx PATH ~/.cargo/bin $PATH
 set -gx PATH ~/git-fuzzy/bin $PATH
 set -gx PATH ~/.bun/bin $PATH
 
+{{ if eq .machine "workstation" -}}
 if test -f /opt/dev/dev.fish
     source /opt/dev/dev.fish
 end
+{{ end -}}
 
 set -gx ZELLIJ_CONFIG_DIR $HOME/.config/zellij
 
@@ -38,7 +40,8 @@ if command -v zoxide >/dev/null
 end
 
 
-# wish (macOS only)
+{{ if eq .machine "workstation" -}}
+# Shopify tools (wish, worldjump, tec)
 if test (uname) = "Darwin"
     set -gx __wishConfig "fish:/Users/gajewsky/.config/wish.fish.toml"
     command -q wcd; and wcd --init fish | source
@@ -52,6 +55,7 @@ if test (uname) = "Darwin"
     # Added by tec agent
     test -x /Users/gajewsky/.local/state/tec/profiles/base/current/global/init && /Users/gajewsky/.local/state/tec/profiles/base/current/global/init fish | source
 end
+{{ end -}}
 
 if status is-interactive
     # Disable flow control to allow ctrl+s and ctrl+q to work in terminal apps

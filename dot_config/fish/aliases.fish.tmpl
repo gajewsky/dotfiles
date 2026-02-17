@@ -36,6 +36,7 @@ abbr -a fdir 'fd --type d'
 # ripgrep
 abbr -a rg 'rg --smart-case'
 
+{{ if eq .machine "workstation" -}}
 # Graphite (only if installed)
 if command -q gt
     # Navigation
@@ -60,6 +61,7 @@ if command -q gt
     abbr -a gtls 'gt log short -s'
     abbr -a gtlc 'gt log --classic'
 end
+{{ end -}}
 
 # procs (ps replacement)
 alias ps='procs'
