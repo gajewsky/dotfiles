@@ -4,26 +4,41 @@
     "command": "~/.claude/file-suggestion.sh"
   },
   "permissions": {
-    "allow": [
-      "Bash(mkdir:*)",
-      "Read(/home/gajewsky/Obsidian/**)",
-      "Read(/Users/gajewsky/Obsidian/**)",
-      "Write(/home/gajewsky/Obsidian/**)",
-      "Write(/Users/gajewsky/Obsidian/**)",
-      "Edit(/home/gajewsky/Obsidian/**)",
-      "Edit(/Users/gajewsky/Obsidian/**)"
+    "deny": [
+      "Bash(rm -rf *)",
+      "Bash(sudo *)",
+      "Bash(chmod 777 *)",
+      "Bash(mkfs *)",
+      "Bash(git push --force *)",
+      "Bash(git reset --hard *)",
+      "Bash(gh pr create *)",
+      "Bash(gh pr merge *)",
+      "Bash(gh pr close *)",
+      "Bash(gh pr edit *)",
+      "Bash(gh pr comment *)",
+      "Bash(gh pr review *)",
+      "Bash(gh issue create *)",
+      "Bash(gh issue close *)",
+      "Bash(gh issue edit *)",
+      "Bash(gh issue comment *)",
+      "Bash(gh release create *)",
+      "Bash(gh release delete *)",
+      "Bash(gh release edit *)",
+      "Bash(gh repo create *)",
+      "Bash(gh repo delete *)",
+      "Bash(gh repo edit *)"
     ],
-    "deny": [],
-    "ask": []
+    "defaultMode": "bypassPermissions"
   },
-  "model": "sonnet",
   "statusLine": {
     "type": "command",
     "command": "~/.claude/statusline.sh",
     "padding": 0
   },
-  "alwaysThinkingEnabled": true,
   "enabledPlugins": {
     "superpowers@claude-plugins-official": true
-  }
+  },
+  "alwaysThinkingEnabled": true,
+  "skipDangerousModePermissionPrompt": true,
+  "model": "sonnet"
 }
