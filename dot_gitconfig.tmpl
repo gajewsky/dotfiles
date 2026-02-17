@@ -20,15 +20,17 @@
   user = gajewsky
 [user]
 	name = {{ .name }}
-{{- if eq .chezmoi.os "darwin" }}
+{{- if eq .machine "workstation" }}
 	email = {{ .email_work }}
 {{- else }}
 	email = {{ .email_personal }}
 {{- end }}
 [pull]
   ff = only
+{{- if eq .machine "workstation" }}
 [include]
   path = {{ printf "%s/.config/dev/gitconfig" .chezmoi.homeDir | quote }}
+{{- end }}
 [merge]
   conflictstyle = zdiff3
 [diff]
@@ -44,7 +46,7 @@
   fsckObjects = true
 [rerere]
 	enabled = true
-{{- if eq .chezmoi.os "darwin" }}
+{{- if eq .machine "workstation" }}
 [maintenance]
 	repo = {{ printf "%s/world/trees/root/src" .chezmoi.homeDir | quote }}
 {{- end }}
