@@ -15,7 +15,7 @@ function zellij-rename-session-to-worktree --description "Rename Zellij session 
     set -l worktree_name
 
     if test -f "$git_dir/commondir"
-        # We're in a worktree - get parent of toplevel (e.g., root from ~/world/trees/root/src)
+        # We're in a worktree - get parent of toplevel
         set worktree_name (basename (dirname "$toplevel"))
     else
         # Regular repo - use repo name
@@ -116,30 +116,17 @@ if set -q ZELLIJ
                 set ssh_host (string replace -r '^.*@' '' $ssh_host)
                 command zellij action rename-tab "ssh:$ssh_host" 2>/dev/null
             end
-        # Handle Codex (direct or via devx)
-        else if begin
-            test "$base_cmd" = "codex"
-            or begin
-                test "$base_cmd" = "devx"
-                and test "$cmd[2]" = "codex"
-            end
-        end
+        # Handle Codex
+        else if test "$base_cmd" = "codex"
             set -l current_dir (basename $PWD)
             if test "$current_dir" = (basename $HOME)
                 set current_dir "~"
             end
             command zellij action rename-tab "֎ $current_dir" 2>/dev/null
-        # Handle Claude/OpenCode (direct or via devx)
+        # Handle Claude/OpenCode
         else if begin
             test "$base_cmd" = "claude"
             or test "$base_cmd" = "opencode"
-            or begin
-                test "$base_cmd" = "devx"
-                and begin
-                    test "$cmd[2]" = "claude"
-                    or test "$cmd[2]" = "opencode"
-                end
-            end
         end
             set -l current_dir (basename $PWD)
             if test "$current_dir" = (basename $HOME)
@@ -160,15 +147,6 @@ if set -q ZELLIJ
             or test "$base_cmd" = "codex"
             or test "$base_cmd" = "claude"
             or test "$base_cmd" = "opencode"
-        end
-            __zellij_auto_rename_tab
-        else if begin
-            test "$base_cmd" = "devx"
-            and begin
-                test "$cmd[2]" = "codex"
-                or test "$cmd[2]" = "claude"
-                or test "$cmd[2]" = "opencode"
-            end
         end
             __zellij_auto_rename_tab
         end
