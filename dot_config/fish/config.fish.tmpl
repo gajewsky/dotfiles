@@ -43,7 +43,7 @@ end
 {{ if eq .machine "workstation" -}}
 # Shopify tools (wish, worldjump, tec)
 if test (uname) = "Darwin"
-    set -gx __wishConfig "fish:/Users/gajewsky/.config/wish.fish.toml"
+    set -gx __wishConfig "fish:$HOME/.config/wish.fish.toml"
     command -q wcd; and wcd --init fish | source
     abbr --erase wj 2>/dev/null; abbr --erase wji 2>/dev/null; abbr --erase wjc 2>/dev/null
     command -q worldjump; and worldjump init --fish | source
@@ -53,7 +53,7 @@ if test (uname) = "Darwin"
     abbr -a j wj; abbr -a ji wji; abbr -a jc wjc
 
     # Added by tec agent
-    test -x /Users/gajewsky/.local/state/tec/profiles/base/current/global/init && /Users/gajewsky/.local/state/tec/profiles/base/current/global/init fish | source
+    test -x $HOME/.local/state/tec/profiles/base/current/global/init && $HOME/.local/state/tec/profiles/base/current/global/init fish | source
 end
 {{ end -}}
 
