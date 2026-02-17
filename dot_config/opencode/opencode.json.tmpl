@@ -1,8 +1,50 @@
 {
   "plugin": [
-    "@franlol/opencode-md-table-formatter@0.0.3",
-    "@tarquinen/opencode-dcp@latest"
+    "@franlol/opencode-md-table-formatter@0.0.3"
   ],
   "$schema": "https://opencode.ai/config.json",
-  "theme": "gruvbox"
+  "theme": "gruvbox",
+  "permission": {
+    "*": "allow",
+    "read": {
+      "*": "allow",
+      "*.env": "deny",
+      "*.env.*": "deny",
+      "*.env.example": "allow"
+    },
+    "bash": {
+      "*": "allow",
+      "rm -rf *": "deny",
+      "sudo *": "deny",
+      "chmod 777 *": "deny",
+      "mkfs *": "deny",
+      "git push --force": "deny",
+      "git push --force *": "deny",
+      "git push * --force": "deny",
+      "git push * --force *": "deny",
+      "git reset --hard": "deny",
+      "git reset --hard *": "deny",
+      "gt submit": "deny",
+      "gt submit *": "deny",
+      "gh pr create": "deny",
+      "gh pr create *": "deny",
+      "gh pr merge": "deny",
+      "gh pr merge *": "deny",
+      "gh pr close *": "deny",
+      "gh pr edit *": "deny",
+      "gh pr comment *": "deny",
+      "gh pr review *": "deny",
+      "gh issue create": "deny",
+      "gh issue create *": "deny",
+      "gh issue close *": "deny",
+      "gh issue edit *": "deny",
+      "gh issue comment *": "deny",
+      "gh release create *": "deny",
+      "gh release delete *": "deny",
+      "gh release edit *": "deny",
+      "gh repo create *": "deny",
+      "gh repo delete *": "deny",
+      "gh repo edit *": "deny"
+    }
+  }
 }
