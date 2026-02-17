@@ -27,6 +27,7 @@ abbr -a za 'zoxide add'
 
 # Chezmoi
 abbr -a dotfiles 'cd (chezmoi source-path)'
+abbr -a dotfiles-work 'cd ~/.local/share/chezmoi-work'
 
 # fd (find replacement)
 abbr -a ff 'fd --type f'
@@ -134,4 +135,37 @@ function gdiff --description "Browse changed files with diff preview"
         nvim "$file"
     end
 end
+
+{{ if eq .machine "workstation" -}}
+# World monorepo shortcuts (this machine only)
+set -gx WORLD_ROOT ~/world
+set -gx WORLD_TREES ~/world/trees
+set -gx WORLD_SRC ~/world/trees/root/src
+
+abbr -a wcd 'cd ~/world/trees/root/src'
+abbr -a wls 'ls ~/world/trees/root/src'
+abbr -a wtrees 'ls ~/world/trees'
+abbr -a wtcd 'cd ~/world/trees'
+
+function wt --description "cd into a World worktree by name"
+    if test (count $argv) -eq 0
+        ls ~/world/trees
+        return
+    end
+    set -l tree ~/world/trees/$argv[1]
+    if test -d "$tree"
+        cd "$tree"
+    else
+        echo "Worktree '$argv[1]' not found"
+        return 1
+    end
+end
+
+function wt-fzf --description "Pick a World worktree with fzf"
+    set -l tree (ls ~/world/trees | fzf --header "Select worktree")
+    if test -n "$tree"
+        cd ~/world/trees/$tree
+    end
+end
+{{ end -}}
 
