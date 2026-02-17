@@ -1,10 +1,4 @@
 {
-  "alwaysThinkingEnabled": true,
-  "statusLine": {
-    "type": "command",
-    "command": "~/.claude/statusline.sh",
-    "padding": 0
-  },
   "fileSuggestion": {
     "type": "command",
     "command": "~/.claude/file-suggestion.sh"
@@ -21,5 +15,15 @@
     ],
     "deny": [],
     "ask": []
+  },
+  "model": "sonnet",
+  "statusLine": {
+    "type": "command",
+    "command": "~/.claude/statusline.sh",
+    "padding": 0
+  },
+  "alwaysThinkingEnabled": true,
+  "enabledPlugins": {
+    "superpowers@claude-plugins-official": true
   }
 }
