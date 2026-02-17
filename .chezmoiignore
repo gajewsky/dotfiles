@@ -2,8 +2,8 @@
 README.md
 README_SEARCH.md
 
-{{ if eq .chezmoi.os "darwin" }}
-# Don't apply AI tool configs on macOS — managed by chezmoi-work
+{{ if eq .machine "workstation" }}
+# Don't apply AI tool configs on workstation
 .claude
 .config/opencode
 {{ end }}
