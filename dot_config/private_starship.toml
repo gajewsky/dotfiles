@@ -41,8 +41,7 @@ disabled = true
 [custom.git_branch_normal]
 command = "git symbolic-ref --short HEAD 2>/dev/null"
 when = "git rev-parse --is-inside-work-tree 2>/dev/null && ! test -f $(git rev-parse --git-dir 2>/dev/null)/commondir"
-format = "[$symbol$output]($style) "
-symbol = " "
+format = " [$output]($style) "
 style = "bold #b8bb26"  # Gruvbox green
 ignore_timeout = true
 
@@ -50,8 +49,7 @@ ignore_timeout = true
 [custom.git_worktree_name]
 command = "basename $(dirname $(git rev-parse --show-toplevel))"
 when = "test -f $(git rev-parse --git-dir 2>/dev/null)/commondir"
-format = " [$symbol$output]($style)"
-symbol = " "
+format = " [$output]($style) "
 style = "bold #fe8019"  # Gruvbox orange
 ignore_timeout = true
 
@@ -59,11 +57,12 @@ ignore_timeout = true
 [custom.git_branch_worktree]
 command = "git symbolic-ref --short HEAD 2>/dev/null"
 when = "test -f $(git rev-parse --git-dir 2>/dev/null)/commondir"
-format = " [$output]($style) "
+format = "[$output]($style) "
 style = "bold #b8bb26"  # Gruvbox green
 ignore_timeout = true
 
 [git_status]
+format = "[$all_status$ahead_behind]($style)"
 style = "bold #fb4934"  # Gruvbox red
 ahead = "⇡${count}"
 behind = "⇣${count}"
