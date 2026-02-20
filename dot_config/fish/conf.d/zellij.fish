@@ -123,16 +123,27 @@ if set -q ZELLIJ
                 set current_dir "~"
             end
             command zellij action rename-tab "֎ $current_dir" 2>/dev/null
-        # Handle Claude/OpenCode
-        else if begin
-            test "$base_cmd" = "claude"
-            or test "$base_cmd" = "opencode"
-        end
+        # Handle Claude
+        else if test "$base_cmd" = "claude"
             set -l current_dir (basename $PWD)
             if test "$current_dir" = (basename $HOME)
                 set current_dir "~"
             end
             command zellij action rename-tab "✳ $current_dir" 2>/dev/null
+        # Handle OpenCode
+        else if test "$base_cmd" = "opencode"
+            set -l current_dir (basename $PWD)
+            if test "$current_dir" = (basename $HOME)
+                set current_dir "~"
+            end
+            command zellij action rename-tab "◌ $current_dir" 2>/dev/null
+        # Handle Pi
+        else if test "$base_cmd" = "pi"
+            set -l current_dir (basename $PWD)
+            if test "$current_dir" = (basename $HOME)
+                set current_dir "~"
+            end
+            command zellij action rename-tab "𝞹 $current_dir" 2>/dev/null
         end
     end
 
@@ -147,6 +158,7 @@ if set -q ZELLIJ
             or test "$base_cmd" = "codex"
             or test "$base_cmd" = "claude"
             or test "$base_cmd" = "opencode"
+            or test "$base_cmd" = "pi"
         end
             __zellij_auto_rename_tab
         end
