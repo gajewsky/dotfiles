@@ -100,6 +100,11 @@ if set -q ZELLIJ
         set -l cmd (string split ' ' -- $argv[1])
         set -l base_cmd $cmd[1]
 
+        # Resolve devx wrapper: "devx claude" → base_cmd = "claude"
+        if test "$base_cmd" = "devx"; and set -q cmd[2]
+            set base_cmd $cmd[2]
+        end
+
         # Handle SSH
         if test "$base_cmd" = "ssh"
             # Extract hostname from SSH command
@@ -151,6 +156,11 @@ if set -q ZELLIJ
     function __zellij_restore_on_postexec --on-event fish_postexec
         set -l cmd (string split ' ' -- $argv[1])
         set -l base_cmd $cmd[1]
+
+        # Resolve devx wrapper: "devx claude" → base_cmd = "claude"
+        if test "$base_cmd" = "devx"; and set -q cmd[2]
+            set base_cmd $cmd[2]
+        end
 
         # Restore tab name after SSH or AI assistant exits
         if begin
