@@ -11,7 +11,7 @@ format = """
 $hostname\
 $directory\
 ${custom.git_branch_normal}\
-${custom.git_branch_worktree}\
+${custom.git_worktree_name}${custom.git_branch_worktree}\
 $git_status\
 $line_break\
 $character"""
@@ -46,12 +46,20 @@ symbol = " "
 style = "bold #b8bb26"  # Gruvbox green
 ignore_timeout = true
 
-# Worktree - green with worktree name prefix
-[custom.git_branch_worktree]
-command = "echo \"$(basename $(dirname $(git rev-parse --show-toplevel))):$(git symbolic-ref --short HEAD 2>/dev/null)\""
+# Worktree name - orange prefix
+[custom.git_worktree_name]
+command = "basename $(dirname $(git rev-parse --show-toplevel))"
 when = "test -f $(git rev-parse --git-dir 2>/dev/null)/commondir"
-format = " [$symbol$output]($style) "
+format = " [$symbol$output]($style)"
 symbol = " "
+style = "bold #fe8019"  # Gruvbox orange
+ignore_timeout = true
+
+# Worktree branch - green
+[custom.git_branch_worktree]
+command = "git symbolic-ref --short HEAD 2>/dev/null"
+when = "test -f $(git rev-parse --git-dir 2>/dev/null)/commondir"
+format = " [$output]($style) "
 style = "bold #b8bb26"  # Gruvbox green
 ignore_timeout = true
 
