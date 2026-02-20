@@ -52,6 +52,9 @@ if test (uname) = "Darwin"
     abbr --erase j 2>/dev/null; abbr --erase ji 2>/dev/null; abbr --erase jc 2>/dev/null
     abbr -a j wj; abbr -a ji wji; abbr -a jc wjc
 
+    # Init starship before tec so wish wraps starship's prompt, not fish default
+    starship init fish | source
+
     # Added by tec agent
     test -x $HOME/.local/state/tec/profiles/base/current/global/init && $HOME/.local/state/tec/profiles/base/current/global/init fish | source
 end
@@ -61,7 +64,9 @@ if status is-interactive
     # Disable flow control to allow ctrl+s and ctrl+q to work in terminal apps
     stty -ixon -ixoff 2>/dev/null
 
+{{ if ne .machine "workstation" -}}
     starship init fish | source
+{{ end -}}
 
     # Use different zellij theme for SSH sessions
     if test -n "$SSH_CONNECTION"
