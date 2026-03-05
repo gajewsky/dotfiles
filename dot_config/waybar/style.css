@@ -18,7 +18,7 @@
 }
 
 window#waybar {
-  background-color: @background;
+  background-color: rgba(40, 40, 40, 0.55);
   transition-property: background-color;
   transition-duration: .5s;
 }
@@ -66,7 +66,7 @@ window#waybar.empty #window {
 }
 
 #tray {
-  background:alpha(@foreground, 0.0);
+  background: transparent;
   border-radius: 16px;
   padding: 0px 5px;
   margin: 3.5 2px;
@@ -122,7 +122,7 @@ tooltip label {
 #clock,
 #mpris {
     font-weight: 800;
-    background:alpha(@foreground, 0.1);
+    background: transparent;
     border-radius: 16px;
     padding: 0px 5px;
     margin: 3.5 3.5px;
@@ -138,7 +138,7 @@ tooltip label {
 
 #window {
     font-weight: 800;
-    background:alpha(@foreground, 0.1);
+    background: transparent;
     border-radius: 16px;
     padding: 0px 5px;
     margin: 3.5 2px;
@@ -148,7 +148,7 @@ tooltip label {
 #group_ctl,
 #ctl {
     font-weight: 800;
-    background:alpha(@foreground, 0.1);
+    background: transparent;
     border-radius: 16px;
     padding: 0px 5px;
     margin: 3.5 2px;
