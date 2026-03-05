@@ -14,7 +14,7 @@ tools:
   patch: true
   task: true
   webfetch: true
-color: "#EF4444"
+color: "#fb4934"
 steps: 30
 ---
 

@@ -13,7 +13,7 @@ tools:
   edit: true
   patch: true
   webfetch: true
-color: "#22C55E"
+color: "#b8bb26"
 steps: 30
 ---
 

@@ -13,7 +13,7 @@ tools:
   write: false
   edit: false
   patch: false
-color: "#DC2626"
+color: "#cc241d"
 steps: 25
 ---
 
