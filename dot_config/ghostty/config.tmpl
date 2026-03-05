@@ -1,0 +1,74 @@
+shell-integration = fish
+shell-integration-features = no-cursor,sudo,title
+command = fish
+
+theme = Gruvbox Dark
+font-family = "LigaMonaco Nerd Font"
+font-size = 12
+mouse-scroll-multiplier = 0.5
+
+# Font rendering with ligatures
+font-feature = +calt
+font-feature = +liga
+font-thicken = true
+
+# Window settings
+window-padding-x = 8
+window-padding-y = 8
+window-inherit-working-directory = true
+window-save-state = always
+window-step-resize = true
+
+# Clipboard
+clipboard-read = allow
+clipboard-write = allow
+copy-on-select = clipboard
+
+# Cursor (let Neovim/Zellij control cursor style)
+cursor-style = block
+cursor-style-blink = false
+
+# Clickable URLs
+link-url = true
+
+# Unbind CMD+... keys so they will be forwarded to Zellij
+keybind = cmd+t=unbind
+keybind = cmd+n=unbind
+keybind = cmd+c=unbind
+keybind = cmd+w=unbind
+keybind = cmd+opt+left=unbind
+keybind = cmd+opt+right=unbind
+keybind = shift+enter=text:\x1b\r
+
+# Unbind Super keys so they pass through to Zellij/Hyprland
+keybind = super+g=unbind
+keybind = super+y=unbind
+keybind = super+n=unbind
+keybind = super+h=unbind
+keybind = super+t=unbind
+keybind = super+s=unbind
+keybind = super+o=unbind
+keybind = super+b=unbind
+keybind = super+q=unbind
+keybind = super+;=unbind
+keybind = super+f=unbind
+
+{{- if eq .chezmoi.os "darwin" }}
+
+# macOS specific
+window-decoration = true
+macos-titlebar-style = transparent
+macos-option-as-alt = true
+macos-icon = retro
+{{- end }}
+
+{{- if eq .machine "hx370" }}
+
+# Wayland/Hyprland specific (hx370)
+# Let Hyprland manage window decorations — no CSD title bar
+window-decoration = false
+# Flat GTK4/Adwaita styling
+adw-toolbar-style = flat
+# Each window is a separate process — safer on Wayland
+gtk-single-instance = false
+{{- end }}
