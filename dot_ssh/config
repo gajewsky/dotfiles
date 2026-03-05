@@ -1,0 +1,10 @@
+Host kalinka
+    HostName 10.0.4.91
+    User gajewsky
+    IdentityFile ~/.ssh/id_ed25519
+
+Host marcel
+    HostName 10.0.4.104
+    User marcin
+    Port 24
+    IdentityFile ~/.ssh/id_ed25519
