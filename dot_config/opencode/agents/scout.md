@@ -14,7 +14,7 @@ tools:
   write: false
   edit: false
   patch: false
-color: "#10B981"
+color: "#8ec07c"
 steps: 20
 hidden: true
 ---

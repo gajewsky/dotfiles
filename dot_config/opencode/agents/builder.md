@@ -15,7 +15,7 @@ tools:
   task: true
   webfetch: true
   websearch: true
-color: "#3B82F6"
+color: "#fe8019"
 steps: 50
 ---
 

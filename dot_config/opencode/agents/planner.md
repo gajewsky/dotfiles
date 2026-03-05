@@ -14,7 +14,7 @@ tools:
   webfetch: true
   websearch: true
   patch: false
-color: "#A855F7"
+color: "#fabd2f"
 steps: 35
 ---
 
