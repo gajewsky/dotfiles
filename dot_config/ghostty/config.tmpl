@@ -1,10 +1,14 @@
 shell-integration = fish
 shell-integration-features = no-cursor,sudo,title
+{{- if eq .chezmoi.os "darwin" }}
+command = /opt/homebrew/bin/fish
+{{- else }}
 command = fish
+{{- end }}
 
 theme = Gruvbox Dark
 font-family = "LigaMonaco Nerd Font"
-font-size = 12
+font-size = 14
 mouse-scroll-multiplier = 0.5
 
 # Font rendering with ligatures
