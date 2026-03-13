@@ -12,5 +12,6 @@ README_SEARCH.md
 {{ if ne .chezmoi.os "darwin" }}
 # macOS-only files
 .config/fish/conf.d/secrets.fish
+.config/karabiner
 {{ end }}
 
