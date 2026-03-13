@@ -35,6 +35,13 @@ cursor-style-blink = false
 # Clickable URLs
 link-url = true
 
+# PC-style shortcuts (replaces Karabiner PC-Style remap for Ghostty):
+#   Ctrl+V     = paste from clipboard
+#   Ctrl+Shift+C = send SIGINT (copy is handled by copy-on-select)
+keybind = ctrl+v=paste_from_clipboard
+keybind = ctrl+shift+c=text:\x03
+keybind = ctrl+backspace=text:\x17
+
 # Unbind CMD+... keys so they will be forwarded to Zellij
 keybind = cmd+t=unbind
 keybind = cmd+n=unbind

@@ -11,6 +11,12 @@ set -gx GLAMOUR_STYLE ~/.config/glow/gruvbox-dark.json
 set -gx fzf_diff_highlighter delta --paging=never --width=20
 set -gx fzf_preview_file_cmd bat --style=numbers --color=always
 set -gx fzf_preview_dir_cmd eza --all --color=always
+# Move fzf variables search off Ctrl+V so Ghostty can use it for paste
+fzf_configure_bindings --variables=ctrl-alt-v
+
+# PC-style word navigation: Ctrl+F/B move by word instead of char
+bind ctrl-f forward-word
+bind ctrl-b backward-word
 
 # fzf Gruvbox Dark colors
 set -gx FZF_DEFAULT_OPTS "\
