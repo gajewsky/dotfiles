@@ -59,6 +59,17 @@ for plugin in $reef_plugins; do
     fi
 done
 
+# Upgrade fzf.fish to v11.0+ (required for fish 4.x keybinding syntax)
+fzf_fish_dir="$HOME/.config/fish/corals/PatrickF1/fzf.fish"
+if [ -d "$fzf_fish_dir/.git" ]; then
+    current_tag=$(git -C "$fzf_fish_dir" describe --tags 2>/dev/null || echo "unknown")
+    if [ "$current_tag" != "v11.0" ]; then
+        echo "Upgrading fzf.fish from $current_tag to v11.0 (fish 4.x keybinding fix)..."
+        git -C "$fzf_fish_dir" fetch --tags
+        git -C "$fzf_fish_dir" checkout v11.0
+    fi
+fi
+
 # Fix jhillyerd/plugin-git for Reef compatibility (has Fisher-specific init code)
 git_conf="$HOME/.config/fish/corals/jhillyerd/plugin/conf.d/git.fish"
 if [ -f "$git_conf" ] && grep -q "fisher_path" "$git_conf"; then
