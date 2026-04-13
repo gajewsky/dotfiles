@@ -6,6 +6,7 @@ README_SEARCH.md
 # Don't apply AI tool configs on workstation
 .claude
 .config/opencode
+.agents
 {{ end }}
 
 {{ if ne .chezmoi.os "darwin" }}
