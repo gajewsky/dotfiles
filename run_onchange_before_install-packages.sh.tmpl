@@ -40,6 +40,20 @@ else
     echo "Unsupported package manager. Please install packages manually:"
     echo "  $packages"
 fi
+
+{{ if eq .machine "hx370" -}}
+# AUR packages (yay) - hx370 only
+if command -v yay &> /dev/null; then
+    aur_packages="ligamonaco-nerd-font-git"
+    echo "Checking and installing AUR packages (yay)..."
+    for package in $aur_packages; do
+        if ! pacman -Qi "$package" &> /dev/null 2>&1; then
+            echo "Installing $package..."
+            yay -S --noconfirm "$package"
+        fi
+    done
+fi
+{{- end }}
 {{- end }}
 
 # Install Reef plugin manager if not already installed

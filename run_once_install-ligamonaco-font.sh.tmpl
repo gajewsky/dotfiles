@@ -1,9 +1,0 @@
-#!/bin/bash
-{{- if ne .machine "hx370" }}
-exit 0
-{{- end }}
-
-if ! fc-list | grep -iq "LigaMonaco Nerd Font"; then
-  yay -S --noconfirm ligamonaco-nerd-font-git
-  omarchy-font-set "LigaMonaco Nerd Font"
-fi

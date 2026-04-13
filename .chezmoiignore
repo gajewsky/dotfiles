@@ -14,11 +14,3 @@ README_SEARCH.md
 .config/fish/conf.d/secrets.fish
 {{ end }}
 
-{{ if ne .machine "hx370" }}
-# Wayland/Hyprland configs (hx370 only)
-.config/hypr
-.config/waybar
-.config/walker
-.config/mako
-.config/swayosd
-{{ end }}
