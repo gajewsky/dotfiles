@@ -37,8 +37,10 @@ link-url = true
 
 # PC-style shortcuts:
 #   Ctrl+V paste is handled by Karabiner (Ctrl+V -> Cmd+V remap)
+#   Cmd+Shift+V    = send Ctrl+V so Pi can paste an image from the clipboard
 #   Ctrl+Shift+C   = send SIGINT (copy is handled by copy-on-select)
-#   Ctrl+Backspace  = delete previous word
+#   Ctrl+Backspace = delete previous word
+keybind = cmd+shift+v=text:\x16
 keybind = ctrl+shift+c=text:\x03
 keybind = ctrl+backspace=text:\x17
 
