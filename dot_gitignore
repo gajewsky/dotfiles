@@ -54,4 +54,7 @@ Session.vim
 tags.temp
 tags.lock
 
+# AI tools #
+######################
+.pi/
 
