@@ -1,0 +1,5 @@
+# Copy this file to ~/.config/fish/.env and fill in any secrets you want exported.
+# Values from ~/.config/fish/.env are loaded by conf.d/secrets.fish.
+GITHUB_ACCESS_TOKEN=
+OPENAI_API_KEY=
+SHOPIFY_TALENT_TOKEN=

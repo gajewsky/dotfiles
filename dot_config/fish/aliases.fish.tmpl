@@ -71,8 +71,8 @@ alias pst='procs --tree'
 alias top='btm'
 
 # Functions (for complex commands with pipes/subshells)
-function reload! --description "Reload fish config"
-    source ~/.config/fish/config.fish
+function reload! --description "Restart fish and reload all config"
+    exec fish
 end
 
 function gapan --description "Git add intent-to-add + patch"
@@ -139,13 +139,12 @@ function gdiff --description "Browse changed files with diff preview"
 end
 
 {{ if eq .machine "workstation" -}}
-# World monorepo shortcuts (this machine only)
+# World monorepo shortcuts (personal convenience; keep wish's wcd/wls available)
 set -gx WORLD_ROOT ~/world
 set -gx WORLD_TREES ~/world/trees
 set -gx WORLD_SRC ~/world/trees/root/src
 
-abbr -a wcd 'cd ~/world/trees/root/src'
-abbr -a wls 'ls ~/world/trees/root/src'
+abbr -a wsrc 'cd ~/world/trees/root/src'
 abbr -a wtrees 'ls ~/world/trees'
 abbr -a wtcd 'cd ~/world/trees'
 

@@ -1,0 +1,8 @@
+[features]
+# Run `wish explain <feature>` to learn about each feature
+"alias.cd" = false
+"alias.j" = true
+"alias.ls" = false
+wcd = true
+worldjump = true
+worldpath = false
