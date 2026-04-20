@@ -14,7 +14,7 @@ chezmoi init --apply gajewsky/dotfiles
 
 ### Configuration
 
-After installation, create `~/.config/chezmoi/chezmoi.toml` with your public/personal data. If you use a separate private work repo, keep work-only values there.
+After installation, create `~/.config/chezmoi/chezmoi.toml` with your public/personal data.
 
 ```toml
 [data]

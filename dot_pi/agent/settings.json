@@ -1,0 +1,15 @@
+{
+  "lastChangelogVersion": "0.67.5",
+  "enableSkillCommands": true,
+  "defaultProvider": "openai",
+  "defaultModel": "gpt-5.4",
+  "theme": "gruvbox-dark-hard",
+  "npmCommand": [
+    "pnpm"
+  ],
+  "packages": [
+    "https://github.com/dbachelder/pi-btw"
+  ],
+  "defaultThinkingLevel": "xhigh",
+  "hideThinkingBlock": true
+}
