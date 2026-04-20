@@ -27,7 +27,6 @@ abbr -a za 'zoxide add'
 
 # Chezmoi
 abbr -a dotfiles 'cd (chezmoi source-path)'
-abbr -a dotfiles-work 'cd ~/.local/share/chezmoi-work'
 
 # fd (find replacement)
 abbr -a ff 'fd --type f'
@@ -35,33 +34,6 @@ abbr -a fdir 'fd --type d'
 
 # ripgrep
 abbr -a rg 'rg --smart-case'
-
-{{ if eq .machine "workstation" -}}
-# Graphite (only if installed)
-if command -q gt
-    # Navigation
-    abbr -a gtco 'gt checkout'
-    abbr -a gtg 'gt get'
-    abbr -a gtk 'gt checkout trunk'
-
-    # Creating/committing
-    abbr -a gtc 'gt create -am'
-    abbr -a gtcn 'gt create --no-verify'
-    abbr -a gtcm 'gt commit -m'
-    abbr -a gtmsg 'gt commit -m'
-
-    # Submitting PRs
-    abbr -a gts 'gt submit --stack --update-only'
-    abbr -a gtss 'gt submit --stack'
-
-    # Viewing stack
-    abbr -a gtl 'gt log short'
-    abbr -a gtll 'gt log long'
-    abbr -a gtlo 'gt log'
-    abbr -a gtls 'gt log short -s'
-    abbr -a gtlc 'gt log --classic'
-end
-{{ end -}}
 
 # procs (ps replacement)
 alias ps='procs'
@@ -137,36 +109,4 @@ function gdiff --description "Browse changed files with diff preview"
         nvim "$file"
     end
 end
-
-{{ if eq .machine "workstation" -}}
-# World monorepo shortcuts (personal convenience; keep wish's wcd/wls available)
-set -gx WORLD_ROOT ~/world
-set -gx WORLD_TREES ~/world/trees
-set -gx WORLD_SRC ~/world/trees/root/src
-
-abbr -a wsrc 'cd ~/world/trees/root/src'
-abbr -a wtrees 'ls ~/world/trees'
-abbr -a wtcd 'cd ~/world/trees'
-
-function wt --description "cd into a World worktree by name"
-    if test (count $argv) -eq 0
-        ls ~/world/trees
-        return
-    end
-    set -l tree ~/world/trees/$argv[1]
-    if test -d "$tree"
-        cd "$tree"
-    else
-        echo "Worktree '$argv[1]' not found"
-        return 1
-    end
-end
-
-function wt-fzf --description "Pick a World worktree with fzf"
-    set -l tree (ls ~/world/trees | fzf --header "Select worktree")
-    if test -n "$tree"
-        cd ~/world/trees/$tree
-    end
-end
-{{ end -}}
 
